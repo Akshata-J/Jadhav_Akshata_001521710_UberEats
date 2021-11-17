@@ -6,14 +6,15 @@
 package userinterface.RestaurantAdminRole;
 
 import Business.FoodDeliverySystem;
+import Business.Order.Item;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
-import userinterface.DeliveryManRole.*;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
 import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,6 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
     FoodDeliverySystem system;
     Restaurant restaurant;
     JLayeredPane adminTaskLayer;
-    List<Object> test = new ArrayList<>();
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
@@ -62,7 +62,7 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No records available");
+        tableRecordsStatus.setText("No orders available! For orders which are prepared go to Order Complete Page!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -134,9 +134,30 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
+        int row = incomingOrdersTable.getSelectedRow();
+        String orderId = (String) incomingOrdersTable.getValueAt(row, 0);
+        if(!incomingOrdersTable.getValueAt(row, 1).equals("Order Placed")){
+            JOptionPane.showMessageDialog(this, "Order already accepted and being prepared!", "Already Accepted", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         populateTable();
-        incomingOrdersTable.setValueAt("Order Accepted",incomingOrdersTable.getSelectedRow(),1);
-        system.getOrderById((String) incomingOrdersTable.getValueAt(incomingOrdersTable.getSelectedRow(),0)).setOrderStatus("Order Accepted");
+        for(int i =0; i<incomingOrdersTable.getRowCount();i++){
+            if(incomingOrdersTable.getValueAt(i, 0).equals(orderId)){
+                incomingOrdersTable.setValueAt("Order Accepted", row, 1);
+            }
+        }
+        system.getOrderById(orderId).setOrderStatus("Order Accepted");
+        ArrayList<String> orderDetails = new ArrayList<>();
+        orderDetails.add("Order accepted!\nDetials");
+        orderDetails.add("------------------------------");
+        orderDetails.add("ID:"+orderId);
+        for(Item i : system.getOrderById(orderId).getItems()){
+            orderDetails.add("Item:"+i.getItemName()+"("+i.getQuantity()+")"+" Price:$"+i.getPrice());
+        }
+        orderDetails.add("------------------------------");
+        orderDetails.add("Total Price:$"+system.getOrderById(orderId).getTotal());
+        orderDetails.add("------------------------------");
+        JOptionPane.showMessageDialog(this,String.join("\n", orderDetails), "Already Accepted", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_acceptOrderActionPerformed
 
 
@@ -161,7 +182,6 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
                 c[2] = o.getItemsAsString();
                 c[3] = o.getTotal();
                 model.addRow(c);
-                //model.addRow(c);
             }
         }
         table.getSelectedRow();
@@ -169,6 +189,9 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         if (table.getRowCount() == 0) {
             table.add(tableRecordsStatus);
             table.setFillsViewportHeight(true);
+            acceptOrder.setEnabled(false);
+        }else{
+            acceptOrder.setEnabled(true);
         }
     }
 }

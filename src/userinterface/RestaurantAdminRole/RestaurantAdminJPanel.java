@@ -9,7 +9,6 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.FoodDeliverySystem;
 import Business.Restaurant.Restaurant;
 import Business.Role.ResturantAdminRole;
-import userinterface.DeliveryManRole.*;
 import userinterface.CustomerRole.*;
 import userinterface.SystemAdminWorkArea.*;
 import java.awt.Color;
@@ -236,7 +235,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CompletedOrderHistoryJPanel ohjp = new CompletedOrderHistoryJPanel(adminTaskLayer);
+        CompletedOrderHistoryJPanel ohjp = new CompletedOrderHistoryJPanel(adminTaskLayer, system, restaurant);
         displayCustomerTaskPanel(ohjp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -246,12 +245,12 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CompleteOrderJPanel cojp = new CompleteOrderJPanel(adminTaskLayer);
+        CompleteOrderJPanel cojp = new CompleteOrderJPanel(adminTaskLayer, system, restaurant);
         displayCustomerTaskPanel(cojp);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        ManageMenuJPanel mmjp = new ManageMenuJPanel(adminTaskLayer);
+        ManageMenuJPanel mmjp = new ManageMenuJPanel(adminTaskLayer, system, restaurant);
         displayCustomerTaskPanel(mmjp);
     }//GEN-LAST:event_jButton6ActionPerformed
 

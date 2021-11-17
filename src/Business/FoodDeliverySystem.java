@@ -81,6 +81,17 @@ public class FoodDeliverySystem extends Organization{
         }
         return order;
     }
+    
+    public Restaurant getRestaurantByObj(Restaurant restaurant) {
+        Restaurant res = null;
+        for(Restaurant r: restaurantDirectory.getRestaurantDirectory()){
+            if(r.equals(restaurant)){
+                res=r;
+                break;
+            }
+        }
+        return res;
+    }
 
     public void setOrderDirectory(OrderDirectory orderDirectory) {
         this.orderDirectory = orderDirectory;

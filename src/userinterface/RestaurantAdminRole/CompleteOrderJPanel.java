@@ -5,28 +5,38 @@
  */
 package userinterface.RestaurantAdminRole;
 
-import userinterface.DeliveryManRole.*;
+import Business.FoodDeliverySystem;
+import Business.Order.Order;
+import Business.Restaurant.Restaurant;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
 import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author akshatajadhav
  */
 public class CompleteOrderJPanel extends javax.swing.JPanel {
-
+    
+    FoodDeliverySystem system;
+    Restaurant restaurant;
     JLayeredPane adminTaskLayer;
-    List<Object> test = new ArrayList<>();
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public CompleteOrderJPanel(JLayeredPane adminTaskLayer) {
+    public CompleteOrderJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
         this.adminTaskLayer=adminTaskLayer;
+        this.system = system;
+        this.restaurant = restaurant;
+        tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        populateTable();
     }
 
     public void displayAdminTaskPanel(JPanel panel) {
@@ -44,45 +54,50 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tableRecordsStatus = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        modifyBtn3 = new javax.swing.JButton();
+        orderCompleteTable = new javax.swing.JTable();
+        orderPreparedBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tableRecordsStatus.setText("No orders accepted!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        orderCompleteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Name", "Description"
+                "ID", "Status", "Items"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(orderCompleteTable);
+        if (orderCompleteTable.getColumnModel().getColumnCount() > 0) {
+            orderCompleteTable.getColumnModel().getColumn(0).setResizable(false);
+            orderCompleteTable.getColumnModel().getColumn(1).setResizable(false);
+            orderCompleteTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        modifyBtn3.setBackground(new java.awt.Color(92, 184, 92));
-        modifyBtn3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        modifyBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        modifyBtn3.setText("Select");
-        modifyBtn3.addActionListener(new java.awt.event.ActionListener() {
+        orderPreparedBtn.setBackground(new java.awt.Color(92, 184, 92));
+        orderPreparedBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        orderPreparedBtn.setForeground(new java.awt.Color(255, 255, 255));
+        orderPreparedBtn.setText("Order Prepared");
+        orderPreparedBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyBtn3ActionPerformed(evt);
+                orderPreparedBtnActionPerformed(evt);
             }
         });
 
@@ -93,15 +108,15 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(modifyBtn3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(orderPreparedBtn)
+                .addGap(406, 406, 406))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(403, 403, 403)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,20 +126,60 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(modifyBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(orderPreparedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtn3ActionPerformed
-        
-    }//GEN-LAST:event_modifyBtn3ActionPerformed
+    private void orderPreparedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPreparedBtnActionPerformed
+        int row = orderCompleteTable.getSelectedRow();
+        String orderId = (String) orderCompleteTable.getValueAt(row, 0);
+        if(system.getOrderById(orderId).getOrderStatus().equalsIgnoreCase("Order ready to deliver")){
+            JOptionPane.showMessageDialog(this, "Order already ready for delivery!", "Order Status", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        system.getOrderById(orderId).setOrderStatus("Order ready to deliver");
+        populateTable();
+    }//GEN-LAST:event_orderPreparedBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton modifyBtn3;
+    private javax.swing.JTable orderCompleteTable;
+    private javax.swing.JButton orderPreparedBtn;
+    private javax.swing.JLabel tableRecordsStatus;
     // End of variables declaration//GEN-END:variables
+    private void populateTable() {
+        JTable table = orderCompleteTable;
+        int rowCount = table.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+    
+        for (Order o : system.getOrdersByRestaurant(restaurant)) {
+            if(o.getOrderStatus().equalsIgnoreCase("Order ready to deliver")){
+                Object[] c = new Object[3];
+                c[0] = o.getOrderId();
+                c[1] = o.getOrderStatus();
+                c[2] = o.getItemsAsString();
+                model.addRow(c);
+            }
+        }
+        for (Order o : system.getOrdersByRestaurant(restaurant)) {
+            if(o.getOrderStatus().equalsIgnoreCase("Order Accepted")){
+                Object[] c = new Object[3];
+                c[0] = o.getOrderId();
+                c[1] = o.getOrderStatus();
+                c[2] = o.getItemsAsString();
+                model.addRow(c);
+            }
+        }
+        table.getSelectedRow();
+        table.setModel(model);
+        if (table.getRowCount() == 0) {
+            table.add(tableRecordsStatus);
+            table.setFillsViewportHeight(true);
+        }
+    }
+
 }

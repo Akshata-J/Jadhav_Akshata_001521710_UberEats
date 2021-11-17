@@ -5,9 +5,15 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.FoodDeliverySystem;
+import Business.Menu.Menu;
+import Business.Order.Order;
+import Business.Restaurant.Restaurant;
 import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,13 +21,19 @@ import javax.swing.JPanel;
  */
 public class ManageMenuJPanel extends javax.swing.JPanel {
 
+    FoodDeliverySystem system;
+    Restaurant restaurant;
     JLayeredPane adminTaskLayer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public ManageMenuJPanel(JLayeredPane adminTaskLayer) {
+    public ManageMenuJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
         this.adminTaskLayer=adminTaskLayer;
+        this.system = system;
+        this.restaurant = restaurant;
+        tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        populateTable();
     }
 
     public void displayRestaurantTaskPanel(JPanel panel) {
@@ -39,62 +51,63 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tableRecordsStatus = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        deleteBtn3 = new javax.swing.JButton();
-        modifyBtn3 = new javax.swing.JButton();
+        menuTable = new javax.swing.JTable();
+        deleteMenu = new javax.swing.JButton();
+        modifyMenu = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         modifyBtn4 = new javax.swing.JButton();
 
+        tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tableRecordsStatus.setText("No items Available!");
+
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        menuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Username", "Name", "Email", "Phone Number", "Address"
+                "Item", "Place"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
-        if (jTable4.getColumnModel().getColumnCount() > 0) {
-            jTable4.getColumnModel().getColumn(0).setResizable(false);
-            jTable4.getColumnModel().getColumn(1).setResizable(false);
-            jTable4.getColumnModel().getColumn(3).setResizable(false);
-            jTable4.getColumnModel().getColumn(4).setResizable(false);
-            jTable4.getColumnModel().getColumn(4).setPreferredWidth(150);
+        jScrollPane4.setViewportView(menuTable);
+        if (menuTable.getColumnModel().getColumnCount() > 0) {
+            menuTable.getColumnModel().getColumn(0).setResizable(false);
+            menuTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        deleteBtn3.setBackground(new java.awt.Color(209, 26, 42));
-        deleteBtn3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        deleteBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        deleteBtn3.setText("Delete");
-        deleteBtn3.addActionListener(new java.awt.event.ActionListener() {
+        deleteMenu.setBackground(new java.awt.Color(209, 26, 42));
+        deleteMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        deleteMenu.setForeground(new java.awt.Color(255, 255, 255));
+        deleteMenu.setText("Delete");
+        deleteMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtn3ActionPerformed(evt);
+                deleteMenuActionPerformed(evt);
             }
         });
 
-        modifyBtn3.setBackground(new java.awt.Color(92, 184, 92));
-        modifyBtn3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        modifyBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        modifyBtn3.setText("Modify");
-        modifyBtn3.addActionListener(new java.awt.event.ActionListener() {
+        modifyMenu.setBackground(new java.awt.Color(92, 184, 92));
+        modifyMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        modifyMenu.setForeground(new java.awt.Color(255, 255, 255));
+        modifyMenu.setText("Modify");
+        modifyMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyBtn3ActionPerformed(evt);
+                modifyMenuActionPerformed(evt);
             }
         });
 
@@ -129,9 +142,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                         .addGap(208, 208, 208)
                         .addComponent(modifyBtn4)
                         .addGap(109, 109, 109)
-                        .addComponent(modifyBtn3)
+                        .addComponent(modifyMenu)
                         .addGap(132, 132, 132)
-                        .addComponent(deleteBtn3)
+                        .addComponent(deleteMenu)
                         .addGap(0, 297, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -146,21 +159,25 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifyBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifyBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtn3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBtn3ActionPerformed
+    private void deleteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuActionPerformed
+        int row = menuTable.getSelectedRow();
+        String itemName = (String) menuTable.getValueAt(row, 0);
+        system.getRestaurantByObj(restaurant).getMenuDirectory().removeMenu(itemName);
+        restaurant.removeMenu(itemName);
+        populateTable();
+    }//GEN-LAST:event_deleteMenuActionPerformed
 
-    private void modifyBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtn3ActionPerformed
+    private void modifyMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMenuActionPerformed
         ModifyItemJPanel mcjp = new ModifyItemJPanel(adminTaskLayer);
         displayRestaurantTaskPanel(mcjp);
-    }//GEN-LAST:event_modifyBtn3ActionPerformed
+    }//GEN-LAST:event_modifyMenuActionPerformed
 
     private void modifyBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtn4ActionPerformed
         AddItemJPanel acjp = new AddItemJPanel(adminTaskLayer);
@@ -169,13 +186,40 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteBtn3;
+    private javax.swing.JButton deleteMenu;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JButton modifyBtn3;
+    private javax.swing.JTable menuTable;
     private javax.swing.JButton modifyBtn4;
+    private javax.swing.JButton modifyMenu;
+    private javax.swing.JLabel tableRecordsStatus;
     // End of variables declaration//GEN-END:variables
+    private void populateTable() {
+        JTable table = menuTable;
+        int rowCount = table.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        System.out.println(restaurant.getMenu());
+        for (Menu m : restaurant.getMenu()) {
+                Object[] c = new Object[2];
+                c[0] = m.getItemName();
+                c[1] = m.getPrice();
+                model.addRow(c);
+        }
+        table.getSelectedRow();
+        table.setModel(model);
+        if (table.getRowCount() == 0) {
+            table.add(tableRecordsStatus);
+            table.setFillsViewportHeight(true);
+            deleteMenu.setEnabled(false);
+            modifyMenu.setEnabled(false);
+        }
+        else{
+            deleteMenu.setEnabled(true);
+            modifyMenu.setEnabled(true);
+        }
+    }
+
 }

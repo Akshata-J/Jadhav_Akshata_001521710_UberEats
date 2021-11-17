@@ -7,6 +7,7 @@ package userinterface.login;
 
 import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
+import Business.DeliveryPartner.DeliveryPartner;
 import Business.FoodDeliverySystem;
 import Business.Restaurant.Restaurant;
 import Business.Role.Role;
@@ -28,7 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import userinterface.CustomerRole.CustomerJPanel;
-import userinterface.DeliveryManRole.DeliveryPartnerJPanel;
+import userinterface.DeliveryPartnerRole.DeliveryPartnerJPanel;
 import userinterface.RestaurantAdminRole.RestaurantAdminJPanel;
 import userinterface.SystemAdminWorkArea.SysAdminJPanel;
 
@@ -400,7 +401,8 @@ public class LoginJPanel extends javax.swing.JPanel {
             displayMainPanel(cjp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.DeliveryPartner.getValue())){
-            DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane);
+            DeliveryPartner deliveryPartner = system.getDeliveryPartnerDirectory().getDeliveryPartnerDirectory().get(0);
+            DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane,system,deliveryPartner);
             displayMainPanel(dpjp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.RestaurantAdmin.getValue())){

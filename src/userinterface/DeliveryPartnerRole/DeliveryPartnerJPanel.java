@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.DeliveryManRole;
+package userinterface.DeliveryPartnerRole;
 
+import Business.DeliveryPartner.DeliveryPartner;
+import Business.FoodDeliverySystem;
 import userinterface.CustomerRole.*;
 import userinterface.SystemAdminWorkArea.*;
 import java.awt.Color;
@@ -24,9 +26,8 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginJPanel
      */
-    public DeliveryPartnerJPanel(JLayeredPane mainLayeredPane) {
+    public DeliveryPartnerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, DeliveryPartner deliveryPartner) {
         initComponents();
-        //jPanel1.setBackground(new Color(0, 0, 0, 0));
         jLabel5.setBackground(new Color(63, 129, 64));
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         this.mainLayeredPane = mainLayeredPane;

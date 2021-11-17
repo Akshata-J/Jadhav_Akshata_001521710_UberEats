@@ -19,7 +19,7 @@ public class Restaurant {
     private String description;
     private String managerName;
     private String phoneNumber;
-    private MenuDirectory MenuDirectory;
+    private MenuDirectory menuDirectory;
     
     public Restaurant(String restaurantName,String description, String address, String managerName, String phoneNumber) {
         this.restaurantName = restaurantName;
@@ -27,15 +27,15 @@ public class Restaurant {
         this.managerName = managerName;
         this.phoneNumber = phoneNumber;
         this.description = description;
-        MenuDirectory = new MenuDirectory();
+        menuDirectory = new MenuDirectory();
     }
 
     public ArrayList<Menu> getMenu() {
-        return MenuDirectory.getMenuDirectory();
+        return menuDirectory.getMenuDirectory();
     }
     
     public MenuDirectory getMenuDirectory() {
-        return MenuDirectory;
+        return menuDirectory;
     }
 
     public String getDescription() {
@@ -47,12 +47,12 @@ public class Restaurant {
     }
 
     public Menu newItem(Menu menu) {
-        MenuDirectory.getMenuDirectory().add(menu);
+        menuDirectory.newItem(menu);
         return menu;
     }
     
-    public void removeMenu(Menu menu) {
-        MenuDirectory.getMenuDirectory().remove(menu);
+    public void removeMenu(String itemName) {
+        menuDirectory.removeMenu(itemName);
     }
 
     public String getRestaurantName() {

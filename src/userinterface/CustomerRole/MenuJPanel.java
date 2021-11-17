@@ -11,6 +11,7 @@ import Business.Menu.Menu;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
@@ -167,6 +168,7 @@ public class MenuJPanel extends javax.swing.JPanel {
         order.setRestaurant(system.getRestaurantDirectory().getRestaurant(restaurantName));
         order.setOrderStatus(status);
         order.setAssign(false);
+        order.setRequestDate(new Date());
         system.getOrderDirectory().newOrder(order);
 
         OrderPlacedJPanel opjp = new OrderPlacedJPanel(adminTaskLayer, system, order);

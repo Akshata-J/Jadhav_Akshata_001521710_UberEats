@@ -5,13 +5,17 @@
  */
 package userinterface.RestaurantAdminRole;
 
-import userinterface.DeliveryManRole.*;
+import Business.FoodDeliverySystem;
+import Business.Order.Order;
+import Business.Restaurant.Restaurant;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
 import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,14 +23,19 @@ import javax.swing.JPanel;
  */
 public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
 
+    FoodDeliverySystem system;
+    Restaurant restaurant;
     JLayeredPane adminTaskLayer;
-    List<Object> test = new ArrayList<>();
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public CompletedOrderHistoryJPanel(JLayeredPane adminTaskLayer) {
+    public CompletedOrderHistoryJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
         this.adminTaskLayer=adminTaskLayer;
+        this.system = system;
+        this.restaurant = restaurant;
+        tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        populateTable();
     }
 
     public void displayAdminTaskPanel(JPanel panel) {
@@ -44,39 +53,48 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tableRecordsStatus = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        orderHistory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        totalSales = new javax.swing.JLabel();
+
+        tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tableRecordsStatus.setText("No orders history available!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        orderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Name", "Description"
+                "ID", "Items", "Total Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(orderHistory);
+        if (orderHistory.getColumnModel().getColumnCount() > 0) {
+            orderHistory.getColumnModel().getColumn(0).setResizable(false);
+            orderHistory.getColumnModel().getColumn(1).setResizable(false);
+            orderHistory.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Order History!");
+
+        totalSales.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalSales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,6 +105,9 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(totalSales, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,8 +115,9 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalSales, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -103,6 +125,37 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable orderHistory;
+    private javax.swing.JLabel tableRecordsStatus;
+    private javax.swing.JLabel totalSales;
     // End of variables declaration//GEN-END:variables
+    private void populateTable() {
+        JTable table = orderHistory;
+        int rowCount = table.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        int total = 0;
+    
+        for (Order o : system.getOrdersByRestaurant(restaurant)) {
+            if(!o.getOrderStatus().equalsIgnoreCase("Order Placed")||
+                    !o.getOrderStatus().equalsIgnoreCase("Order Accepted")){
+                Object[] c = new Object[3];
+                c[0] = o.getOrderId();
+                c[1] = o.getItemsAsString();
+                c[2] = o.getTotal();
+                model.addRow(c);
+                total+=o.getTotal();
+            }
+        }
+        table.getSelectedRow();
+        table.setModel(model);
+        if (table.getRowCount() == 0) {
+            table.add(tableRecordsStatus);
+            table.setFillsViewportHeight(true);
+            totalSales.setText("Total Sales: $0  ");
+        }else{
+            totalSales.setText("Total Sales: $"+total+"  ");
+        }
+    }
+
 }

@@ -6,28 +6,33 @@
 package Business.Menu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author akshatajadhav
  */
 public class MenuDirectory {
-    private ArrayList<Menu> menuDirectory;
+    private HashMap<String,Menu> menuDirectory;
     
     public MenuDirectory() {
-        menuDirectory = new ArrayList();
+        menuDirectory = new HashMap<>();
     }
 
     public ArrayList<Menu> getMenuDirectory() {
-        return menuDirectory;
+        return new ArrayList<>(menuDirectory.values());
     }
     
     public Menu newItem(Menu menu) {
-        menuDirectory.add(menu);
+        menuDirectory.put(menu.getItemName(),menu);
         return menu;
     }
     
-    public void removeMenu(Menu menu) {
-        menuDirectory.remove(menu);
+    public ArrayList<String> getItemNames() {
+        return new ArrayList<>(menuDirectory.keySet());
+    }
+    
+    public void removeMenu(String itemName) {
+        menuDirectory.remove(itemName);
     }
 }
