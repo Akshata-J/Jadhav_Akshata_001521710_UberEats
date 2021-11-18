@@ -7,6 +7,8 @@ package userinterface.CustomerRole;
 
 import Business.Customer.Customer;
 import Business.FoodDeliverySystem;
+import Business.Order.Item;
+import Business.Order.Order;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -38,14 +40,17 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
     Customer customer;
     JLayeredPane customerTaskLayer;
     List<Object> test = new ArrayList<>();
+    Order order;
+    int rating =0;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public OrderDeliveredAndFeedbackJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, Customer customer) {
+    public OrderDeliveredAndFeedbackJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, Customer customer, Order order) {
         initComponents();
         this.customerTaskLayer=customerTaskLayer;
         this.system = system;
         this.customer = customer;
+        this.order = order;
         URL url = this.getClass().getResource("/userinterface/CustomerRole/orderOnTheWay.gif");
         Icon myImgIcon = new ImageIcon(url);
         createInvoice();
@@ -82,8 +87,6 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         userFeedback = new javax.swing.JLabel();
         submitButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        comments = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -114,19 +117,6 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
             }
         });
 
-        comments.setColumns(20);
-        comments.setLineWrap(true);
-        comments.setRows(5);
-        comments.setText("Comment here please!");
-        comments.setWrapStyleWord(true);
-        comments.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        comments.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                commentsMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(comments);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,16 +127,14 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(userFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(106, 106, 106))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(138, 138, 138))))
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -165,50 +153,50 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(40, 40, 40)
                 .addComponent(userFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
-        
+        order.setFeedback(rating);
+        system.getOrderById(order.getOrderId()).setFeedback(rating);
+        system.getOrderById(order.getOrderId()).setOrderStatus("Complete");
+        ListRestaurantsJPanel lrjp = new ListRestaurantsJPanel(customerTaskLayer, system, customer);
+        displayCustomerTaskPanel(lrjp);
     }//GEN-LAST:event_submitButton1ActionPerformed
 
     private void userFeedbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userFeedbackMouseClicked
         int x = (int) evt.getPoint().getX();
-        String stars = "/userinterface/login/star"+(x/46+1)+".png";
+        rating = x/46+1;
+        String stars = "/userinterface/login/star"+(rating)+".png";
         userFeedback.setIcon(new ImageIcon(getClass().getResource(stars)));
+        if(rating>5){
+            rating=5;
+        }
     }//GEN-LAST:event_userFeedbackMouseClicked
-
-    private void commentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_commentsMouseClicked
-        comments.setText("");
-    }//GEN-LAST:event_commentsMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea comments;
     private javax.swing.JEditorPane invoicePane;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel userFeedback;
     // End of variables declaration//GEN-END:variables
     public void createInvoice(){
         String invoiceHeading="\t\tInovice\n";
         String line="------------------------------------------------------------------------------------------\n";
-        String invoiceDate="Created: "+"date of invoice\n";
-        String retaurantDetails="returantName"+"\n"+"address"+"\n";
-        String personDetails="personName"+"\n"+"email"+"\n"+"Address"+"\n";
+        String invoiceDate="Created: "+order.getRequestDate()+"\n";
+        String retaurantDetails=order.getRestaurant().getRestaurantName()+"\n"+order.getRestaurant().getAddress()+"\n";
+        String personDetails=order.getCustomer().getName()+"\n"+order.getCustomer().getEmail()+"\n"+order.getCustomer().getHomeAddress()+"\n";
         String items="Item                            Price\n"+line;
-        for(int i=0;i<4;i++){
-            items+="itemName"+"                            "+"$"+"Price\n";
+        for(Item item : order.getItems()){
+            items+=item.getItemName()+"                            "+"$"+item.getPrice()+"\n";
         }
-        String endTags="                                   "+"$total\n";
+        String endTags="                                   $"+order.getTotal()+"\n";
         String invoice="";                
         invoice+=invoiceHeading+line+invoiceDate+line+
                 retaurantDetails+line+personDetails+line+items+line+endTags+line;

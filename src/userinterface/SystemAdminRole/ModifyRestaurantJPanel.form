@@ -23,7 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="jSeparator2" pref="349" max="32767" attributes="0"/>
+              <Component id="jSeparator2" pref="352" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -34,28 +34,33 @@
               <Component id="submitButton" min="-2" pref="117" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="nameSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jSeparator15" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jLabel26" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Component id="mobileNumberSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jSeparator14" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jLabel29" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="managerNameSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                  <Component id="jSeparator16" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                  <Component id="jLabel30" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="restaurantNameSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jSeparator15" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jLabel26" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="mobileNumberSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jSeparator14" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jLabel29" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSeparator17" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jLabel31" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="addressSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jLabel25" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="websiteSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                          <Component id="jSeparator12" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jSeparator17" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jLabel31" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="addressSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jLabel25" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
-                      <Component id="emailSignUpTextBox" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                      <Component id="jSeparator12" alignment="0" min="-2" pref="368" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="89" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,46 +72,50 @@
                   <Component id="jSeparator2" alignment="1" min="-2" pref="13" max="-2" attributes="0"/>
                   <Component id="jSeparator1" alignment="1" min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="338" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                              <Component id="restaurantNameSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel29" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jSeparator15" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel26" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="mobileNumberSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jSeparator14" min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel31" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="addressSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jSeparator17" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel25" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="websiteSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="jSeparator12" min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                      <Component id="managerNameSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabel30" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+              <Component id="jSeparator16" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
               <Component id="submitButton" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                                  <Component id="nameSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel29" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jSeparator15" min="-2" pref="10" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel26" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="mobileNumberSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jSeparator14" min="-2" pref="10" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel31" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="addressSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jSeparator17" min="-2" pref="10" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel25" min="-2" pref="34" max="-2" attributes="0"/>
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="emailSignUpTextBox" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="jSeparator12" min="-2" pref="10" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="132" max="32767" attributes="0"/>
-              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,7 +150,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailSignUpTextBox">
+    <Component class="javax.swing.JTextField" name="websiteSignUpTextBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Web Address"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -149,7 +158,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="emailSignUpTextBoxMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="websiteSignUpTextBoxMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel26">
@@ -212,7 +221,7 @@
         <Property name="text" type="java.lang.String" value="Website:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="nameSignUpTextBox">
+    <Component class="javax.swing.JTextField" name="restaurantNameSignUpTextBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Name"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -220,10 +229,31 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="nameSignUpTextBoxMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="restaurantNameSignUpTextBoxMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator15">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel30">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Berlin Sans FB" size="16" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Manager Name:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="managerNameSignUpTextBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Enter Name"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="managerNameSignUpTextBoxMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator16">
     </Component>
   </SubComponents>
 </Form>

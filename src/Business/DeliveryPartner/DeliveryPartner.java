@@ -5,6 +5,8 @@
  */
 package Business.DeliveryPartner;
 
+import java.util.Date;
+
 /**
  *
  * @author akshatajadhav
@@ -14,20 +16,31 @@ public class DeliveryPartner {
     private String name;
     private String address;
     private String email;
-    private String phoneNumber;
-    private int age;
+    private long phoneNumber;
+    private Date dob;
+    private boolean available;
     
-    public DeliveryPartner(String username, String name, String address, String email, String phoneNumber, int age) {
+    public DeliveryPartner(String username, String name, String address, String email, long phoneNumber, Date dob) {
         this.username = username;
         this.name = name;
         this.address = address;
-        this.age = age;
+        this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.available = true;
     }
 
     public DeliveryPartner() {
+        this.available = true;
      }
+
+    public Date getDateOfBirth() {
+        return dob;
+    }
+
+    public void setDateOfBirth(Date dob) {
+        this.dob = dob;
+    }
 
     public String getName() {
         return name;
@@ -35,6 +48,14 @@ public class DeliveryPartner {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public String getAddress() {
@@ -53,21 +74,15 @@ public class DeliveryPartner {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getUsername() {
         return username;

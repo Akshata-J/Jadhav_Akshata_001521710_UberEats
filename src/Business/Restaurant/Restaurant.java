@@ -14,19 +14,21 @@ import java.util.ArrayList;
  * @author akshatajadhav
  */
 public class Restaurant {
+    private String username;
     private String restaurantName;
     private String address;
-    private String description;
+    private String website;
     private String managerName;
-    private String phoneNumber;
+    private long phoneNumber;
     private MenuDirectory menuDirectory;
     
-    public Restaurant(String restaurantName,String description, String address, String managerName, String phoneNumber) {
+    public Restaurant(String username, String restaurantName,String website, String address, String managerName, long phoneNumber) {
         this.restaurantName = restaurantName;
         this.address = address;
         this.managerName = managerName;
         this.phoneNumber = phoneNumber;
-        this.description = description;
+        this.website = website;
+        this.username = username;
         menuDirectory = new MenuDirectory();
     }
 
@@ -38,17 +40,20 @@ public class Restaurant {
         return menuDirectory;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public String getDescription() {
+//        return website;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.website = description;
+//    }
 
     public Menu newItem(Menu menu) {
         menuDirectory.newItem(menu);
         return menu;
+    }
+    public void updateItem(Menu menu) {
+        menuDirectory.updateItem(menu);
     }
     
     public void removeMenu(String itemName) {
@@ -71,6 +76,14 @@ public class Restaurant {
         this.address = address;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getManagerName() {
         return managerName;
     }
@@ -79,17 +92,30 @@ public class Restaurant {
         this.managerName = managerName;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
     
+//    @Override
+//    public String toString() {
+//        return restaurantName;
+//    }
+
     @Override
     public String toString() {
-        return restaurantName;
+        return "Restaurant{" + "username=" + username + ", restaurantName=" + restaurantName + ", address=" + address + ", website=" + website + ", managerName=" + managerName + ", phoneNumber=" + phoneNumber + ", menuDirectory=" + menuDirectory + '}';
     }
 
     

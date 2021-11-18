@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import userinterface.login.LoginJPanel;
@@ -203,6 +204,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+//        system.getUserAccountDirectory().get
         LoginJPanel ljp = new LoginJPanel(mainLayeredPane, system);
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -229,6 +231,10 @@ public class CustomerJPanel extends javax.swing.JPanel {
         if (customerOrders.size() > 0) {
             order = customerOrders.get(customerOrders.size() - 1);
         }
+        if(order!=null && order.getOrderStatus().equalsIgnoreCase("Order cancelled by restaurant")){
+            JOptionPane.showMessageDialog(this, "Order Cancelled by the restaurant. \nPlease place a new order!", "Order Cancelled", JOptionPane.INFORMATION_MESSAGE);
+            system.getOrderById(order.getOrderId()).setOrderStatus("Order cancelled");
+        }
         if (order != null && order.getOrderStatus().equalsIgnoreCase("Order Placed")) {
             OrderPlacedJPanel lrjp = new OrderPlacedJPanel(customerTaskLayer, system, order);
 //            displayCustomerTaskPanel(lrjp);
@@ -240,13 +246,14 @@ public class CustomerJPanel extends javax.swing.JPanel {
             return lrjp;
         }
         if (order != null && (order.getOrderStatus().equalsIgnoreCase("Order Picked up")
-                || order.getOrderStatus().equalsIgnoreCase("Order ready to deliver"))) {
+              || order.getOrderStatus().equalsIgnoreCase("Order ready to pick up")
+                || order.getOrderStatus().equalsIgnoreCase("Order ready to deliver"))) {//Order ready to pick up
             OrderOnTheWayJPanel lrjp = new OrderOnTheWayJPanel(customerTaskLayer);
 //            displayCustomerTaskPanel(lrjp);
             return lrjp;
         }
         if (order != null && order.getOrderStatus().equalsIgnoreCase("Order Delivered")) {
-            OrderDeliveredAndFeedbackJPanel lrjp = new OrderDeliveredAndFeedbackJPanel(customerTaskLayer, system, customer);
+            OrderDeliveredAndFeedbackJPanel lrjp = new OrderDeliveredAndFeedbackJPanel(customerTaskLayer, system, customer, order);
 //            displayCustomerTaskPanel(lrjp);
             return lrjp;
         }

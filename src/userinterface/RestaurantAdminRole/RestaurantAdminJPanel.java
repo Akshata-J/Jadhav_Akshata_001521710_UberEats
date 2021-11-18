@@ -7,12 +7,16 @@ package userinterface.RestaurantAdminRole;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.FoodDeliverySystem;
+import Business.Order.Order;
 import Business.Restaurant.Restaurant;
 import Business.Role.ResturantAdminRole;
 import userinterface.CustomerRole.*;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import userinterface.login.LoginJPanel;
@@ -38,6 +42,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         this.mainLayeredPane = mainLayeredPane;
         this.system = system;
         this.restaurant = restaurant;
+        populateOrdersWhichGotCancelled();
     }
     
     public void displayRestaurantTaskPanel(JPanel panel) {
@@ -71,7 +76,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         restaurantTaskLayer = new javax.swing.JLayeredPane();
         blankPane = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        orderCompleteBtn = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -89,7 +94,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Incomming Orders!");
+        jButton2.setText("Incoming Orders!");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -129,11 +134,11 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
 
         restaurantTaskLayer.add(blankPane, "card2");
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("Order Complete!");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        orderCompleteBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        orderCompleteBtn.setText("Order Complete!");
+        orderCompleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                orderCompleteBtnActionPerformed(evt);
             }
         });
 
@@ -164,7 +169,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(orderCompleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
@@ -183,7 +188,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderCompleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
@@ -199,7 +204,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         welcomeBanner.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         welcomeBanner.setForeground(new java.awt.Color(255, 255, 255));
         welcomeBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcomeBanner.setText("Welcome Delivery Partner!");
+        welcomeBanner.setText("Welcome Restaurant Manager!");
         welcomeBanner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         welcomeBanner.setOpaque(true);
         add(welcomeBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
@@ -243,10 +248,10 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void orderCompleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderCompleteBtnActionPerformed
         CompleteOrderJPanel cojp = new CompleteOrderJPanel(restaurantTaskLayer, system, restaurant);
         displayRestaurantTaskPanel(cojp);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_orderCompleteBtnActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         ManageMenuJPanel mmjp = new ManageMenuJPanel(restaurantTaskLayer, system, restaurant);
@@ -264,7 +269,6 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
@@ -272,9 +276,25 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton orderCompleteBtn;
     private javax.swing.JLayeredPane restaurantTaskLayer;
     private javax.swing.ButtonGroup rolesRadioButton;
     private javax.swing.JLabel tableRecordsStatus;
     private javax.swing.JLabel welcomeBanner;
     // End of variables declaration//GEN-END:variables
+    private void populateOrdersWhichGotCancelled(){
+        List<String> orderIds = new ArrayList<>();
+        for(Order o: system.getOrdersByRestaurant(restaurant)){
+            if(o.getOrderStatus().equalsIgnoreCase("Declined by delivery partner! Restaurant will assign new partner")){
+                orderIds.add(o.getOrderId());
+            }
+        }
+        if(!orderIds.isEmpty()){
+            JOptionPane.showConfirmDialog(this, "Order declined by delivery partner!\nOrder Ids:"+String.join(",", orderIds)+"\nPlease assign new delivery partner", "Assign new delivery partner", JOptionPane.INFORMATION_MESSAGE);
+            for(String s:orderIds){
+                system.getOrderById(s).setOrderStatus("Order ready to deliver");
+            }
+            orderCompleteBtn.doClick();
+        }
+    }
 }

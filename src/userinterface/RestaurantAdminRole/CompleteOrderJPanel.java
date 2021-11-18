@@ -58,6 +58,7 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         orderCompleteTable = new javax.swing.JTable();
         orderPreparedBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        orderPreparedBtn1 = new javax.swing.JButton();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tableRecordsStatus.setText("No orders accepted!");
@@ -103,19 +104,31 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Order Complete!");
 
+        orderPreparedBtn1.setBackground(new java.awt.Color(92, 184, 92));
+        orderPreparedBtn1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        orderPreparedBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        orderPreparedBtn1.setText("Assign Delivery Partner");
+        orderPreparedBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderPreparedBtn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(orderPreparedBtn)
-                .addGap(406, 406, 406))
             .addGroup(layout.createSequentialGroup()
                 .addGap(403, 403, 403)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(orderPreparedBtn)
+                .addGap(18, 18, 18)
+                .addComponent(orderPreparedBtn1)
+                .addGap(330, 330, 330))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +138,9 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(orderPreparedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(orderPreparedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderPreparedBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -145,12 +160,28 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_orderPreparedBtnActionPerformed
 
+    private void orderPreparedBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPreparedBtn1ActionPerformed
+        int row = orderCompleteTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a order!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String orderId = (String) orderCompleteTable.getValueAt(row, 0);
+        if(!system.getOrderById(orderId).getOrderStatus().equalsIgnoreCase("Order ready to deliver")){
+            JOptionPane.showMessageDialog(this, "Order not ready for delivery!", "Order Status", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        AssignDeliveryPartnerJPanel adpjp = new AssignDeliveryPartnerJPanel(restaurantTaskLayer, system, restaurant, orderId);
+        displayRestaurantTaskPanel(adpjp);
+    }//GEN-LAST:event_orderPreparedBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable orderCompleteTable;
     private javax.swing.JButton orderPreparedBtn;
+    private javax.swing.JButton orderPreparedBtn1;
     private javax.swing.JLabel tableRecordsStatus;
     // End of variables declaration//GEN-END:variables
     private void populateTable() {

@@ -27,24 +27,38 @@ public class RestaurantDirectory {
 
     
     public Restaurant newRestaurant(Restaurant restaurant) {
-        restaurantDirectory.put(restaurant.getRestaurantName(), restaurant);
+        restaurantDirectory.put(restaurant.getUsername(), restaurant);
         return restaurant;
     }
     
-    public boolean isRestaurantNameUnique(String restaurantName){
-        return !restaurantDirectory.containsKey(restaurantName);
+    public Restaurant updateRestaurant(Restaurant restaurant) {
+        if(!restaurantDirectory.containsKey(restaurant.getUsername())){
+            return null;
+        }
+        restaurantDirectory.put(restaurant.getUsername(), restaurant);
+        return restaurant;
+    }
+    
+    public boolean isRestaurantNameUnique(String username){
+        return !restaurantDirectory.containsKey(username);
     }
     
     public void removeRestaurant(Restaurant restaurant){
-        restaurantDirectory.remove(restaurant.getRestaurantName());
+        restaurantDirectory.remove(restaurant.getUsername());
     }
     
     public void removeRestaurant(String restaurantName){
         restaurantDirectory.remove(restaurantName);
     }
+   
     
-    public Restaurant getRestaurant(String name) {
-        return restaurantDirectory.get(name);
+    public Restaurant getRestaurant(String username) {
+        return restaurantDirectory.get(username);
+    }
+
+    @Override
+    public String toString() {
+        return "RestaurantDirectory{" + "restaurantDirectory=" + restaurantDirectory + '}';
     }
     
 }

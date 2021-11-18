@@ -55,7 +55,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="167" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jButton5" min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="orderCompleteBtn" min="-2" pref="147" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -78,7 +78,7 @@
                       <Component id="jButton2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButton3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButton4" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="jButton5" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="orderCompleteBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButton6" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButton7" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -94,7 +94,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Incomming Orders!"/>
+            <Property name="text" type="java.lang.String" value="Incoming Orders!"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
@@ -153,7 +153,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="orderCompleteBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
@@ -161,7 +161,7 @@
             <Property name="text" type="java.lang.String" value="Order Complete!"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderCompleteBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton6">
@@ -212,7 +212,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Welcome Delivery Partner!"/>
+        <Property name="text" type="java.lang.String" value="Welcome Restaurant Manager!"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true">

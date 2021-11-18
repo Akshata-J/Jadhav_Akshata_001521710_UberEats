@@ -76,16 +76,31 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
 
         manageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Username", "Restaurant Name", "Website", "Contact No", "City"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(manageTable);
+        if (manageTable.getColumnModel().getColumnCount() > 0) {
+            manageTable.getColumnModel().getColumn(0).setResizable(false);
+            manageTable.getColumnModel().getColumn(1).setResizable(false);
+            manageTable.getColumnModel().getColumn(2).setResizable(false);
+            manageTable.getColumnModel().getColumn(3).setResizable(false);
+            manageTable.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         deleteBtn.setBackground(new java.awt.Color(209, 26, 42));
         deleteBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -175,8 +190,8 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Select a Restaurant to modify!", "Select", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        String restaurantName = (String) manageTable.getValueAt(row, 0);
-        ModifyRestaurantJPanel mcjp = new ModifyRestaurantJPanel(adminTaskLayer, system, restaurantName);
+        String username = (String) manageTable.getValueAt(row, 0);
+        ModifyRestaurantJPanel mcjp = new ModifyRestaurantJPanel(adminTaskLayer, system, username);
         displayAdminTaskPanel(mcjp);
     }//GEN-LAST:event_modifyBtnActionPerformed
 
@@ -203,10 +218,11 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         for (Restaurant cu : system.getRestaurantDirectory().getRestaurantDirectory()) {
-            Object[] c = new Object[5];
-            c[0] = cu.getRestaurantName();
-            c[1] = cu.getManagerName();
-            c[2] = cu.getAddress();
+            Object[] c = new Object[6];
+            c[0] = cu.getUsername();
+            c[1] = cu.getRestaurantName();
+            //c[2] = cu.getAddress();
+            c[2] = cu.getWebsite();
             c[3] = cu.getPhoneNumber();
             c[4] = cu.getAddress();
             model.addRow(c);

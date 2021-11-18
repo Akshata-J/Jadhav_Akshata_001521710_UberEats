@@ -404,7 +404,6 @@ public class LoginJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide correct username and password!", "Authentication Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        System.out.println(rolesRadioButton.getSelection().getActionCommand());
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.Customer.getValue())){
             Customer customer = system.getCustomerByUsername(username);
             CustomerJPanel cjp = new CustomerJPanel(mainLayeredPane,system, customer);

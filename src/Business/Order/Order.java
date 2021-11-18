@@ -28,6 +28,7 @@ public class Order extends WorkRequest {
     private double total;
     private String result;
     private boolean assign;
+    private int feedback;
 
     public Order() {
         items = new ArrayList<>();
@@ -117,6 +118,14 @@ public class Order extends WorkRequest {
             itemString.add(i.getItemName()+"("+i.getQuantity()+")");
         }
         return String.join(",", itemString);
+    }
+
+    public int getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(int feedback) {
+        this.feedback = feedback;
     }
     
     @Override

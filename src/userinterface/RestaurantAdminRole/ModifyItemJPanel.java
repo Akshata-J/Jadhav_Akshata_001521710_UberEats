@@ -6,8 +6,10 @@
 package userinterface.RestaurantAdminRole;
 
 import Business.FoodDeliverySystem;
+import Business.Menu.Menu;
 import Business.Restaurant.Restaurant;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -29,6 +31,7 @@ public class ModifyItemJPanel extends javax.swing.JPanel {
         this.system = system;
         this.restaurant = restaurant;
         this.itemName = itemName;
+        itemNameText.setText(itemName);
     }
 
     public void displayRestaurantTaskPanel(JPanel panel) {
@@ -50,6 +53,12 @@ public class ModifyItemJPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         submitButton = new javax.swing.JButton();
+        itemNameText = new javax.swing.JTextField();
+        jSeparator15 = new javax.swing.JSeparator();
+        jLabel26 = new javax.swing.JLabel();
+        priceText = new javax.swing.JTextField();
+        jSeparator14 = new javax.swing.JSeparator();
+        jLabel29 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -67,6 +76,27 @@ public class ModifyItemJPanel extends javax.swing.JPanel {
             }
         });
 
+        itemNameText.setEditable(false);
+        itemNameText.setBorder(null);
+        itemNameText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemNameTextMouseClicked(evt);
+            }
+        });
+
+        jLabel26.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
+        jLabel26.setText("Price:");
+
+        priceText.setBorder(null);
+        priceText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                priceTextMouseClicked(evt);
+            }
+        });
+
+        jLabel29.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
+        jLabel29.setText("Item Name:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +112,16 @@ public class ModifyItemJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(315, 315, 315)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(itemNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,22 +130,72 @@ public class ModifyItemJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(itemNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(restaurantTaskLayer, system, restaurant);
-        displayRestaurantTaskPanel(mrjp);
+   
+        String price = priceText.getText();
+        
+        if(price.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Please provide price of a item", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Double priceOfItem = utils.Utils.doubleFromString(price);
+        if(priceOfItem==null){
+            JOptionPane.showMessageDialog(this, "Please provide correct price of a item", "Wrong price", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Menu menu = new Menu();
+        menu.setItemName(itemName);
+        menu.setPrice(priceOfItem);
+        
+        restaurant.updateItem(menu);
+        system.getRestaurantDirectory().updateRestaurant(restaurant);
+        
+        
+        JOptionPane.showMessageDialog(this, "Item updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        //ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(restaurantTaskLayer, system, restaurant);
+        ManageMenuJPanel mmjp = new ManageMenuJPanel(restaurantTaskLayer, system, restaurant);
+        displayRestaurantTaskPanel(mmjp);
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void itemNameTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemNameTextMouseClicked
+        
+    }//GEN-LAST:event_itemNameTextMouseClicked
+
+    private void priceTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_priceTextMouseClicked
+        
+    }//GEN-LAST:event_priceTextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField itemNameText;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField priceText;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
 }

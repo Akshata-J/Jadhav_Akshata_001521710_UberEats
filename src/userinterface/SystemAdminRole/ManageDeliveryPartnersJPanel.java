@@ -75,13 +75,13 @@ public class ManageDeliveryPartnersJPanel extends javax.swing.JPanel {
 
         manageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Username", "Title 2", "Title 3", "Title 4"
+                "Username", "Name", "Email Adress", "Phone Number", "City"
             }
         ));
         jScrollPane4.setViewportView(manageTable);

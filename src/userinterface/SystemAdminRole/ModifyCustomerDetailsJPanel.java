@@ -5,9 +5,12 @@
  */
 package userinterface.SystemAdminRole;
 
+import Business.Customer.Customer;
 import Business.FoodDeliverySystem;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import utils.Utils;
 
 /**
  *
@@ -18,6 +21,7 @@ public class ModifyCustomerDetailsJPanel extends javax.swing.JPanel {
     FoodDeliverySystem system;
     String username;
     JLayeredPane adminTaskLayer;
+    Customer customer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
@@ -26,6 +30,8 @@ public class ModifyCustomerDetailsJPanel extends javax.swing.JPanel {
         this.adminTaskLayer=adminTaskLayer;
         this.system = system;
         this.username = username;
+        this.customer = system.getCustomerByUsername(username);
+        populateModifyForm();
     }
 
     public void displayAdminTaskPanel(JPanel panel) {
@@ -195,24 +201,62 @@ public class ModifyCustomerDetailsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        ManageDeliveryPartnersJPanel mdpjp = new ManageDeliveryPartnersJPanel(adminTaskLayer, system);
-        displayAdminTaskPanel(mdpjp);
+        String name = nameSignUpTextBox.getText();
+        String address = addressSignUpTextBox.getText();
+        String mno = mobileNumberSignUpTextBox.getText();
+        String email = emailSignUpTextBox.getText();
+        
+        if(name.equals("Enter Name") || name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide name", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;        
+        }
+        if(mno.equals("Enter Mobile Number") || mno.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide mobile number", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(email.equals("Enter Email") || email.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide email", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(address.equals("Enter Address") || address.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide address", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!mno.matches("^[0-9]{10}$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct mobile number", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct email address", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        long mobileNumberAsLong = Utils.phoneNoFromString(mno);
+        
+        customer.setEmail(email);
+        customer.setHomeAddress(address);
+        customer.setName(name);
+        customer.setPhoneNumber(mobileNumberAsLong);
+        system.getCustomerDirectory().modifyCustomer(customer);
+        ManageCustomersJPanel mcjp = new ManageCustomersJPanel(adminTaskLayer, system);
+        //ManageDeliveryPartnersJPanel mdpjp = new ManageDeliveryPartnersJPanel(adminTaskLayer, system);
+        displayAdminTaskPanel(mcjp);
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void nameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBoxMouseClicked
-        nameSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_nameSignUpTextBoxMouseClicked
 
     private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
-        mobileNumberSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
 
     private void emailSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxMouseClicked
-        emailSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_emailSignUpTextBoxMouseClicked
 
 
@@ -234,4 +278,10 @@ public class ModifyCustomerDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField nameSignUpTextBox;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
+    private void populateModifyForm(){
+        nameSignUpTextBox.setText(customer.getName());
+        addressSignUpTextBox.setText(customer.getHomeAddress());
+        mobileNumberSignUpTextBox.setText(String.valueOf(customer.getPhoneNumber()));
+        emailSignUpTextBox.setText(customer.getEmail());        
+    }
 }

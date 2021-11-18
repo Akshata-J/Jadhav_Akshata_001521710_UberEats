@@ -6,8 +6,11 @@
 package userinterface.SystemAdminRole;
 
 import Business.FoodDeliverySystem;
+import Business.Restaurant.Restaurant;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import utils.Utils;
 
 /**
  *
@@ -17,15 +20,18 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
 
     FoodDeliverySystem system;
     JLayeredPane adminTaskLayer;
-    String restaurantName;
+    String usernameName;
+    Restaurant restaurant;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public ModifyRestaurantJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, String restaurantName) {
+    public ModifyRestaurantJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, String usernameName) {
         initComponents();
         this.adminTaskLayer=adminTaskLayer;
         this.system = system;
-        this.restaurantName = restaurantName;
+        this.usernameName = usernameName;
+        this.restaurant = system.getRestaurantDirectory().getRestaurant(usernameName);
+        populateModifyForm();
     }
 
     public void displayAdminTaskPanel(JPanel panel) {
@@ -47,7 +53,7 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         submitButton = new javax.swing.JButton();
-        emailSignUpTextBox = new javax.swing.JTextField();
+        websiteSignUpTextBox = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
         mobileNumberSignUpTextBox = new javax.swing.JTextField();
@@ -57,8 +63,11 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
         jLabel29 = new javax.swing.JLabel();
         jSeparator17 = new javax.swing.JSeparator();
         jLabel25 = new javax.swing.JLabel();
-        nameSignUpTextBox = new javax.swing.JTextField();
+        restaurantNameSignUpTextBox = new javax.swing.JTextField();
         jSeparator15 = new javax.swing.JSeparator();
+        jLabel30 = new javax.swing.JLabel();
+        managerNameSignUpTextBox = new javax.swing.JTextField();
+        jSeparator16 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -75,11 +84,11 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
             }
         });
 
-        emailSignUpTextBox.setText("Enter Web Address");
-        emailSignUpTextBox.setBorder(null);
-        emailSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+        websiteSignUpTextBox.setText("Enter Web Address");
+        websiteSignUpTextBox.setBorder(null);
+        websiteSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailSignUpTextBoxMouseClicked(evt);
+                websiteSignUpTextBoxMouseClicked(evt);
             }
         });
 
@@ -111,11 +120,22 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
         jLabel25.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel25.setText("Website:");
 
-        nameSignUpTextBox.setText("Enter Name");
-        nameSignUpTextBox.setBorder(null);
-        nameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+        restaurantNameSignUpTextBox.setText("Enter Name");
+        restaurantNameSignUpTextBox.setBorder(null);
+        restaurantNameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameSignUpTextBoxMouseClicked(evt);
+                restaurantNameSignUpTextBoxMouseClicked(evt);
+            }
+        });
+
+        jLabel30.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
+        jLabel30.setText("Manager Name:");
+
+        managerNameSignUpTextBox.setText("Enter Name");
+        managerNameSignUpTextBox.setBorder(null);
+        managerNameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                managerNameSignUpTextBoxMouseClicked(evt);
             }
         });
 
@@ -125,7 +145,7 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,25 +154,29 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(89, 89, 89)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(90, 90, 90)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(addressSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(emailSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(89, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(managerNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(restaurantNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addressSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(websiteSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,80 +185,139 @@ public class ModifyRestaurantJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(restaurantNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(addressSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(websiteSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(managerNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(131, 131, 131)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(nameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(addressSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(emailSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(132, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        String restaurantName = restaurantNameSignUpTextBox.getText();
+        String address = addressSignUpTextBox.getText();
+        String mno = mobileNumberSignUpTextBox.getText();
+        String managerName = managerNameSignUpTextBox.getText();
+        String website = websiteSignUpTextBox.getText();
+        
+        if(restaurantName.equals("Enter Name") || restaurantName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide name", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;        
+        }
+        if(managerName.equals("Enter Name") || managerName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide name", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;        
+        }
+        if(mno.equals("Enter Mobile Number") || mno.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide mobile number", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(address.equals("Enter Address") || address.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide address", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!mno.matches("^[0-9]{10}$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct mobile number", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!website.matches("^[a-zA-Z0-9]+.[a-zA-Z0-9]+.[a-zA-Z0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct email address", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        long mobileNumberAsLong = Utils.phoneNoFromString(mno);
+        
+        restaurant.setAddress(address);
+        restaurant.setWebsite(website);
+        restaurant.setPhoneNumber(mobileNumberAsLong);
+        restaurant.setManagerName(managerName);
+        restaurant.setRestaurantName(restaurantName);
+        
+        system.getRestaurantDirectory().updateRestaurant(restaurant);
+        
         ManageRestaurantsJPanel mrjp = new ManageRestaurantsJPanel(adminTaskLayer, system);
         displayAdminTaskPanel(mrjp);
     }//GEN-LAST:event_submitButtonActionPerformed
 
-    private void emailSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxMouseClicked
-        emailSignUpTextBox.setText("");
-    }//GEN-LAST:event_emailSignUpTextBoxMouseClicked
+    private void websiteSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteSignUpTextBoxMouseClicked
+        
+    }//GEN-LAST:event_websiteSignUpTextBoxMouseClicked
 
     private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
-        mobileNumberSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
 
-    private void nameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBoxMouseClicked
-        nameSignUpTextBox.setText("");
-    }//GEN-LAST:event_nameSignUpTextBoxMouseClicked
+    private void restaurantNameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantNameSignUpTextBoxMouseClicked
+        
+    }//GEN-LAST:event_restaurantNameSignUpTextBoxMouseClicked
+
+    private void managerNameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managerNameSignUpTextBoxMouseClicked
+        
+    }//GEN-LAST:event_managerNameSignUpTextBoxMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressSignUpTextBox;
-    private javax.swing.JTextField emailSignUpTextBox;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField managerNameSignUpTextBox;
     private javax.swing.JTextField mobileNumberSignUpTextBox;
-    private javax.swing.JTextField nameSignUpTextBox;
+    private javax.swing.JTextField restaurantNameSignUpTextBox;
     private javax.swing.JButton submitButton;
+    private javax.swing.JTextField websiteSignUpTextBox;
     // End of variables declaration//GEN-END:variables
+    private void populateModifyForm(){
+        restaurantNameSignUpTextBox.setText(restaurant.getRestaurantName());
+        addressSignUpTextBox.setText(restaurant.getAddress());
+        mobileNumberSignUpTextBox.setText(String.valueOf(restaurant.getPhoneNumber()));
+        websiteSignUpTextBox.setText(restaurant.getWebsite());        
+        managerNameSignUpTextBox.setText(restaurant.getManagerName());
+    }
 }

@@ -137,7 +137,9 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
     
         for (Order o : system.getOrdersByRestaurant(restaurant)) {
             if(!o.getOrderStatus().equalsIgnoreCase("Order Placed")||
-                    !o.getOrderStatus().equalsIgnoreCase("Order Accepted")){
+                    !o.getOrderStatus().equalsIgnoreCase("Order Accepted")||
+                        !o.getOrderStatus().equalsIgnoreCase("Order cancelled by restaurant")||
+                            !o.getOrderStatus().equalsIgnoreCase("Order cancelled")){
                 Object[] c = new Object[3];
                 c[0] = o.getOrderId();
                 c[1] = o.getItemsAsString();

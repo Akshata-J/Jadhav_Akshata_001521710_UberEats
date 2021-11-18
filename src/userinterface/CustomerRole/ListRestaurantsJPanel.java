@@ -156,10 +156,9 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
     
         for (Restaurant r : system.getRestaurantDirectory().getRestaurantDirectory()) {
-            System.out.println(r);
             Object[] c = new Object[8];
             c[0] = r.getRestaurantName();
-            c[1] = r.getDescription();
+            c[1] = r.getWebsite();
             model.addRow(c);
         }
         table.setModel(model);

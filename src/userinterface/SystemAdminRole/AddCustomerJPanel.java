@@ -5,9 +5,15 @@
  */
 package userinterface.SystemAdminRole;
 
+import Business.Customer.Customer;
 import Business.FoodDeliverySystem;
+import Business.Role.CustomerRole;
+import Business.UserAccount.UserAccount;
+import java.util.Date;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import utils.Utils;
 
 /**
  *
@@ -64,7 +70,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         nameSignUpTextBox = new javax.swing.JTextField();
         jSeparator15 = new javax.swing.JSeparator();
         jLabel30 = new javax.swing.JLabel();
-        nameSignUpTextBox1 = new javax.swing.JTextField();
+        dobText = new javax.swing.JTextField();
         jSeparator16 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -130,7 +136,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
-        passwordSignUpTextBox.setText("jPasswordField1");
+        passwordSignUpTextBox.setText("************");
         passwordSignUpTextBox.setBorder(null);
         passwordSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,11 +158,11 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         jLabel30.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel30.setText("Date Of Birth:");
 
-        nameSignUpTextBox1.setText("MM/dd/yyyy");
-        nameSignUpTextBox1.setBorder(null);
-        nameSignUpTextBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+        dobText.setText("MM/dd/yyyy");
+        dobText.setBorder(null);
+        dobText.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameSignUpTextBox1MouseClicked(evt);
+                dobTextMouseClicked(evt);
             }
         });
 
@@ -193,7 +199,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                             .addComponent(passwordSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameSignUpTextBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,7 +256,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(30, 30, 30)
-                                            .addComponent(nameSignUpTextBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(dobText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,41 +278,130 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
-        mobileNumberSignUpTextBox.setText("");
+        if(mobileNumberSignUpTextBox.getText().equals("Enter Mobile Number")){
+            mobileNumberSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        String username = usernameSignUpTextBox.getText();
+        String password = passwordSignUpTextBox.getText();
+        String name = nameSignUpTextBox.getText();
+        String dateAsString = dobText.getText();
+        String mobileNumber = mobileNumberSignUpTextBox.getText();
+        String email = emailSignUpTextBox.getText();
+        String address = addressSignUpTextBox.getText();
+        if(username.equals("Enter Username") || username.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Please provide username", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!system.getUserAccountDirectory().isUsernameUnique(username)){
+            JOptionPane.showMessageDialog(this, "Username already Exists", "Unique Username", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(password.equals("************") || password.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Please provide password", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(name.equals("Enter Name") || name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide name", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;        
+        }
+        if(dateAsString.equals("MM/dd/yyyy") || dateAsString.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide date of birth", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(mobileNumber.equals("Enter Mobile Number") || mobileNumber.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide mobile number", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(email.equals("Enter Email") || email.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide email", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(address.equals("Enter Address") || address.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide address", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Date date = Utils.dateFromString(dateAsString);
+        if(date==null){
+            JOptionPane.showMessageDialog(this, "Please provide correct date of birth", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!mobileNumber.matches("^[0-9]{10}$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct mobile number", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct email address", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        long mobileNumberAsLong = Utils.phoneNoFromString(mobileNumber);
+        
+        Customer customer = new Customer();
+        customer.setDateOfBirth(date);
+        customer.setEmail(email);
+        customer.setHomeAddress(address);
+        customer.setName(name);
+        customer.setPhoneNumber(mobileNumberAsLong);
+        customer.setUserName(username);
+        
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setRole(new CustomerRole());
+        
+        system.newCustomer(customer, userAccount);
+        
         ManageCustomersJPanel mcjp = new ManageCustomersJPanel(adminTaskLayer, system);
         displayAdminTaskPanel(mcjp);
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void usernameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignUpTextBoxMouseClicked
+        if(usernameSignUpTextBox.getText().equals("Enter Username")){
         usernameSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_usernameSignUpTextBoxMouseClicked
 
     private void emailSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxMouseClicked
-        emailSignUpTextBox.setText("");
+        if(emailSignUpTextBox.getText().equals("Enter Email")){
+            emailSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_emailSignUpTextBoxMouseClicked
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
+        if(addressSignUpTextBox.getText().equals("Enter Address")){
+            addressSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
 
     private void passwordSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordSignUpTextBoxMouseClicked
-        passwordSignUpTextBox.setText("");
+        if(passwordSignUpTextBox.getText().equals("************")){
+            passwordSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_passwordSignUpTextBoxMouseClicked
 
     private void nameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBoxMouseClicked
-        nameSignUpTextBox.setText("");
+        if(nameSignUpTextBox.getText().equals("Enter Name")){
+            nameSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_nameSignUpTextBoxMouseClicked
 
-    private void nameSignUpTextBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBox1MouseClicked
-        nameSignUpTextBox.setText("");
-    }//GEN-LAST:event_nameSignUpTextBox1MouseClicked
+    private void dobTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dobTextMouseClicked
+        if(dobText.getText().equals("MM/dd/yyyy")){
+            dobText.setText("");
+        }
+    }//GEN-LAST:event_dobTextMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressSignUpTextBox;
+    private javax.swing.JTextField dobText;
     private javax.swing.JTextField emailSignUpTextBox;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -327,7 +422,6 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField mobileNumberSignUpTextBox;
     private javax.swing.JTextField nameSignUpTextBox;
-    private javax.swing.JTextField nameSignUpTextBox1;
     private javax.swing.JPasswordField passwordSignUpTextBox;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextField usernameSignUpTextBox;

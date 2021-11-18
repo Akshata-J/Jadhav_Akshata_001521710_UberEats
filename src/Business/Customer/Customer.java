@@ -5,6 +5,8 @@
  */
 package Business.Customer;
 
+import java.util.Date;
+
 /**
  *
  * @author akshatajadhav
@@ -13,18 +15,21 @@ public class Customer {
     
     private String name;
     private String email;
-    private String phoneNumber;
-    private int age;
+    private long phoneNumber;
+    private Date dob;
     private String homeAddress;
     private String userName;
    
-    public Customer(String name, String email, String phoneNumber, int age, String homeAddress, String userName) {
+    public Customer(String name, String email, long phoneNumber, Date dob, String homeAddress, String userName) {
         this.name = name;
         this.email = email;
-        this.age = age;
+        this.dob = dob;
         this.homeAddress = homeAddress;
         this.userName = userName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Customer() {
     }
 
     public String getName() {
@@ -43,20 +48,20 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getAge() {
-        return age;
+    public Date getDateOfBirth() {
+        return dob;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDateOfBirth(Date dob) {
+        this.dob = dob;
     }
 
     public String getHomeAddress() {

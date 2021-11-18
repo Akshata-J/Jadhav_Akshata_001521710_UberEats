@@ -59,6 +59,7 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         incomingOrdersTable = new javax.swing.JTable();
         acceptOrder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tableRecordsStatus.setText("No orders available! For orders which are prepared go to Order Complete Page!");
@@ -105,6 +106,16 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Start Preparing Order!");
 
+        cancelBtn.setBackground(new java.awt.Color(92, 184, 92));
+        cancelBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBtn.setText("Cancel Order!");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,10 +125,12 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(331, 331, 331)
                 .addComponent(acceptOrder)
-                .addGap(391, 391, 391))
+                .addGap(119, 119, 119)
+                .addComponent(cancelBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +140,9 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(acceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acceptOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -139,10 +154,15 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
             return;
         }
         String orderId = (String) incomingOrdersTable.getValueAt(row, 0);
+        if(incomingOrdersTable.getValueAt(row, 1).equals("Order cancelled")){
+            JOptionPane.showMessageDialog(this, "Order already cancelled!", "Order Cancelled", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if(!incomingOrdersTable.getValueAt(row, 1).equals("Order Placed")){
             JOptionPane.showMessageDialog(this, "Order already accepted and being prepared!", "Already Accepted", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
+        
         populateTable();
         for(int i =0; i<incomingOrdersTable.getRowCount();i++){
             if(incomingOrdersTable.getValueAt(i, 0).equals(orderId)){
@@ -163,9 +183,36 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this,String.join("\n", orderDetails), "Already Accepted", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_acceptOrderActionPerformed
 
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        int row = incomingOrdersTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a order!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String orderId = (String) incomingOrdersTable.getValueAt(row, 0);
+        
+        if(incomingOrdersTable.getValueAt(row, 1).equals("Order cancelled")){
+            JOptionPane.showMessageDialog(this, "Order already cancelled!", "Order Cancelled", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(!incomingOrdersTable.getValueAt(row, 1).equals("Order Placed")){
+            JOptionPane.showMessageDialog(this, "Order already accepted and cannot be cancelled!", "Already Accepted", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        system.getOrderById(orderId).setOrderStatus("Order cancelled by restaurant");
+        JOptionPane.showMessageDialog(this,"Order Cancelled!", "Order Status", JOptionPane.INFORMATION_MESSAGE);
+        populateTable();
+        for(int i =0; i<incomingOrdersTable.getRowCount();i++){
+            if(incomingOrdersTable.getValueAt(i, 0).equals(orderId)){
+                incomingOrdersTable.setValueAt("Order Cancelled", row, 1);
+            }
+        }
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptOrder;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JTable incomingOrdersTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -176,9 +223,10 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         int rowCount = table.getRowCount();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-    
+        System.out.println("userinterface.RestaurantAdminRole.InCommingOrdersJPanel.populateTable()");
         for (Order o : system.getOrdersByRestaurant(restaurant)) {
             if(o.getOrderStatus().equalsIgnoreCase("Order Placed")){
+                System.out.println(o.getOrderStatus());
                 Object[] c = new Object[4];
                 c[0] = o.getOrderId();
                 c[1] = o.getOrderStatus();
@@ -193,8 +241,10 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
             table.add(tableRecordsStatus);
             table.setFillsViewportHeight(true);
             acceptOrder.setEnabled(false);
+            cancelBtn.setEnabled(false);
         }else{
             acceptOrder.setEnabled(true);
+            cancelBtn.setEnabled(true);
         }
     }
 }

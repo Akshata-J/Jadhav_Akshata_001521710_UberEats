@@ -19,13 +19,12 @@ public class UserAccountDirectory {
         userAccountList = new HashMap<>();
     }
 
+    
     public ArrayList<UserAccount> getUserAccountList() {
         return new ArrayList<>(userAccountList.values());
     }
     
     public boolean authenticateUser(String username, String password, String role){
-        System.out.println(username+":"+password+":"+role);
-        System.out.println(userAccountList);
         if (userAccountList.containsKey(username) && 
               userAccountList.get(username).getPassword().equals(password) && 
                 userAccountList.get(username).getRole().toString().equals(role)){
@@ -48,6 +47,10 @@ public class UserAccountDirectory {
         return new ArrayList<>(userAccountList.keySet());
     }
 
+    public boolean isUsernameUnique(String username){
+        return !userAccountList.containsKey(username);
+    }
+    
     @Override
     public String toString() {
         return "UserAccountDirectory{" + "userAccountList=" + userAccountList + '}';

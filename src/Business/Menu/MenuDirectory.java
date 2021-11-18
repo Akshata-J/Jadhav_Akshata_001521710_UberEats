@@ -27,6 +27,10 @@ public class MenuDirectory {
         menuDirectory.put(menu.getItemName(),menu);
         return menu;
     }
+    public Menu updateItem(Menu menu) {
+        menuDirectory.put(menu.getItemName(),menu);
+        return menu;
+    }
     
     public ArrayList<String> getItemNames() {
         return new ArrayList<>(menuDirectory.keySet());

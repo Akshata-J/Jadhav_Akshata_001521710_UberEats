@@ -169,7 +169,7 @@ public class MenuJPanel extends javax.swing.JPanel {
         order.setAssign(false);
         order.setRequestDate(new Date());
         system.getOrderDirectory().newOrder(order);
-
+        String orderId = order.getOrderId();
         OrderPlacedJPanel opjp = new OrderPlacedJPanel(customerTaskLayer, system, order);
         displayCustomerTaskPanel(opjp);
     }//GEN-LAST:event_placeOrderBtnActionPerformed
@@ -189,7 +189,6 @@ public class MenuJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         for (Menu m : system.getRestaurantDirectory().getRestaurant(restaurantName).getMenu()) {
-            System.out.println(m);
             Object[] c = new Object[3];
             c[0] = m.getItemName();
             c[1] = m.getPrice();

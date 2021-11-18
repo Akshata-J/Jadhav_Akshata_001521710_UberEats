@@ -5,9 +5,16 @@
  */
 package userinterface.SystemAdminRole;
 
+import Business.Customer.Customer;
 import Business.FoodDeliverySystem;
+import Business.Restaurant.Restaurant;
+import Business.Role.CustomerRole;
+import Business.UserAccount.UserAccount;
+import java.util.Date;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import utils.Utils;
 
 /**
  *
@@ -52,11 +59,11 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         passwordSignUpTextBox = new javax.swing.JPasswordField();
         jSeparator11 = new javax.swing.JSeparator();
         jLabel29 = new javax.swing.JLabel();
-        nameSignUpTextBox = new javax.swing.JTextField();
+        restaurantNameSignUpTextBox = new javax.swing.JTextField();
         jSeparator15 = new javax.swing.JSeparator();
         jLabel30 = new javax.swing.JLabel();
-        nameSignUpTextBox1 = new javax.swing.JTextField();
-        emailSignUpTextBox = new javax.swing.JTextField();
+        managerNameSignUpTextBox = new javax.swing.JTextField();
+        websiteSignUpTextBox = new javax.swing.JTextField();
         jSeparator12 = new javax.swing.JSeparator();
         jSeparator16 = new javax.swing.JSeparator();
         jLabel26 = new javax.swing.JLabel();
@@ -86,7 +93,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
             }
         });
 
-        passwordSignUpTextBox.setText("jPasswordField1");
+        passwordSignUpTextBox.setText("************");
         passwordSignUpTextBox.setBorder(null);
         passwordSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,35 +104,35 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         jLabel29.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel29.setText("Restaurant Name:");
 
-        nameSignUpTextBox.setText("Enter Name");
-        nameSignUpTextBox.setBorder(null);
-        nameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+        restaurantNameSignUpTextBox.setText("Enter Name");
+        restaurantNameSignUpTextBox.setBorder(null);
+        restaurantNameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameSignUpTextBoxMouseClicked(evt);
+                restaurantNameSignUpTextBoxMouseClicked(evt);
             }
         });
 
         jLabel30.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel30.setText("Manager Name:");
 
-        nameSignUpTextBox1.setText("Enter Name");
-        nameSignUpTextBox1.setBorder(null);
-        nameSignUpTextBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+        managerNameSignUpTextBox.setText("Enter Name");
+        managerNameSignUpTextBox.setBorder(null);
+        managerNameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameSignUpTextBox1MouseClicked(evt);
+                managerNameSignUpTextBoxMouseClicked(evt);
             }
         });
 
-        emailSignUpTextBox.setText("Enter Web Address");
-        emailSignUpTextBox.setBorder(null);
-        emailSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+        websiteSignUpTextBox.setText("Enter Web Address");
+        websiteSignUpTextBox.setBorder(null);
+        websiteSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailSignUpTextBoxMouseClicked(evt);
+                websiteSignUpTextBoxMouseClicked(evt);
             }
         });
-        emailSignUpTextBox.addActionListener(new java.awt.event.ActionListener() {
+        websiteSignUpTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailSignUpTextBoxActionPerformed(evt);
+                websiteSignUpTextBoxActionPerformed(evt);
             }
         });
 
@@ -183,7 +190,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(usernameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(restaurantNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,10 +205,10 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                             .addComponent(passwordSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameSignUpTextBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(managerNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(websiteSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -234,7 +241,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(30, 30, 30)
-                                            .addComponent(nameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(restaurantNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
@@ -255,12 +262,12 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(30, 30, 30)
-                                            .addComponent(nameSignUpTextBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(managerNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
-                                    .addComponent(emailSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(websiteSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, 0)
                                     .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
@@ -277,46 +284,121 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
+        if(addressSignUpTextBox.getText().equals("Enter Address")){
+            addressSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
 
     private void passwordSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordSignUpTextBoxMouseClicked
-        passwordSignUpTextBox.setText("");
+        if(passwordSignUpTextBox.getText().equals("************")){
+            passwordSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_passwordSignUpTextBoxMouseClicked
 
-    private void nameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBoxMouseClicked
-        nameSignUpTextBox.setText("");
-    }//GEN-LAST:event_nameSignUpTextBoxMouseClicked
+    private void restaurantNameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantNameSignUpTextBoxMouseClicked
+        if(restaurantNameSignUpTextBox.getText().equals("Enter Name")){
+            restaurantNameSignUpTextBox.setText("");
+        }
+    }//GEN-LAST:event_restaurantNameSignUpTextBoxMouseClicked
 
-    private void nameSignUpTextBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBox1MouseClicked
-        nameSignUpTextBox.setText("");
-    }//GEN-LAST:event_nameSignUpTextBox1MouseClicked
+    private void managerNameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managerNameSignUpTextBoxMouseClicked
+        if(managerNameSignUpTextBox.getText().equals("Enter Name")){
+            managerNameSignUpTextBox.setText("");
+        }
+    }//GEN-LAST:event_managerNameSignUpTextBoxMouseClicked
 
-    private void emailSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxMouseClicked
-        emailSignUpTextBox.setText("");
-    }//GEN-LAST:event_emailSignUpTextBoxMouseClicked
+    private void websiteSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteSignUpTextBoxMouseClicked
+        if(websiteSignUpTextBox.getText().equals("Enter Web Address")){
+            websiteSignUpTextBox.setText("");
+        }
+    }//GEN-LAST:event_websiteSignUpTextBoxMouseClicked
 
-    private void emailSignUpTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailSignUpTextBoxActionPerformed
+    private void websiteSignUpTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_websiteSignUpTextBoxActionPerformed
+        
+    }//GEN-LAST:event_websiteSignUpTextBoxActionPerformed
 
     private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
-        mobileNumberSignUpTextBox.setText("");
+        if(mobileNumberSignUpTextBox.getText().equals("Enter Mobile Number")){
+            mobileNumberSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        ManageCustomersJPanel mcjp = new ManageCustomersJPanel(adminTaskLayer, system);
+        String username = usernameSignUpTextBox.getText();
+        String password = passwordSignUpTextBox.getText();
+        String restaurantName = restaurantNameSignUpTextBox.getText();
+        String managerName = managerNameSignUpTextBox.getText();
+        String mobileNumber = mobileNumberSignUpTextBox.getText();
+        String website = websiteSignUpTextBox.getText();
+        String address = addressSignUpTextBox.getText();
+        if(username.equals("Enter Username") || username.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Please provide username", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!system.getUserAccountDirectory().isUsernameUnique(username)){
+            JOptionPane.showMessageDialog(this, "Username already Exists", "Unique Username", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(password.equals("************") || password.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Please provide password", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(restaurantName.equals("Enter Name") || restaurantName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide restaurant name", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;        
+        }
+        if(managerName.equals("Enter Name") || managerName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide manager name", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;        
+        }
+        if(mobileNumber.equals("Enter Mobile Number") || mobileNumber.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide mobile number", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(website.equals("Enter Web Address") || website.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide web address", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(address.equals("Enter Address") || address.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please provide address", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!mobileNumber.matches("^[0-9]{10}$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct mobile number", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(!website.matches("^[a-zA-Z0-9]+.[a-zA-Z0-9]+.[a-zA-Z0-9]+$")){
+            JOptionPane.showMessageDialog(this, "Please provide correct website", "Incorrect details", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        long mobileNumberAsLong = Utils.phoneNoFromString(mobileNumber);
+        
+        Restaurant restaurant = new Restaurant(username, restaurantName, website, address, managerName, mobileNumberAsLong);
+        
+        UserAccount userAccount = new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setRole(new CustomerRole());
+        
+        system.newRestaurant(restaurant, userAccount);
+        
+        ManageRestaurantsJPanel mcjp = new ManageRestaurantsJPanel(adminTaskLayer, system);
         displayAdminTaskPanel(mcjp);
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void usernameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignUpTextBoxMouseClicked
-        usernameSignUpTextBox.setText("");
+        if(usernameSignUpTextBox.getText().equals("Enter Username")){
+            usernameSignUpTextBox.setText("");
+        }
     }//GEN-LAST:event_usernameSignUpTextBoxMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressSignUpTextBox;
-    private javax.swing.JTextField emailSignUpTextBox;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -334,11 +416,12 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField managerNameSignUpTextBox;
     private javax.swing.JTextField mobileNumberSignUpTextBox;
-    private javax.swing.JTextField nameSignUpTextBox;
-    private javax.swing.JTextField nameSignUpTextBox1;
     private javax.swing.JPasswordField passwordSignUpTextBox;
+    private javax.swing.JTextField restaurantNameSignUpTextBox;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextField usernameSignUpTextBox;
+    private javax.swing.JTextField websiteSignUpTextBox;
     // End of variables declaration//GEN-END:variables
 }

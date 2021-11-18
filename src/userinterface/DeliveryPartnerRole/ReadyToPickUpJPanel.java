@@ -62,6 +62,7 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
         readyToPickUpTable = new javax.swing.JTable();
         asssignMeButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tableRecordsStatus.setText("No orders available to pick up!");
@@ -100,7 +101,7 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
         asssignMeButton.setBackground(new java.awt.Color(92, 184, 92));
         asssignMeButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         asssignMeButton.setForeground(new java.awt.Color(255, 255, 255));
-        asssignMeButton.setText("Assign to me!");
+        asssignMeButton.setText("PickUp!");
         asssignMeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 asssignMeButtonActionPerformed(evt);
@@ -110,19 +111,32 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Select Orders!");
 
+        cancelButton.setBackground(new java.awt.Color(92, 184, 92));
+        cancelButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setText("Cancel!");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(asssignMeButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(asssignMeButton)
+                        .addGap(116, 116, 116)
+                        .addComponent(cancelButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(418, 418, 418)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,9 +145,11 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(asssignMeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asssignMeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,9 +169,26 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_asssignMeButtonActionPerformed
 
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        int row = readyToPickUpTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a order!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String orderId = (String) readyToPickUpTable.getValueAt(row, 0);
+        if(system.getOrderById(orderId).getOrderStatus().equalsIgnoreCase("Order picked up")){
+            JOptionPane.showMessageDialog(this, "Once picked up you cannot cancel!", "Order Status", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        system.getOrderById(orderId).setOrderStatus("Declined by delivery partner! Restaurant will assign new partner");
+        system.getOrderById(orderId).setDeliveryPartner(new DeliveryPartner());
+        populateTable();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton asssignMeButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable readyToPickUpTable;
@@ -166,8 +199,8 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
         int rowCount = table.getRowCount();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-        for (Order o : system.getOrderDirectory().getOrderDirectory()) {
-            if (o.getOrderStatus().equalsIgnoreCase("Order ready to deliver")) {
+        for (Order o : system.getOrderByDeliveryPartner(deliveryPartner)) {
+            if (o.getOrderStatus().equalsIgnoreCase("Order ready to pick up")) {
                 Object[] c = new Object[6];
                 c[0] = o.getOrderId();
                 c[1] = o.getCustomer().getName();
@@ -184,8 +217,10 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
             table.add(tableRecordsStatus);
             table.setFillsViewportHeight(true);
             asssignMeButton.setEnabled(false);
+            cancelButton.setEnabled(false);
         } else {
             asssignMeButton.setEnabled(true);
+            cancelButton.setEnabled(true);
         }
     }
 }

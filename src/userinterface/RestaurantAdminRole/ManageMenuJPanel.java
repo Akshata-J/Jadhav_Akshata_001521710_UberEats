@@ -74,7 +74,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Item", "Place"
+                "Item", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -112,7 +112,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel6.setText("MANAGE Menu");
+        jLabel6.setText("MANAGE MENU");
 
         modifyBtn4.setBackground(new java.awt.Color(92, 184, 92));
         modifyBtn4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -143,13 +143,16 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(208, 208, 208)
                                 .addComponent(modifyBtn4)
-                                .addGap(109, 109, 109)
+                                .addGap(122, 122, 122)
                                 .addComponent(modifyMenu)
-                                .addGap(132, 132, 132)
+                                .addGap(119, 119, 119)
                                 .addComponent(deleteMenu)
-                                .addGap(0, 297, Short.MAX_VALUE)))))
+                                .addGap(0, 258, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteMenu, modifyBtn4, modifyMenu});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -166,6 +169,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                     .addComponent(modifyBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteMenu, modifyBtn4, modifyMenu});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuActionPerformed
@@ -213,7 +219,6 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         int rowCount = table.getRowCount();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-        System.out.println(restaurant.getMenu());
         for (Menu m : restaurant.getMenu()) {
                 Object[] c = new Object[2];
                 c[0] = m.getItemName();

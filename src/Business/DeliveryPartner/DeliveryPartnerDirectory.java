@@ -32,6 +32,10 @@ public class DeliveryPartnerDirectory {
         return deliveryPartnerDirectory.get(username);
     }
     
+    public void modifyDeliveryPartner(DeliveryPartner deliveryPartner){
+        deliveryPartnerDirectory.put(deliveryPartner.getUsername(),deliveryPartner);
+    }
+    
     public boolean isUsernameUnique(String s) {
         return !deliveryPartnerDirectory.containsKey(s);
     }
