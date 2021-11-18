@@ -172,7 +172,6 @@ public class ModifyItemJPanel extends javax.swing.JPanel {
         
         
         JOptionPane.showMessageDialog(this, "Item updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-        //ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(restaurantTaskLayer, system, restaurant);
         ManageMenuJPanel mmjp = new ManageMenuJPanel(restaurantTaskLayer, system, restaurant);
         displayRestaurantTaskPanel(mmjp);
     }//GEN-LAST:event_submitButtonActionPerformed

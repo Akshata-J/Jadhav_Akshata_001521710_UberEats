@@ -26,8 +26,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import userinterface.CustomerRole.CustomerJPanel;
 import userinterface.DeliveryPartnerRole.DeliveryPartnerJPanel;
@@ -48,6 +46,7 @@ public class LoginJPanel extends javax.swing.JPanel {
      */
     public LoginJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system) {
         initComponents();
+        this.setBackground(new Color(0, 0, 0, 0));
         jPanel1.setBackground(new Color(0, 0, 0, 0));
         rolesRadioButton.add(customerRadioButton);
         rolesRadioButton.add(deliveryPartnerRadioButton);
@@ -143,10 +142,10 @@ public class LoginJPanel extends javax.swing.JPanel {
         SignInPanel.setBackground(new java.awt.Color(255, 255, 255));
         SignInPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/ClickedSignIn.png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ClickedSignIn.png"))); // NOI18N
         SignInPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 130, 60));
 
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/SignUp.png"))); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SignUp.png"))); // NOI18N
         jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel20MouseClicked(evt);
@@ -162,7 +161,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         jLabel16.setText("Username:");
         SignInPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 92, 34));
 
-        jLabelSignInButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/SignInPage.png"))); // NOI18N
+        jLabelSignInButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SignInPage.png"))); // NOI18N
         jLabelSignInButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelSignInButtonMouseClicked(evt);
@@ -219,7 +218,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         SignUpPanel.setBackground(new java.awt.Color(255, 255, 255));
         SignUpPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/ClickedSignUp.png"))); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/ClickedSignUp.png"))); // NOI18N
         jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel28MouseClicked(evt);
@@ -227,7 +226,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         });
         SignUpPanel.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 130, 60));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/SignIn.png"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SignIn.png"))); // NOI18N
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel27MouseClicked(evt);
@@ -280,7 +279,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         });
         SignUpPanel.add(passwordSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 368, 40));
 
-        jLabelSignInButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/SignUp.png"))); // NOI18N
+        jLabelSignInButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SignUp.png"))); // NOI18N
         jLabelSignInButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelSignInButton1MouseClicked(evt);
@@ -348,7 +347,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         jPanel1.add(SignPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 510, 680));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/x.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/x.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
@@ -358,10 +357,10 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/right.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/right.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 680, 720));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/left.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 710, 720));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1210, 740));
@@ -426,15 +425,18 @@ public class LoginJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelSignInButtonMouseClicked
 
     private void usernameSignInTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameSignInTextBoxActionPerformed
-        usernameSignInTextBox.setText("");
+        if(usernameSignInTextBox.getText().equals("Enter Username"))
+            usernameSignInTextBox.setText("");
     }//GEN-LAST:event_usernameSignInTextBoxActionPerformed
 
     private void usernameSignInTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignInTextBoxMouseClicked
+        if(usernameSignInTextBox.getText().equals("Enter Username"))
         usernameSignInTextBox.setText("");
     }//GEN-LAST:event_usernameSignInTextBoxMouseClicked
 
     private void passwordSignInTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordSignInTextBoxMouseClicked
-        passwordSignInTextBox.setText("");
+        if(passwordSignInTextBox.getText().equals("*************"))
+            passwordSignInTextBox.setText("");
     }//GEN-LAST:event_passwordSignInTextBoxMouseClicked
 
     private void usernameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignUpTextBoxMouseClicked
@@ -467,14 +469,14 @@ public class LoginJPanel extends javax.swing.JPanel {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(500, 500));
         try {
-            editorPane.setPage(getClass().getResource("/userinterface/login/terms.html"));
+            editorPane.setPage(getClass().getResource("/resources/terms.html"));
         } catch (MalformedURLException ex) {
             Logger.getLogger(LoginJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(LoginJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, scrollPane, "Terms & Condition",
-                JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/userinterface/login/tnc.png")));
+                JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/resources/tnc.png")));
     }//GEN-LAST:event_tncLabelMouseClicked
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked

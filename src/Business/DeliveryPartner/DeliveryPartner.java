@@ -18,7 +18,6 @@ public class DeliveryPartner {
     private String email;
     private long phoneNumber;
     private Date dob;
-    private boolean available;
     
     public DeliveryPartner(String username, String name, String address, String email, long phoneNumber, Date dob) {
         this.username = username;
@@ -27,11 +26,9 @@ public class DeliveryPartner {
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.available = true;
     }
 
     public DeliveryPartner() {
-        this.available = true;
      }
 
     public Date getDateOfBirth() {
@@ -48,14 +45,6 @@ public class DeliveryPartner {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
     }
 
     public String getAddress() {

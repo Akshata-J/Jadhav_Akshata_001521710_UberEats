@@ -8,8 +8,6 @@ package userinterface.CustomerRole;
 import Business.Customer.Customer;
 import Business.FoodDeliverySystem;
 import Business.Restaurant.Restaurant;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -60,7 +58,7 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No records available");
+        tableRecordsStatus.setText("No restaurants available");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -135,8 +133,8 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Select a restaurant!", "Select", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        String restaurantName = (String) restaurantListTable.getValueAt(row,0);
-        MenuJPanel mjp = new MenuJPanel(customerTaskLayer, system, restaurantName, customer);
+        Restaurant restaurant = (Restaurant) restaurantListTable.getValueAt(row,0);
+        MenuJPanel mjp = new MenuJPanel(customerTaskLayer, system, restaurant.getUsername(), customer);
         displayCustomerTaskPanel(mjp);
     }//GEN-LAST:event_selectRestaurantButtonActionPerformed
 
@@ -157,7 +155,7 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
     
         for (Restaurant r : system.getRestaurantDirectory().getRestaurantDirectory()) {
             Object[] c = new Object[8];
-            c[0] = r.getRestaurantName();
+            c[0] = r;
             c[1] = r.getWebsite();
             model.addRow(c);
         }

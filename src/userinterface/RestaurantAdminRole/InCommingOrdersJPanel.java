@@ -9,9 +9,7 @@ import Business.FoodDeliverySystem;
 import Business.Order.Item;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
-import userinterface.CustomerRole.*;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -223,10 +221,8 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
         int rowCount = table.getRowCount();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-        System.out.println("userinterface.RestaurantAdminRole.InCommingOrdersJPanel.populateTable()");
         for (Order o : system.getOrdersByRestaurant(restaurant)) {
             if(o.getOrderStatus().equalsIgnoreCase("Order Placed")){
-                System.out.println(o.getOrderStatus());
                 Object[] c = new Object[4];
                 c[0] = o.getOrderId();
                 c[1] = o.getOrderStatus();

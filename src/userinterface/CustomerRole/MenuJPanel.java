@@ -27,20 +27,21 @@ public class MenuJPanel extends javax.swing.JPanel {
 
     FoodDeliverySystem system;
     JLayeredPane customerTaskLayer;
-    String restaurantName;
+    String restaurantUsername;
     Customer customer;
-    static int count = 1;
+    static int count ;
 
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public MenuJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, String restaurantName, Customer customer) {
+    public MenuJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, String restaurantUsername, Customer customer) {
         initComponents();
         this.customerTaskLayer = customerTaskLayer;
         this.system = system;
-        this.restaurantName = restaurantName;
+        this.restaurantUsername = restaurantUsername;
         this.customer = customer;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        count=system.getOrderDirectory().getOrderDirectory().size()+1;
         populateTable();
     }
 
@@ -67,7 +68,7 @@ public class MenuJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No records available");
+        tableRecordsStatus.setText("No items available to order");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -164,9 +165,8 @@ public class MenuJPanel extends javax.swing.JPanel {
         String status = "Order Placed";
         order.setCustomer(customer);
         order.setOrderId(String.valueOf(count++));
-        order.setRestaurant(system.getRestaurantDirectory().getRestaurant(restaurantName));
+        order.setRestaurant(system.getRestaurantDirectory().getRestaurant(restaurantUsername));
         order.setOrderStatus(status);
-        order.setAssign(false);
         order.setRequestDate(new Date());
         system.getOrderDirectory().newOrder(order);
         String orderId = order.getOrderId();
@@ -188,7 +188,7 @@ public class MenuJPanel extends javax.swing.JPanel {
         int rowCount = table.getRowCount();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
-        for (Menu m : system.getRestaurantDirectory().getRestaurant(restaurantName).getMenu()) {
+        for (Menu m : system.getRestaurantDirectory().getRestaurant(restaurantUsername).getMenu()) {
             Object[] c = new Object[3];
             c[0] = m.getItemName();
             c[1] = m.getPrice();

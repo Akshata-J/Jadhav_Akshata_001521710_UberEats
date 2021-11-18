@@ -36,9 +36,9 @@ public class OrderPlacedJPanel extends javax.swing.JPanel {
         initComponents();
         this.customerTaskLayer=customerTaskLayer;
         this.order = order;
-        itemsLabel.setText("Order Items : "+order.getItemsAsString());
+        itemsLabel.setText("Restaurant:"+order.getRestaurant().getRestaurantName()+"    Order Items : "+order.getItemsAsString());
         
-        URL url = this.getClass().getResource("/userinterface/CustomerRole/orderPlaced.gif");
+        URL url = this.getClass().getResource("/resources/orderPlaced.gif");
         Icon myImgIcon = new ImageIcon(url);
         //JLabel imageLbl = new JLabel(myImgIcon);
         jLabel1.setIcon(myImgIcon);

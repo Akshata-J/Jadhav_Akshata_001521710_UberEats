@@ -17,6 +17,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,18 +52,9 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
         this.system = system;
         this.customer = customer;
         this.order = order;
-        URL url = this.getClass().getResource("/userinterface/CustomerRole/orderOnTheWay.gif");
-        Icon myImgIcon = new ImageIcon(url);
+//        URL url = this.getClass().getResource("/resources/orderOnTheWay.gif");
+//        Icon myImgIcon = new ImageIcon(url);
         createInvoice();
-        //JLabel imageLbl = new JLabel(myImgIcon);
-        //jLabel1.setIcon(myImgIcon);
-        //add(jLabel1, BorderLayout.CENTER);
-        
-        //JEditorPane editorPane = new JEditorPane();
-        //JScrollPane scrollPane = new JScrollPane(editorPane);
-//        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//        scrollPane.setPreferredSize(new Dimension(500, 500));
-        //editorPane.setPage(getClass().getResource("/userinterface/login/terms.html"));
        
     }
 
@@ -87,6 +79,8 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         userFeedback = new javax.swing.JLabel();
         submitButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        feedbackTextArea = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,7 +93,7 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Please provide feedback!!");
 
-        userFeedback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/star0.png"))); // NOI18N
+        userFeedback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/star0.png"))); // NOI18N
         userFeedback.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userFeedbackMouseClicked(evt);
@@ -117,6 +111,16 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
             }
         });
 
+        feedbackTextArea.setColumns(20);
+        feedbackTextArea.setRows(5);
+        feedbackTextArea.setText("Please provide feedback!");
+        feedbackTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                feedbackTextAreaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(feedbackTextArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,14 +131,16 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(userFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(138, 138, 138))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(158, 158, 158))))
+                        .addGap(158, 158, 158))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(userFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(106, 106, 106))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -153,16 +159,29 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(40, 40, 40)
                 .addComponent(userFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
-        order.setFeedback(rating);
-        system.getOrderById(order.getOrderId()).setFeedback(rating);
+        String feedback = feedbackTextArea.getText();
+        if(feedback.equalsIgnoreCase("Please provide feedback!") || feedback.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Provide feedback!");
+            return;            
+        }
+        if(rating == 0){
+            JOptionPane.showMessageDialog(this, "Provide rating!");
+            return;            
+        }
+        order.setRating(rating);
+        system.getOrderById(order.getOrderId()).setRating(rating);
+        system.getOrderById(order.getOrderId()).setFeedback(feedback);
         system.getOrderById(order.getOrderId()).setOrderStatus("Complete");
+        system.getOrderById(order.getOrderId()).setResolveDate(new Date());
         ListRestaurantsJPanel lrjp = new ListRestaurantsJPanel(customerTaskLayer, system, customer);
         displayCustomerTaskPanel(lrjp);
     }//GEN-LAST:event_submitButton1ActionPerformed
@@ -170,19 +189,27 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
     private void userFeedbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userFeedbackMouseClicked
         int x = (int) evt.getPoint().getX();
         rating = x/46+1;
-        String stars = "/userinterface/login/star"+(rating)+".png";
+        String stars = "/resources/star"+(rating)+".png";
         userFeedback.setIcon(new ImageIcon(getClass().getResource(stars)));
         if(rating>5){
             rating=5;
         }
     }//GEN-LAST:event_userFeedbackMouseClicked
 
+    private void feedbackTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_feedbackTextAreaMouseClicked
+        if(feedbackTextArea.getText().equals("Please provide feedback!")){
+            feedbackTextArea.setText("");
+        }
+    }//GEN-LAST:event_feedbackTextAreaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea feedbackTextArea;
     private javax.swing.JEditorPane invoicePane;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel userFeedback;
     // End of variables declaration//GEN-END:variables

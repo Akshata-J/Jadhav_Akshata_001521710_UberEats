@@ -272,19 +272,19 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
 
     private void restaurantNameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurantNameSignUpTextBoxMouseClicked
-        restaurantNameSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_restaurantNameSignUpTextBoxMouseClicked
 
     private void websiteSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_websiteSignUpTextBoxMouseClicked
-        websiteSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_websiteSignUpTextBoxMouseClicked
 
     private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
-        mobileNumberSignUpTextBox.setText("");
+        
     }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
 
     private void managerNameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managerNameSignUpTextBoxMouseClicked

@@ -10,8 +10,6 @@ import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
 import Business.DeliveryPartner.DeliveryPartner;
 import Business.DeliveryPartner.DeliveryPartnerDirectory;
-import Business.Employee.Employee;
-import Business.Menu.MenuDirectory;
 import Business.Order.Order;
 import Business.Order.OrderDirectory;
 import Business.Restaurant.Restaurant;
@@ -22,6 +20,7 @@ import Business.Role.ResturantAdminRole;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,22 +28,33 @@ import java.util.List;
  *
  * @author akshatajadhav
  */
-public class FoodDeliverySystem extends Organization{
+public class FoodDeliverySystem {
     
-    private static FoodDeliverySystem business;
     private RestaurantDirectory restaurantDirectory;
     private CustomerDirectory customerDirectory;
     private DeliveryPartnerDirectory deliveryPartnerDirectory;
     private OrderDirectory orderDirectory;
-    private MenuDirectory menuDirectory;
+    private UserAccountDirectory userAccountDirectory;
 
-    public FoodDeliverySystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryPartnerDirectory deliveryPartnerDirectory) {
+    public FoodDeliverySystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryPartnerDirectory deliveryPartnerDirectory, UserAccountDirectory userAccountDirectory) {
 
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryPartnerDirectory = deliveryPartnerDirectory;
+        this.userAccountDirectory = this.userAccountDirectory;
         
     }
+    
+    
+    
+    public FoodDeliverySystem(){
+        customerDirectory = new CustomerDirectory();
+        restaurantDirectory = new RestaurantDirectory();
+        deliveryPartnerDirectory = new DeliveryPartnerDirectory();
+        orderDirectory = new OrderDirectory();
+        userAccountDirectory = new UserAccountDirectory();
+    }
+
 
     public OrderDirectory getOrderDirectory() {
         return orderDirectory;
@@ -118,12 +128,12 @@ public class FoodDeliverySystem extends Organization{
         this.orderDirectory = orderDirectory;
     }
 
-    public MenuDirectory getMenuDirectory() {
-        return menuDirectory;
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
     }
 
-    public void setMenuDirectory(MenuDirectory menuDirectory) {
-        this.menuDirectory = menuDirectory;
+    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+        this.userAccountDirectory = userAccountDirectory;
     }
     
     
@@ -152,70 +162,37 @@ public class FoodDeliverySystem extends Organization{
         this.deliveryPartnerDirectory = deliveryPartnerDirectory;
     }
     
-    
-    
-    public static FoodDeliverySystem getInstance(){
-        if(business==null){
-            business=new FoodDeliverySystem();
-        }
-        return business;
-    }
-    
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList=new ArrayList<Role>();
-        roleList.add(new SystemAdminRole());
-        return roleList;
-    }
-    private FoodDeliverySystem(){
-        super(null);
-        customerDirectory = new CustomerDirectory();
-        restaurantDirectory = new RestaurantDirectory();
-        deliveryPartnerDirectory = new DeliveryPartnerDirectory();
-        menuDirectory = new MenuDirectory();
-        orderDirectory = new OrderDirectory();
-        
-       // networkList=new ArrayList<Network>();
-    }
-
-    
     public void newCustomer(Customer customer, UserAccount userAccount){
         userAccount.setRole(new CustomerRole());
         customerDirectory.addCustomer(customer);
-        this.getUserAccountDirectory().createUserAccount(userAccount);
-    }
-    
-    public void newEmployee(Employee employee, UserAccount userAccount){
-        userAccount.setRole(new SystemAdminRole());
-        this.getEmployeeDirectory().newEmployee(employee);
-        this.getUserAccountDirectory().createUserAccount(userAccount);
+        userAccountDirectory.createUserAccount(userAccount);
     }
     
     public void newRestaurant(Restaurant restaurant, UserAccount userAccount){
         userAccount.setRole(new ResturantAdminRole());
         restaurantDirectory.newRestaurant(restaurant);
-        this.getUserAccountDirectory().createUserAccount(userAccount);
+        userAccountDirectory.createUserAccount(userAccount);
     }
     
     public void newDeliveryPartner(DeliveryPartner deliveryPartner, UserAccount userAccount){
         userAccount.setRole(new DeliverPartnerRole());
         deliveryPartnerDirectory.addDeliveryPartner(deliveryPartner);
-        this.getUserAccountDirectory().createUserAccount(userAccount);
+        userAccountDirectory.createUserAccount(userAccount);
     }
     
     public void removeCustomer(String username){
         customerDirectory.removeCustomer(username);
-        this.getUserAccountDirectory().removeUserAccount(username);
+        userAccountDirectory.removeUserAccount(username);
     }
     
     public void removeDeliveryPartner(String username){
         deliveryPartnerDirectory.removeDeliveryPartner(username);
-        this.getUserAccountDirectory().removeUserAccount(username);
+        userAccountDirectory.removeUserAccount(username);
     }
     
     public void removeRestaurant(String username){
         restaurantDirectory.removeRestaurant(username);
-        this.getUserAccountDirectory().removeUserAccount(username);
+        userAccountDirectory.removeUserAccount(username);
     }
 
     

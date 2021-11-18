@@ -191,7 +191,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/login/UberEats.png"/>
+          <Image iconType="3" name="/resources/UberEats.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -231,7 +231,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/login/x.png"/>
+          <Image iconType="3" name="/resources/x.png"/>
         </Property>
       </Properties>
       <Events>
@@ -252,7 +252,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/login/right.png"/>
+          <Image iconType="3" name="/resources/right.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -264,7 +264,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/userinterface/login/right.png"/>
+          <Image iconType="3" name="/resources/right.png"/>
         </Property>
       </Properties>
       <Constraints>

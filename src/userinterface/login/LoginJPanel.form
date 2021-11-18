@@ -67,7 +67,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userinterface/login/ClickedSignIn.png"/>
+                      <Image iconType="3" name="/resources/ClickedSignIn.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -79,7 +79,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel20">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userinterface/login/SignUp.png"/>
+                      <Image iconType="3" name="/resources/SignUp.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -120,7 +120,7 @@
                 <Component class="javax.swing.JLabel" name="jLabelSignInButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userinterface/login/SignInPage.png"/>
+                      <Image iconType="3" name="/resources/SignInPage.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -262,7 +262,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userinterface/login/ClickedSignUp.png"/>
+                      <Image iconType="3" name="/resources/ClickedSignUp.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -277,7 +277,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel27">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userinterface/login/SignIn.png"/>
+                      <Image iconType="3" name="/resources/SignIn.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -403,7 +403,7 @@
                 <Component class="javax.swing.JLabel" name="jLabelSignInButton1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userinterface/login/SignUp.png"/>
+                      <Image iconType="3" name="/resources/SignUp.png"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -556,7 +556,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/userinterface/login/x.png"/>
+              <Image iconType="3" name="/resources/x.png"/>
             </Property>
           </Properties>
           <Events>
@@ -577,7 +577,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/userinterface/login/right.png"/>
+              <Image iconType="3" name="/resources/right.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -589,7 +589,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/userinterface/login/left.png"/>
+              <Image iconType="3" name="/resources/left.png"/>
             </Property>
           </Properties>
           <Constraints>

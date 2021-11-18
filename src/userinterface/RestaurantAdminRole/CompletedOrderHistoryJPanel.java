@@ -8,13 +8,19 @@ package userinterface.RestaurantAdminRole;
 import Business.FoodDeliverySystem;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
+import java.awt.Component;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.CellRendererPane;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -34,6 +40,7 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
         this.system = system;
         this.restaurant = restaurant;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        orderHistory.getColumn("Rating").setCellRenderer(new CellRenderer());
         populateTable();
     }
 
@@ -65,17 +72,17 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
 
         orderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Items", "Total Price"
+                "ID", "Items", "Total Price", "Feedback", "Rating"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -87,6 +94,9 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
             orderHistory.getColumnModel().getColumn(0).setResizable(false);
             orderHistory.getColumnModel().getColumn(1).setResizable(false);
             orderHistory.getColumnModel().getColumn(2).setResizable(false);
+            orderHistory.getColumnModel().getColumn(3).setResizable(false);
+            orderHistory.getColumnModel().getColumn(4).setResizable(false);
+            orderHistory.getColumnModel().getColumn(4).setCellRenderer(null);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -120,6 +130,23 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    class CellRenderer implements TableCellRenderer{
+ 
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+ 
+            TableColumn tb = orderHistory.getColumn("Rating");
+            orderHistory.setRowHeight(20);
+ 
+            return (Component) value;
+        }
+ 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -134,16 +161,21 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         int total = 0;
-    
+        
         for (Order o : system.getOrdersByRestaurant(restaurant)) {
-            if(!o.getOrderStatus().equalsIgnoreCase("Order Placed")||
-                    !o.getOrderStatus().equalsIgnoreCase("Order Accepted")||
-                        !o.getOrderStatus().equalsIgnoreCase("Order cancelled by restaurant")||
+            if(!o.getOrderStatus().equalsIgnoreCase("Order Placed") &&
+                    !o.getOrderStatus().equalsIgnoreCase("Order Accepted") &&
+                        !o.getOrderStatus().equalsIgnoreCase("Order cancelled by restaurant")&&
                             !o.getOrderStatus().equalsIgnoreCase("Order cancelled")){
-                Object[] c = new Object[3];
+                Object[] c = new Object[5];
                 c[0] = o.getOrderId();
                 c[1] = o.getItemsAsString();
                 c[2] = o.getTotal();
+                c[3] = o.getFeedback();
+                JLabel t = new JLabel();
+                String stars = "/resources/sstar"+(o.getRating())+".png";
+                t.setIcon(new ImageIcon(getClass().getResource(stars)));
+                c[4] = t;
                 model.addRow(c);
                 total+=o.getTotal();
             }

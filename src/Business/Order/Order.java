@@ -26,23 +26,14 @@ public class Order extends WorkRequest {
     private DeliveryPartner deliveryPartner;
     private List<Item> items;
     private double total;
-    private String result;
-    private boolean assign;
-    private int feedback;
+    private int rating;
+    private String feedback;
 
     public Order() {
         items = new ArrayList<>();
         deliveryPartner = new DeliveryPartner();
-    }
-    
-    
-
-    public boolean isAssign() {
-        return assign;
-    }
-
-    public void setAssign(boolean assign) {
-        this.assign = assign;
+        rating=0;
+        feedback="Yet to provide!";
     }
     
     
@@ -103,14 +94,6 @@ public class Order extends WorkRequest {
     public double getTotal() {
         return total;
     }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
     
     public String getItemsAsString(){
         List<String> itemString=new ArrayList<>();
@@ -120,11 +103,19 @@ public class Order extends WorkRequest {
         return String.join(",", itemString);
     }
 
-    public int getFeedback() {
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getFeedback() {
         return feedback;
     }
 
-    public void setFeedback(int feedback) {
+    public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
     

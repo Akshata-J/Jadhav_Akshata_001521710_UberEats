@@ -29,7 +29,7 @@ public class OrderOnTheWayJPanel extends javax.swing.JPanel {
     public OrderOnTheWayJPanel(JLayeredPane customerTaskLayer) {
         initComponents();
         this.customerTaskLayer=customerTaskLayer;
-        URL url = this.getClass().getResource("/userinterface/CustomerRole/orderOnTheWay.gif");
+        URL url = this.getClass().getResource("/resources/orderOnTheWay.gif");
         Icon myImgIcon = new ImageIcon(url);
         //JLabel imageLbl = new JLabel(myImgIcon);
         jLabel1.setIcon(myImgIcon);

@@ -8,9 +8,6 @@ package userinterface.RestaurantAdminRole;
 import Business.FoodDeliverySystem;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
-import userinterface.CustomerRole.*;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -61,7 +58,7 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         orderPreparedBtn1 = new javax.swing.JButton();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No orders accepted!");
+        tableRecordsStatus.setText("No orders are being prepared!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 

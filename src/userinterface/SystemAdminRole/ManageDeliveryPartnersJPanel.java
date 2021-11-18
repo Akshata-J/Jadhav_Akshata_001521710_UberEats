@@ -59,7 +59,7 @@ public class ManageDeliveryPartnersJPanel extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No items Available!");
+        tableRecordsStatus.setText("No delivery partners Available!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 

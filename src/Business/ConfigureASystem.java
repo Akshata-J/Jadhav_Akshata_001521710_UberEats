@@ -2,7 +2,6 @@ package Business;
 
 import Business.Customer.Customer;
 import Business.DeliveryPartner.DeliveryPartner;
-import Business.Employee.Employee;
 import Business.Menu.Menu;
 import Business.Restaurant.Restaurant;
 import Business.Role.CustomerRole;
@@ -20,16 +19,9 @@ public class ConfigureASystem {
     
     public static FoodDeliverySystem configure(){
         
-        FoodDeliverySystem system = FoodDeliverySystem.getInstance();
-        
-        //Create a network
-        //create an enterprise
-        //initialize some organizations
-        //have some employees 
-        //create user account
+        FoodDeliverySystem system = new FoodDeliverySystem();
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("sysadmin", "Test");
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername("sysadmin");
         userAccount.setPassword("sysadmin");

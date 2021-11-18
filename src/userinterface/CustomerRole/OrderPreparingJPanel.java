@@ -29,11 +29,9 @@ public class OrderPreparingJPanel extends javax.swing.JPanel {
     public OrderPreparingJPanel(JLayeredPane customerTaskLayer) {
         initComponents();
         this.customerTaskLayer=customerTaskLayer;
-        URL url = this.getClass().getResource("/userinterface/CustomerRole/orderPreparing1.pdf");
+        URL url = this.getClass().getResource("/resources/orderPreparing.gif");
         Icon myImgIcon = new ImageIcon(url);
-        //JLabel imageLbl = new JLabel(myImgIcon);
         jLabel1.setIcon(myImgIcon);
-        //add(jLabel1, BorderLayout.CENTER);
     }
 
     public void displayCustomerTaskPanel(JPanel panel) {

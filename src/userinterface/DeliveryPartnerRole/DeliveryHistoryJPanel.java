@@ -59,7 +59,7 @@ public class DeliveryHistoryJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No orders available to pick up!");
+        tableRecordsStatus.setText("No order history available!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 

@@ -59,7 +59,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         modifyBtn4 = new javax.swing.JButton();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableRecordsStatus.setText("No items Available!");
+        tableRecordsStatus.setText("No customers Available!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 

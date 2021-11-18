@@ -9,12 +9,17 @@ import Business.Customer.Customer;
 import Business.FoodDeliverySystem;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -34,6 +39,7 @@ public class OrderHistoryJPanel extends javax.swing.JPanel {
         this.system = system;
         this.customer = customer;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        orderHistoryTable.getColumn("Rating").setCellRenderer(new CellRenderer());
         populateTable();
     }
 
@@ -63,17 +69,17 @@ public class OrderHistoryJPanel extends javax.swing.JPanel {
 
         orderHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Status", "Items", "Total"
+                "ID", "Status", "Items", "Total", "Feedback", "Rating"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -90,6 +96,8 @@ public class OrderHistoryJPanel extends javax.swing.JPanel {
             orderHistoryTable.getColumnModel().getColumn(2).setPreferredWidth(100);
             orderHistoryTable.getColumnModel().getColumn(3).setResizable(false);
             orderHistoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
+            orderHistoryTable.getColumnModel().getColumn(4).setResizable(false);
+            orderHistoryTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -103,7 +111,23 @@ public class OrderHistoryJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    class CellRenderer implements TableCellRenderer{
+ 
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+ 
+            TableColumn tb = orderHistoryTable.getColumn("Rating");
+            orderHistoryTable.setRowHeight(20);
+ 
+            return (Component) value;
+        }
+ 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
@@ -118,11 +142,16 @@ public class OrderHistoryJPanel extends javax.swing.JPanel {
     
         for (Order o : system.getOrdersOfCustomer(customer)) {
             
-            Object[] c = new Object[4];
+            Object[] c = new Object[6];
             c[0] = o.getOrderId();
             c[1] = o.getOrderStatus();
             c[2] = o.getItemsAsString();
             c[3] = o.getTotal();
+            c[4] = o.getFeedback();
+            JLabel t = new JLabel();
+            String stars = "/resources/sstar"+(o.getRating())+".png";
+            t.setIcon(new ImageIcon(getClass().getResource(stars)));
+            c[5] = t;
             model.addRow(c);
         }
         table.setModel(model);

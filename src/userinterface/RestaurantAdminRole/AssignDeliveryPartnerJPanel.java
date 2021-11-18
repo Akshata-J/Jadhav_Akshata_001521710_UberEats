@@ -167,7 +167,7 @@ public class AssignDeliveryPartnerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void orderIdTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderIdTextMouseClicked
-        orderIdText.setText("");
+        
     }//GEN-LAST:event_orderIdTextMouseClicked
 
 
