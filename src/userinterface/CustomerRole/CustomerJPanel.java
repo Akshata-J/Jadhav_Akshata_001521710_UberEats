@@ -26,12 +26,11 @@ public class CustomerJPanel extends javax.swing.JPanel {
     FoodDeliverySystem system;
     JLayeredPane mainLayeredPane;
     Customer customer;
-    DB4OUtil dB4OUtil;
 
     /**
      * Creates new form LoginJPanel
      */
-    public CustomerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, Customer customer, DB4OUtil dB4OUtil) {
+    public CustomerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, Customer customer) {
         initComponents();
         //jPanel1.setBackground(new Color(0, 0, 0, 0));
         welcomeBanner.setBackground(new Color(63, 129, 64));
@@ -190,6 +189,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         JFrame parentFrame = (JFrame) SwingUtilities.getRoot(this);//(JFrame)this.getParent().getParent().getParent();
+        DB4OUtil.getInstance().storeSystem(system);
         parentFrame.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -203,7 +203,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        LoginJPanel ljp = new LoginJPanel(mainLayeredPane, system, dB4OUtil);
+        LoginJPanel ljp = new LoginJPanel(mainLayeredPane, system);
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
 

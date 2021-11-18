@@ -22,7 +22,7 @@ public class UserAccount {
     public UserAccount() {
         workQueue = new WorkQueue();
     }
-    public UserAccount(String username,String Password, Role role) {
+    public UserAccount(String username,String password, Role role) {
         workQueue = new WorkQueue();
         this.username=username;
         this.password=password;
@@ -64,7 +64,7 @@ public class UserAccount {
     
     @Override
     public String toString() {
-        return username;
+        return username+":"+password+":"+role;
     }
     
     

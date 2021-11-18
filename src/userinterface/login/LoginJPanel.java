@@ -46,7 +46,7 @@ public class LoginJPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginJPanel
      */
-    public LoginJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, DB4OUtil dB4OUtil) {
+    public LoginJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system) {
         initComponents();
         jPanel1.setBackground(new Color(0, 0, 0, 0));
         rolesRadioButton.add(customerRadioButton);
@@ -60,8 +60,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         adminRadioButton.setActionCommand(Role.RoleType.SysAdmin.getValue());
         this.mainLayeredPane = mainLayeredPane;
         this.system = system;
-        this.dB4OUtil = dB4OUtil;
-        //dB4OUtil.storeSystem(system);
     }
     
     public void displayPanel(JPanel panel) {
@@ -381,6 +379,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         JFrame parentFrame = (JFrame) SwingUtilities.getRoot(this);//(JFrame)this.getParent().getParent().getParent();
+        DB4OUtil.getInstance().storeSystem(system);
         parentFrame.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -402,22 +401,23 @@ public class LoginJPanel extends javax.swing.JPanel {
             return;
         }
         if(!system.getUserAccountDirectory().authenticateUser(username, password, rolesRadioButton.getSelection().getActionCommand())){
-            
+            JOptionPane.showMessageDialog(this, "Please provide correct username and password!", "Authentication Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         System.out.println(rolesRadioButton.getSelection().getActionCommand());
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.Customer.getValue())){
             Customer customer = system.getCustomerByUsername(username);
-            CustomerJPanel cjp = new CustomerJPanel(mainLayeredPane,system, customer,dB4OUtil);
+            CustomerJPanel cjp = new CustomerJPanel(mainLayeredPane,system, customer);
             displayMainPanel(cjp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.DeliveryPartner.getValue())){
             DeliveryPartner deliveryPartner = system.getDeliveryPartnerDirectory().getDeliveryPartner(username);
-            DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane,system,deliveryPartner, dB4OUtil);
+            DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane,system,deliveryPartner);
             displayMainPanel(dpjp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.RestaurantAdmin.getValue())){
             Restaurant restaurant = system.getRestaurantDirectory().getRestaurant(username);
-            RestaurantAdminJPanel rajp = new RestaurantAdminJPanel(mainLayeredPane,system,restaurant,dB4OUtil);
+            RestaurantAdminJPanel rajp = new RestaurantAdminJPanel(mainLayeredPane,system,restaurant);
             displayMainPanel(rajp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.SysAdmin.getValue())){

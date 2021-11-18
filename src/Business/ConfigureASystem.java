@@ -40,7 +40,7 @@ public class ConfigureASystem {
         uac.setUsername("testing");
         uac.setPassword("testing");
         uac.setRole(new CustomerRole());
-        system.newCustomer(customer, userAccount);
+        system.newCustomer(customer, uac);
         
         Restaurant restaurant = new Restaurant("restaurant","Indian", "t", "t", "85208520");
         Menu menu = new Menu("test", 100);
@@ -61,8 +61,8 @@ public class ConfigureASystem {
         
         DeliveryPartner deliveryPartner = new DeliveryPartner("dp", "t", "tt", "tt@tmail", "85208520", 0);
         UserAccount uad = new UserAccount("dp", "dp", new DeliverPartnerRole());
-        system.newDeliveryPartner(deliveryPartner, userAccount);
-        
+        system.newDeliveryPartner(deliveryPartner, uad);
+        System.out.println(system.getUserAccountDirectory());
         return system;
     }
     

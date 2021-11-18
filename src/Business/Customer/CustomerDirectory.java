@@ -48,5 +48,10 @@ public class CustomerDirectory {
     public boolean isUsernameUnique(String username){
         return !customerDirectory.containsKey(username);
     }
+
+    @Override
+    public String toString() {
+        return "CustomerDirectory{" + "customerDirectory=" + customerDirectory + '}';
+    }
     
 }

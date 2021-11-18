@@ -4,16 +4,6 @@
  */
 package Business.Role;
 
-import Business.Customer.CustomerDirectory;
-import Business.FoodDeliverySystem;
-
-import Business.Organization;
-import Business.Restaurant.RestaurantDirectory;
-import Business.UserAccount.UserAccount;
-import javax.swing.JPanel;
-import Business.DeliveryPartner.DeliveryPartnerDirectory;
-import Business.Menu.MenuDirectory;
-import Business.Order.OrderDirectory;
 
 /**
  *
@@ -24,8 +14,8 @@ public abstract class Role {
     public enum RoleType{
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
-        DeliveryPartner("Delivery"),
-        SysAdmin("Sysadmin");
+        DeliveryPartner("DeliveryPartner"),
+        SysAdmin("SysAdmin");
         
         private String value;
         private RoleType(String value){

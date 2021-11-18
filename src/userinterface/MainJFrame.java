@@ -18,15 +18,14 @@ import userinterface.login.LoginJPanel;
 public class MainJFrame extends javax.swing.JFrame {
     
     FoodDeliverySystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     /**
      * Creates new form Main
      */
     public MainJFrame() {
         initComponents();
-        this.system = dB4OUtil.retrieveSystem();
+        this.system = DB4OUtil.getInstance().retrieveSystem();
         //displayPanel();
-        LoginJPanel ljp = new LoginJPanel(mainLayeredPane, system, dB4OUtil);
+        LoginJPanel ljp = new LoginJPanel(mainLayeredPane, system);
         ljp.setBackground(new Color(0, 0, 0, 0));
         this.setBackground(new Color(0, 0, 0, 0));
         mainLayeredPane.setBackground(new Color(0, 0, 0, 0));

@@ -127,13 +127,16 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
+                        .addGap(128, 128, 128)
                         .addComponent(modifyBtn)
-                        .addGap(161, 161, 161)
+                        .addGap(139, 139, 139)
                         .addComponent(deleteBtn)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBtn, modifyBtn});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -150,6 +153,9 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
                     .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBtn, deleteBtn, modifyBtn});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -159,7 +165,7 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
             return;
         }
         String restaurantName = (String) manageTable.getValueAt(row, 0);
-        system.getRestaurantDirectory().removeRestaurant(restaurantName);
+        system.removeRestaurant(restaurantName);
         populateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
 

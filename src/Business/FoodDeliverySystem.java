@@ -202,6 +202,21 @@ public class FoodDeliverySystem extends Organization{
         deliveryPartnerDirectory.addDeliveryPartner(deliveryPartner);
         this.getUserAccountDirectory().createUserAccount(userAccount);
     }
+    
+    public void removeCustomer(String username){
+        customerDirectory.removeCustomer(username);
+        this.getUserAccountDirectory().removeUserAccount(username);
+    }
+    
+    public void removeDeliveryPartner(String username){
+        deliveryPartnerDirectory.removeDeliveryPartner(username);
+        this.getUserAccountDirectory().removeUserAccount(username);
+    }
+    
+    public void removeRestaurant(String username){
+        restaurantDirectory.removeRestaurant(username);
+        this.getUserAccountDirectory().removeUserAccount(username);
+    }
 
     
 }

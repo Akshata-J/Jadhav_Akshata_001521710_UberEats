@@ -25,11 +25,10 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
     FoodDeliverySystem system;
     DeliveryPartner deliveryPartner;
     JLayeredPane mainLayeredPane;
-    DB4OUtil dB4OUtil;
     /**
      * Creates new form LoginJPanel
      */
-    public DeliveryPartnerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, DeliveryPartner deliveryPartner, DB4OUtil dB4OUtil) {
+    public DeliveryPartnerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, DeliveryPartner deliveryPartner) {
         initComponents();
         welcomeBanner.setBackground(new Color(63, 129, 64));
         welcomeBanner.setText("Welcome "+deliveryPartner.getName()+"!");
@@ -37,7 +36,6 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
         this.mainLayeredPane = mainLayeredPane;
         this.system = system;
         this.deliveryPartner = deliveryPartner;
-        this.dB4OUtil = dB4OUtil;
     }
     
     public void displayDeliveryPartnerTaskPanel(JPanel panel) {
@@ -199,6 +197,7 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         JFrame parentFrame = (JFrame) SwingUtilities.getRoot(this);//(JFrame)this.getParent().getParent().getParent();
+        DB4OUtil.getInstance().storeSystem(system);
         parentFrame.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -213,7 +212,7 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,system,dB4OUtil);
+        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,system);
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
 

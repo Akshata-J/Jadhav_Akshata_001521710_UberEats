@@ -196,6 +196,7 @@ public class SysAdminJPanel extends javax.swing.JPanel {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         JFrame parentFrame = (JFrame) SwingUtilities.getRoot(this);//(JFrame)this.getParent().getParent().getParent();
+        DB4OUtil.getInstance().storeSystem(system);
         parentFrame.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
@@ -215,7 +216,7 @@ public class SysAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,system,dB4OUtil);
+        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,system);
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
 

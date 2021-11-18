@@ -126,13 +126,16 @@ public class ManageDeliveryPartnersJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(modifyBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
+                        .addGap(130, 130, 130)
                         .addComponent(modifyBtn)
-                        .addGap(161, 161, 161)
+                        .addGap(136, 136, 136)
                         .addComponent(deleteBtn)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBtn, modifyBtn, modifyBtn4});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -149,6 +152,9 @@ public class ManageDeliveryPartnersJPanel extends javax.swing.JPanel {
                     .addComponent(modifyBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, modifyBtn, modifyBtn4});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -158,7 +164,7 @@ public class ManageDeliveryPartnersJPanel extends javax.swing.JPanel {
             return;
         }
         String username = (String) manageTable.getValueAt(row, 0);
-        system.getDeliveryPartnerDirectory().removeDeliveryPartner(username);
+        system.removeDeliveryPartner(username);
         populateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
 

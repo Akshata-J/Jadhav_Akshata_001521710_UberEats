@@ -141,13 +141,16 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(208, 208, 208)
                         .addComponent(modifyBtn4)
-                        .addGap(80, 80, 80)
+                        .addGap(115, 115, 115)
                         .addComponent(modifyBtn)
-                        .addGap(161, 161, 161)
+                        .addGap(126, 126, 126)
                         .addComponent(deleteBtn)
-                        .addGap(0, 263, Short.MAX_VALUE)))
+                        .addGap(0, 158, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBtn, modifyBtn, modifyBtn4});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -164,6 +167,9 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                     .addComponent(modifyBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 41, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, modifyBtn, modifyBtn4});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -173,7 +179,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
             return;
         }
         String username = (String) manageTable.getValueAt(row, 0);
-        system.getCustomerDirectory().removeCustomer(username);
+        system.removeCustomer(username);
         populateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
 

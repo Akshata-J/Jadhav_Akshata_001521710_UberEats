@@ -22,6 +22,7 @@ public class DB4OUtil {
     public synchronized static DB4OUtil getInstance(){
         if (dB4OUtil == null){
             dB4OUtil = new DB4OUtil();
+            System.out.println("Business.DB4OUtil.DB4OUtil.getInstance()");
         }
         return dB4OUtil;
     }
@@ -62,18 +63,20 @@ public class DB4OUtil {
     
     public FoodDeliverySystem retrieveSystem(){
         ObjectContainer conn = createConnection();
-        
-            System.out.println("Test");
-            System.out.println(conn);
-        ObjectSet<FoodDeliverySystem> systems = conn.query(FoodDeliverySystem.class); // Change to the object you want to save
         FoodDeliverySystem system;
+//        ObjectSet<FoodDeliverySystem> systems1 = conn.query(FoodDeliverySystem.class); // Change to the object you want to save
+//        for(FoodDeliverySystem s : systems1){
+//            conn.delete(s);
+//            conn.commit();
+//        }
+        ObjectSet<FoodDeliverySystem> systems = conn.query(FoodDeliverySystem.class);
         if (systems.size() == 0){
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
-            system = ConfigureASystem.configure();
-//systems.get(systems.size() - 1);
+            system = systems.get(systems.size() - 1);
         }
+        
         conn.close();
         return system;
     }

@@ -30,6 +30,6 @@ public class DeliverPartnerRole extends Role {
 //    
     @Override
     public String toString() {
-        return "RestaurantAdmin";
+        return "DeliveryPartner";
     }
 }

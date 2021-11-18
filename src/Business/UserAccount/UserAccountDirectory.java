@@ -24,12 +24,19 @@ public class UserAccountDirectory {
     }
     
     public boolean authenticateUser(String username, String password, String role){
+        System.out.println(username+":"+password+":"+role);
+        System.out.println(userAccountList);
         if (userAccountList.containsKey(username) && 
               userAccountList.get(username).getPassword().equals(password) && 
                 userAccountList.get(username).getRole().toString().equals(role)){
             return true;
         }
         return false;
+    }
+    
+    public void removeUserAccount(String username){
+        
+            userAccountList.remove(username);
     }
     
     public UserAccount createUserAccount(UserAccount userAccount){
@@ -39,5 +46,10 @@ public class UserAccountDirectory {
     
     public ArrayList<String> usernames(){
         return new ArrayList<>(userAccountList.keySet());
+    }
+
+    @Override
+    public String toString() {
+        return "UserAccountDirectory{" + "userAccountList=" + userAccountList + '}';
     }
 }
