@@ -5,10 +5,10 @@
  */
 package userinterface.DeliveryPartnerRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryPartner.DeliveryPartner;
 import Business.FoodDeliverySystem;
 import userinterface.CustomerRole.*;
-import userinterface.SystemAdminWorkArea.*;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -22,22 +22,29 @@ import userinterface.login.LoginJPanel;
  */
 public class DeliveryPartnerJPanel extends javax.swing.JPanel {
 
+    FoodDeliverySystem system;
+    DeliveryPartner deliveryPartner;
     JLayeredPane mainLayeredPane;
+    DB4OUtil dB4OUtil;
     /**
      * Creates new form LoginJPanel
      */
-    public DeliveryPartnerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, DeliveryPartner deliveryPartner) {
+    public DeliveryPartnerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, DeliveryPartner deliveryPartner, DB4OUtil dB4OUtil) {
         initComponents();
-        jLabel5.setBackground(new Color(63, 129, 64));
+        welcomeBanner.setBackground(new Color(63, 129, 64));
+        welcomeBanner.setText("Welcome "+deliveryPartner.getName()+"!");
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         this.mainLayeredPane = mainLayeredPane;
+        this.system = system;
+        this.deliveryPartner = deliveryPartner;
+        this.dB4OUtil = dB4OUtil;
     }
     
-    public void displayCustomerTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayDeliveryPartnerTaskPanel(JPanel panel) {
+        deliveryPartnerTaskLayer.removeAll();
+        deliveryPartnerTaskLayer.add(panel);
+        deliveryPartnerTaskLayer.repaint();
+        deliveryPartnerTaskLayer.revalidate();
     }
     
     public void displayMainPanel(JPanel panel) {
@@ -62,11 +69,11 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        adminTaskLayer = new javax.swing.JLayeredPane();
+        deliveryPartnerTaskLayer = new javax.swing.JLayeredPane();
         blankPane = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        welcomeBanner = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -103,7 +110,7 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
             }
         });
 
-        adminTaskLayer.setLayout(new java.awt.CardLayout());
+        deliveryPartnerTaskLayer.setLayout(new java.awt.CardLayout());
 
         blankPane.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -118,7 +125,7 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
             .addGap(0, 461, Short.MAX_VALUE)
         );
 
-        adminTaskLayer.add(blankPane, "card2");
+        deliveryPartnerTaskLayer.add(blankPane, "card2");
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Current Delivery");
@@ -134,7 +141,7 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adminTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveryPartnerTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,7 +163,7 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(adminTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(deliveryPartnerTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 990, 520));
@@ -164,14 +171,14 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/UberEats.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, -1));
 
-        jLabel5.setBackground(new java.awt.Color(63, 129, 64));
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Welcome Delivery Partner!");
-        jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jLabel5.setOpaque(true);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
+        welcomeBanner.setBackground(new java.awt.Color(63, 129, 64));
+        welcomeBanner.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        welcomeBanner.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeBanner.setText("Welcome Delivery Partner!");
+        welcomeBanner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        welcomeBanner.setOpaque(true);
+        add(welcomeBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/x.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -196,29 +203,29 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ReadyToPickUpJPanel rtpujp = new ReadyToPickUpJPanel(adminTaskLayer);
-        displayCustomerTaskPanel(rtpujp);
+        ReadyToPickUpJPanel rtpujp = new ReadyToPickUpJPanel(deliveryPartnerTaskLayer, system, deliveryPartner);
+        displayDeliveryPartnerTaskPanel(rtpujp);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        DeliveryHistoryJPanel ohjp = new DeliveryHistoryJPanel(adminTaskLayer);
-        displayCustomerTaskPanel(ohjp);
+        DeliveryHistoryJPanel ohjp = new DeliveryHistoryJPanel(deliveryPartnerTaskLayer, system, deliveryPartner);
+        displayDeliveryPartnerTaskPanel(ohjp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,null,null);
+        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,system,dB4OUtil);
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CurrentDeliveryJPanel cdjp = new CurrentDeliveryJPanel(adminTaskLayer);
-        displayCustomerTaskPanel(cdjp);
+        CurrentDeliveryJPanel cdjp = new CurrentDeliveryJPanel(deliveryPartnerTaskLayer, system, deliveryPartner);
+        displayDeliveryPartnerTaskPanel(cdjp);
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane adminTaskLayer;
     private javax.swing.JPanel blankPane;
+    private javax.swing.JLayeredPane deliveryPartnerTaskLayer;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -227,9 +234,9 @@ public class DeliveryPartnerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.ButtonGroup rolesRadioButton;
     private javax.swing.JLabel tableRecordsStatus;
+    private javax.swing.JLabel welcomeBanner;
     // End of variables declaration//GEN-END:variables
 }

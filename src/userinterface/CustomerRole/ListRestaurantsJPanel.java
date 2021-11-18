@@ -11,6 +11,7 @@ import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -22,25 +23,25 @@ import javax.swing.table.DefaultTableModel;
 public class ListRestaurantsJPanel extends javax.swing.JPanel {
 
     FoodDeliverySystem system;
-    JLayeredPane adminTaskLayer;
+    JLayeredPane customerTaskLayer;
     Customer customer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public ListRestaurantsJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Customer customer) {
+    public ListRestaurantsJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, Customer customer) {
         initComponents();
-        this.adminTaskLayer = adminTaskLayer;
+        this.customerTaskLayer = customerTaskLayer;
         this.system = system;
         this.customer = customer;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         populateTable();
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayCustomerTaskPanel(JPanel panel) {
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
 
     /**
@@ -129,9 +130,14 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectRestaurantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectRestaurantButtonActionPerformed
-        String restaurantName = (String) restaurantListTable.getValueAt(restaurantListTable.getSelectedRow(),0);
-        MenuJPanel mjp = new MenuJPanel(adminTaskLayer, system, restaurantName, customer);
-        displayAdminTaskPanel(mjp);
+        int row = restaurantListTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a restaurant!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String restaurantName = (String) restaurantListTable.getValueAt(row,0);
+        MenuJPanel mjp = new MenuJPanel(customerTaskLayer, system, restaurantName, customer);
+        displayCustomerTaskPanel(mjp);
     }//GEN-LAST:event_selectRestaurantButtonActionPerformed
 
 

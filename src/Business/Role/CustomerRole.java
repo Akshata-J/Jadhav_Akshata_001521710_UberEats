@@ -27,5 +27,9 @@ public class CustomerRole extends Role{
 //        return new CustomerAreaJPanel(userProcessContainer, account, business, customerDirectory, restaurantDirectory, deliveryManDirectory, menuDirectory, orderDirectory);
 //    }
     
+    @Override
+    public String toString() {
+        return "Customer";
+    }
     
 }

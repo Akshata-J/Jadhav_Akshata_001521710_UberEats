@@ -5,6 +5,8 @@
  */
 package userinterface.CustomerRole;
 
+import Business.Customer.Customer;
+import Business.FoodDeliverySystem;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.IOException;
@@ -20,7 +22,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,15 +33,19 @@ import userinterface.login.LoginJPanel;
  * @author akshatajadhav
  */
 public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
-
-    JLayeredPane adminTaskLayer;
+    
+    FoodDeliverySystem system;
+    Customer customer;
+    JLayeredPane customerTaskLayer;
     List<Object> test = new ArrayList<>();
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public OrderDeliveredAndFeedbackJPanel(JLayeredPane adminTaskLayer) {
+    public OrderDeliveredAndFeedbackJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, Customer customer) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.customerTaskLayer=customerTaskLayer;
+        this.system = system;
+        this.customer = customer;
         URL url = this.getClass().getResource("/userinterface/CustomerRole/orderOnTheWay.gif");
         Icon myImgIcon = new ImageIcon(url);
         createInvoice();
@@ -56,11 +61,11 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
        
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayCustomerTaskPanel(JPanel panel) {
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.

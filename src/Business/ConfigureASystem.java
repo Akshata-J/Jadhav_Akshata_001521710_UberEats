@@ -50,6 +50,13 @@ public class ConfigureASystem {
         UserAccount uar = new UserAccount("restaurant","restaurant",new ResturantAdminRole());
         system.newRestaurant(restaurant, uar);
         
+        Restaurant restaurant1 = new Restaurant("restaurant11","Indian", "t", "t", "85208520");
+        Menu menu11 = new Menu("test", 100);
+        restaurant1.newItem(menu11);
+        Menu menu111 = new Menu("abc", 50);
+        restaurant1.newItem(menu111);
+        UserAccount uar1 = new UserAccount("restaurant11","restaurant11",new ResturantAdminRole());
+        system.newRestaurant(restaurant1, uar1);
         
         
         DeliveryPartner deliveryPartner = new DeliveryPartner("dp", "t", "tt", "tt@tmail", "85208520", 0);

@@ -11,7 +11,6 @@ import Business.Restaurant.Restaurant;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,24 +25,24 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
     
     FoodDeliverySystem system;
     Restaurant restaurant;
-    JLayeredPane adminTaskLayer;
+    JLayeredPane restaurantTaskLayer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public CompleteOrderJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
+    public CompleteOrderJPanel(JLayeredPane restaurantTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.restaurantTaskLayer=restaurantTaskLayer;
         this.system = system;
         this.restaurant = restaurant;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         populateTable();
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayRestaurantTaskPanel(JPanel panel) {
+        restaurantTaskLayer.removeAll();
+        restaurantTaskLayer.add(panel);
+        restaurantTaskLayer.repaint();
+        restaurantTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,6 +132,10 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
 
     private void orderPreparedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPreparedBtnActionPerformed
         int row = orderCompleteTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a order!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String orderId = (String) orderCompleteTable.getValueAt(row, 0);
         if(system.getOrderById(orderId).getOrderStatus().equalsIgnoreCase("Order ready to deliver")){
             JOptionPane.showMessageDialog(this, "Order already ready for delivery!", "Order Status", JOptionPane.INFORMATION_MESSAGE);

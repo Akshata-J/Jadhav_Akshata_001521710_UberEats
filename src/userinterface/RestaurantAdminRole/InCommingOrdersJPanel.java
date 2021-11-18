@@ -12,7 +12,6 @@ import Business.Restaurant.Restaurant;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,24 +26,24 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
     
     FoodDeliverySystem system;
     Restaurant restaurant;
-    JLayeredPane adminTaskLayer;
+    JLayeredPane restaurantTaskLayer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public InCommingOrdersJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
+    public InCommingOrdersJPanel(JLayeredPane restaurantTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.restaurantTaskLayer=restaurantTaskLayer;
         this.system = system;
         this.restaurant = restaurant;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         populateTable();
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayRestaurantTaskPanel(JPanel panel) {
+        restaurantTaskLayer.removeAll();
+        restaurantTaskLayer.add(panel);
+        restaurantTaskLayer.repaint();
+        restaurantTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,6 +134,10 @@ public class InCommingOrdersJPanel extends javax.swing.JPanel {
 
     private void acceptOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptOrderActionPerformed
         int row = incomingOrdersTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a order!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String orderId = (String) incomingOrdersTable.getValueAt(row, 0);
         if(!incomingOrdersTable.getValueAt(row, 1).equals("Order Placed")){
             JOptionPane.showMessageDialog(this, "Order already accepted and being prepared!", "Already Accepted", JOptionPane.INFORMATION_MESSAGE);

@@ -16,7 +16,6 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -26,18 +25,18 @@ import javax.swing.JPanel;
  */
 public class OrderPlacedJPanel extends javax.swing.JPanel {
 
-    JLayeredPane adminTaskLayer;
+    JLayeredPane customerTaskLayer;
     List<Object> test = new ArrayList<>();
     FoodDeliverySystem system;
     Order order;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public OrderPlacedJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Order order) {
+    public OrderPlacedJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, Order order) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.customerTaskLayer=customerTaskLayer;
         this.order = order;
-        itemsLabel.setText(order.getItemsAsString());
+        itemsLabel.setText("Order Items : "+order.getItemsAsString());
         
         URL url = this.getClass().getResource("/userinterface/CustomerRole/orderPlaced.gif");
         Icon myImgIcon = new ImageIcon(url);
@@ -46,11 +45,11 @@ public class OrderPlacedJPanel extends javax.swing.JPanel {
         //add(jLabel1, BorderLayout.CENTER);
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayCustomerTaskPanel(JPanel panel) {
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +70,8 @@ public class OrderPlacedJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Order Placed Successfully!");
 
-        jLabel3.setText("Order Items:");
+        itemsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        itemsLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,7 +89,7 @@ public class OrderPlacedJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(itemsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(itemsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(266, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -97,11 +97,13 @@ public class OrderPlacedJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(itemsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 13, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(itemsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

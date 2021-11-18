@@ -82,6 +82,16 @@ public class FoodDeliverySystem extends Organization{
         return order;
     }
     
+    public List<Order> getOrderByDeliveryPartner(DeliveryPartner deliveryPartner) {
+        List<Order> orders = new ArrayList<>();
+        for(Order o: orderDirectory.getOrderDirectory()){
+            if(o.getDeliveryPartner().equals(deliveryPartner)){
+                orders.add(o);
+            }
+        }
+        return orders;
+    }
+    
     public Restaurant getRestaurantByObj(Restaurant restaurant) {
         Restaurant res = null;
         for(Restaurant r: restaurantDirectory.getRestaurantDirectory()){
@@ -91,6 +101,17 @@ public class FoodDeliverySystem extends Organization{
             }
         }
         return res;
+    }
+    
+    public Customer getCustomerByUsername(String username) {
+        Customer customer = null;
+        for(Customer o: customerDirectory.getCustomerDirectory()){
+            if(o.getUserName().equals(username)){
+                customer=o;
+                break;
+            }
+        }
+        return customer;
     }
 
     public void setOrderDirectory(OrderDirectory orderDirectory) {
@@ -127,7 +148,7 @@ public class FoodDeliverySystem extends Organization{
         return deliveryPartnerDirectory;
     }
 
-    public void setDeliveryManDirectory(DeliveryPartnerDirectory deliveryPartnerDirectory) {
+    public void setDeliveryPartnerDirectory(DeliveryPartnerDirectory deliveryPartnerDirectory) {
         this.deliveryPartnerDirectory = deliveryPartnerDirectory;
     }
     

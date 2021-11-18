@@ -10,7 +10,6 @@ import Business.FoodDeliverySystem;
 import Business.Restaurant.Restaurant;
 import Business.Role.ResturantAdminRole;
 import userinterface.CustomerRole.*;
-import userinterface.SystemAdminWorkArea.*;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -34,7 +33,8 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     public RestaurantAdminJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, Restaurant restaurant, DB4OUtil dB4OUtil) {
         initComponents();
         //jPanel1.setBackground(new Color(0, 0, 0, 0));
-        jLabel5.setBackground(new Color(63, 129, 64));
+        welcomeBanner.setBackground(new Color(63, 129, 64));
+        welcomeBanner.setText("Welcome "+restaurant.getManagerName()+"!");
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         this.mainLayeredPane = mainLayeredPane;
         this.system = system;
@@ -42,11 +42,11 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         this.dB4OUtil = dB4OUtil;
     }
     
-    public void displayCustomerTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayRestaurantTaskPanel(JPanel panel) {
+        restaurantTaskLayer.removeAll();
+        restaurantTaskLayer.add(panel);
+        restaurantTaskLayer.repaint();
+        restaurantTaskLayer.revalidate();
     }
     
     public void displayMainPanel(JPanel panel) {
@@ -71,13 +71,13 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        adminTaskLayer = new javax.swing.JLayeredPane();
+        restaurantTaskLayer = new javax.swing.JLayeredPane();
         blankPane = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        welcomeBanner = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -114,7 +114,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        adminTaskLayer.setLayout(new java.awt.CardLayout());
+        restaurantTaskLayer.setLayout(new java.awt.CardLayout());
 
         blankPane.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -129,7 +129,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
             .addGap(0, 461, Short.MAX_VALUE)
         );
 
-        adminTaskLayer.add(blankPane, "card2");
+        restaurantTaskLayer.add(blankPane, "card2");
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Order Complete!");
@@ -161,7 +161,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(adminTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(restaurantTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,7 +189,7 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(adminTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(restaurantTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 1030, 520));
@@ -197,14 +197,14 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/UberEats.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, -1));
 
-        jLabel5.setBackground(new java.awt.Color(63, 129, 64));
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Welcome Delivery Partner!");
-        jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jLabel5.setOpaque(true);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
+        welcomeBanner.setBackground(new java.awt.Color(63, 129, 64));
+        welcomeBanner.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        welcomeBanner.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeBanner.setText("Welcome Delivery Partner!");
+        welcomeBanner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        welcomeBanner.setOpaque(true);
+        add(welcomeBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/x.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,13 +230,13 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        InCommingOrdersJPanel lrjp = new InCommingOrdersJPanel(adminTaskLayer,system,restaurant);
-        displayCustomerTaskPanel(lrjp);
+        InCommingOrdersJPanel lrjp = new InCommingOrdersJPanel(restaurantTaskLayer,system,restaurant);
+        displayRestaurantTaskPanel(lrjp);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CompletedOrderHistoryJPanel ohjp = new CompletedOrderHistoryJPanel(adminTaskLayer, system, restaurant);
-        displayCustomerTaskPanel(ohjp);
+        CompletedOrderHistoryJPanel ohjp = new CompletedOrderHistoryJPanel(restaurantTaskLayer, system, restaurant);
+        displayRestaurantTaskPanel(ohjp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -245,23 +245,22 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CompleteOrderJPanel cojp = new CompleteOrderJPanel(adminTaskLayer, system, restaurant);
-        displayCustomerTaskPanel(cojp);
+        CompleteOrderJPanel cojp = new CompleteOrderJPanel(restaurantTaskLayer, system, restaurant);
+        displayRestaurantTaskPanel(cojp);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        ManageMenuJPanel mmjp = new ManageMenuJPanel(adminTaskLayer, system, restaurant);
-        displayCustomerTaskPanel(mmjp);
+        ManageMenuJPanel mmjp = new ManageMenuJPanel(restaurantTaskLayer, system, restaurant);
+        displayRestaurantTaskPanel(mmjp);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(adminTaskLayer);
-        displayCustomerTaskPanel(mrjp);
+        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(restaurantTaskLayer, system, restaurant);
+        displayRestaurantTaskPanel(mrjp);
     }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane adminTaskLayer;
     private javax.swing.JPanel blankPane;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -273,9 +272,10 @@ public class RestaurantAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLayeredPane restaurantTaskLayer;
     private javax.swing.ButtonGroup rolesRadioButton;
     private javax.swing.JLabel tableRecordsStatus;
+    private javax.swing.JLabel welcomeBanner;
     // End of variables declaration//GEN-END:variables
 }

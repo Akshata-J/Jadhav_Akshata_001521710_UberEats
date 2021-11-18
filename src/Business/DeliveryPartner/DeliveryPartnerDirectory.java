@@ -13,22 +13,30 @@ import java.util.HashMap;
  * @author akshatajadhav
  */
 public class DeliveryPartnerDirectory {
-    private HashMap<String, DeliveryPartner> deliveryManDirectory;
+    private HashMap<String, DeliveryPartner> deliveryPartnerDirectory;
     
     public DeliveryPartnerDirectory() {
-        deliveryManDirectory = new HashMap();
+        deliveryPartnerDirectory = new HashMap();
     }
 
     public ArrayList<DeliveryPartner> getDeliveryPartnerDirectory() {
-        return new ArrayList<>(deliveryManDirectory.values());
+        return new ArrayList<>(deliveryPartnerDirectory.values());
     }
     
     public DeliveryPartner addDeliveryPartner(DeliveryPartner deliveryPartner) {
-        deliveryManDirectory.put(deliveryPartner.getName(), deliveryPartner);
+        deliveryPartnerDirectory.put(deliveryPartner.getUsername(),deliveryPartner);
         return deliveryPartner;
     }
     
-    public void removeDeliveryMan(DeliveryPartner deliveryMan) {
-        deliveryManDirectory.remove(deliveryMan);
+    public DeliveryPartner getDeliveryPartner(String username){
+        return deliveryPartnerDirectory.get(username);
+    }
+    
+    public boolean isUsernameUnique(String s) {
+        return !deliveryPartnerDirectory.containsKey(s);
+    }
+    
+    public void removeDeliveryPartner(String username) {
+        deliveryPartnerDirectory.remove(username);
     }
 }

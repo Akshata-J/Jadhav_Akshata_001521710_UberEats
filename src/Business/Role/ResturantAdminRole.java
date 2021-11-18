@@ -27,6 +27,9 @@ public class ResturantAdminRole extends Role{
 //        return new AdminWorkAreaJPanel(userProcessContainer, account, business, customerDirectory, restaurantDirectory, deliveryManDirectory, menuDirectory, orderDirectory);
 //    }
 
-    
+    @Override
+    public String toString() {
+        return "DeliveryPartner";
+    }
     
 }

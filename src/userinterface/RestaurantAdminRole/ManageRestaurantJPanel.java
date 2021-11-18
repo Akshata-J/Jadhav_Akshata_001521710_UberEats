@@ -5,7 +5,8 @@
  */
 package userinterface.RestaurantAdminRole;
 
-import userinterface.SystemAdminWorkArea.*;
+import Business.FoodDeliverySystem;
+import Business.Restaurant.Restaurant;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -15,20 +16,24 @@ import javax.swing.JPanel;
  */
 public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
-    JLayeredPane adminTaskLayer;
+    FoodDeliverySystem system;
+    Restaurant restaurant;
+    JLayeredPane restaurantTaskLayer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public ManageRestaurantJPanel(JLayeredPane adminTaskLayer) {
+    public ManageRestaurantJPanel(JLayeredPane restaurantTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.restaurantTaskLayer=restaurantTaskLayer;
+        this.system = system;
+        this.restaurant = restaurant;
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayRestaurantTaskPanel(JPanel panel) {
+        restaurantTaskLayer.removeAll();
+        restaurantTaskLayer.add(panel);
+        restaurantTaskLayer.repaint();
+        restaurantTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.

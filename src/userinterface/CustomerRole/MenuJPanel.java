@@ -13,7 +13,6 @@ import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class MenuJPanel extends javax.swing.JPanel {
 
     FoodDeliverySystem system;
-    JLayeredPane adminTaskLayer;
+    JLayeredPane customerTaskLayer;
     String restaurantName;
     Customer customer;
     static int count = 1;
@@ -35,9 +34,9 @@ public class MenuJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public MenuJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, String restaurantName, Customer customer) {
+    public MenuJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, String restaurantName, Customer customer) {
         initComponents();
-        this.adminTaskLayer = adminTaskLayer;
+        this.customerTaskLayer = customerTaskLayer;
         this.system = system;
         this.restaurantName = restaurantName;
         this.customer = customer;
@@ -45,11 +44,11 @@ public class MenuJPanel extends javax.swing.JPanel {
         populateTable();
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayCustomerTaskPanel(JPanel panel) {
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
 
     /**
@@ -64,7 +63,7 @@ public class MenuJPanel extends javax.swing.JPanel {
         tableRecordsStatus = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menuCardTable = new javax.swing.JTable();
-        modifyBtn3 = new javax.swing.JButton();
+        placeOrderBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -105,13 +104,13 @@ public class MenuJPanel extends javax.swing.JPanel {
             menuCardTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        modifyBtn3.setBackground(new java.awt.Color(92, 184, 92));
-        modifyBtn3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        modifyBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        modifyBtn3.setText("Place Order!");
-        modifyBtn3.addActionListener(new java.awt.event.ActionListener() {
+        placeOrderBtn.setBackground(new java.awt.Color(92, 184, 92));
+        placeOrderBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        placeOrderBtn.setForeground(new java.awt.Color(255, 255, 255));
+        placeOrderBtn.setText("Place Order!");
+        placeOrderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyBtn3ActionPerformed(evt);
+                placeOrderBtnActionPerformed(evt);
             }
         });
 
@@ -129,7 +128,7 @@ public class MenuJPanel extends javax.swing.JPanel {
                 .addGap(430, 430, 430))
             .addGroup(layout.createSequentialGroup()
                 .addGap(408, 408, 408)
-                .addComponent(modifyBtn3)
+                .addComponent(placeOrderBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,12 +139,12 @@ public class MenuJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(modifyBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(placeOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtn3ActionPerformed
+    private void placeOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderBtnActionPerformed
         DefaultTableModel model = (DefaultTableModel) menuCardTable.getModel();
         Menu m = new Menu();
         Order order = new Order();
@@ -171,16 +170,16 @@ public class MenuJPanel extends javax.swing.JPanel {
         order.setRequestDate(new Date());
         system.getOrderDirectory().newOrder(order);
 
-        OrderPlacedJPanel opjp = new OrderPlacedJPanel(adminTaskLayer, system, order);
-        displayAdminTaskPanel(opjp);
-    }//GEN-LAST:event_modifyBtn3ActionPerformed
+        OrderPlacedJPanel opjp = new OrderPlacedJPanel(customerTaskLayer, system, order);
+        displayCustomerTaskPanel(opjp);
+    }//GEN-LAST:event_placeOrderBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable menuCardTable;
-    private javax.swing.JButton modifyBtn3;
+    private javax.swing.JButton placeOrderBtn;
     private javax.swing.JLabel tableRecordsStatus;
     // End of variables declaration//GEN-END:variables
 

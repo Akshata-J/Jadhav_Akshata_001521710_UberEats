@@ -9,7 +9,6 @@ import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.FoodDeliverySystem;
 import Business.Order.Order;
-import userinterface.SystemAdminWorkArea.*;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
@@ -28,43 +27,29 @@ public class CustomerJPanel extends javax.swing.JPanel {
     JLayeredPane mainLayeredPane;
     Customer customer;
     DB4OUtil dB4OUtil;
+
     /**
      * Creates new form LoginJPanel
      */
     public CustomerJPanel(JLayeredPane mainLayeredPane, FoodDeliverySystem system, Customer customer, DB4OUtil dB4OUtil) {
         initComponents();
         //jPanel1.setBackground(new Color(0, 0, 0, 0));
-        jLabel5.setBackground(new Color(63, 129, 64));
+        welcomeBanner.setBackground(new Color(63, 129, 64));
+        welcomeBanner.setText("Welcome "+customer.getName()+"!");
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         this.mainLayeredPane = mainLayeredPane;
         this.system = system;
         this.customer = customer;
-        List<Order> customerOrders = system.getOrdersOfCustomer(customer);
-        Order order=null;
-        if(customerOrders.size()>0){
-            order=customerOrders.get(customerOrders.size()-1);
-        }
-        if(order!=null && order.getOrderStatus().equalsIgnoreCase("Order Placed")){
-            OrderPlacedJPanel lrjp = new OrderPlacedJPanel(adminTaskLayer,system, order);
-            displayCustomerTaskPanel(lrjp);
-            return;
-        }
-        if(order!=null && order.getOrderStatus().equalsIgnoreCase("Order Accepted")){
-            OrderPreparingJPanel lrjp = new OrderPreparingJPanel(adminTaskLayer);
-            displayCustomerTaskPanel(lrjp);
-            return;
-        }
-        ListRestaurantsJPanel lrjp = new ListRestaurantsJPanel(adminTaskLayer,system, customer);
-        displayCustomerTaskPanel(lrjp);
+        displayCustomerTaskPanel(currentStatusPanel());
     }
-    
+
     public void displayCustomerTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
-    
+
     public void displayMainPanel(JPanel panel) {
         mainLayeredPane.removeAll();
         mainLayeredPane.add(panel);
@@ -87,10 +72,10 @@ public class CustomerJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        adminTaskLayer = new javax.swing.JLayeredPane();
+        customerTaskLayer = new javax.swing.JLayeredPane();
         blankPane = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        welcomeBanner = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -127,7 +112,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
             }
         });
 
-        adminTaskLayer.setLayout(new java.awt.CardLayout());
+        customerTaskLayer.setLayout(new java.awt.CardLayout());
 
         blankPane.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -142,7 +127,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
             .addGap(0, 461, Short.MAX_VALUE)
         );
 
-        adminTaskLayer.add(blankPane, "card2");
+        customerTaskLayer.add(blankPane, "card2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,7 +135,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adminTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +154,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(adminTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(customerTaskLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 990, 520));
@@ -177,14 +162,14 @@ public class CustomerJPanel extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/UberEats.png"))); // NOI18N
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, -1));
 
-        jLabel5.setBackground(new java.awt.Color(63, 129, 64));
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Welcome Customer!");
-        jLabel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jLabel5.setOpaque(true);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
+        welcomeBanner.setBackground(new java.awt.Color(63, 129, 64));
+        welcomeBanner.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        welcomeBanner.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeBanner.setText("Welcome Customer!");
+        welcomeBanner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        welcomeBanner.setOpaque(true);
+        add(welcomeBanner, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 1050, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/login/x.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,35 +194,23 @@ public class CustomerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        List<Order> customerOrders = system.getOrdersOfCustomer(customer);
-        Order order=null;
-        if(customerOrders.size()>0){
-            order=customerOrders.get(customerOrders.size()-1);
-        }
-        System.out.println(order);
-        if(order!=null && order.getOrderStatus().equalsIgnoreCase("Order Placed")){
-            OrderPlacedJPanel lrjp = new OrderPlacedJPanel(adminTaskLayer, system, order);
-            displayCustomerTaskPanel(lrjp);
-            return;
-        }
-        ListRestaurantsJPanel lrjp = new ListRestaurantsJPanel(adminTaskLayer,system, customer);
-        displayCustomerTaskPanel(lrjp);
+        displayCustomerTaskPanel(currentStatusPanel());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        OrderHistoryJPanel ohjp = new OrderHistoryJPanel(adminTaskLayer, system, customer);
+        OrderHistoryJPanel ohjp = new OrderHistoryJPanel(customerTaskLayer, system, customer);
         displayCustomerTaskPanel(ohjp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        LoginJPanel ljp = new LoginJPanel(mainLayeredPane,system,dB4OUtil);
+        LoginJPanel ljp = new LoginJPanel(mainLayeredPane, system, dB4OUtil);
         displayMainPanel(ljp);
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane adminTaskLayer;
     private javax.swing.JPanel blankPane;
+    private javax.swing.JLayeredPane customerTaskLayer;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -245,9 +218,40 @@ public class CustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.ButtonGroup rolesRadioButton;
     private javax.swing.JLabel tableRecordsStatus;
+    private javax.swing.JLabel welcomeBanner;
     // End of variables declaration//GEN-END:variables
+    public JPanel currentStatusPanel() {
+        List<Order> customerOrders = system.getOrdersOfCustomer(customer);
+        Order order = null;
+        if (customerOrders.size() > 0) {
+            order = customerOrders.get(customerOrders.size() - 1);
+        }
+        if (order != null && order.getOrderStatus().equalsIgnoreCase("Order Placed")) {
+            OrderPlacedJPanel lrjp = new OrderPlacedJPanel(customerTaskLayer, system, order);
+//            displayCustomerTaskPanel(lrjp);
+            return lrjp;
+        }
+        if (order != null && order.getOrderStatus().equalsIgnoreCase("Order Accepted")) {
+            OrderPreparingJPanel lrjp = new OrderPreparingJPanel(customerTaskLayer);
+//            displayCustomerTaskPanel(lrjp);
+            return lrjp;
+        }
+        if (order != null && (order.getOrderStatus().equalsIgnoreCase("Order Picked up")
+                || order.getOrderStatus().equalsIgnoreCase("Order ready to deliver"))) {
+            OrderOnTheWayJPanel lrjp = new OrderOnTheWayJPanel(customerTaskLayer);
+//            displayCustomerTaskPanel(lrjp);
+            return lrjp;
+        }
+        if (order != null && order.getOrderStatus().equalsIgnoreCase("Order Delivered")) {
+            OrderDeliveredAndFeedbackJPanel lrjp = new OrderDeliveredAndFeedbackJPanel(customerTaskLayer, system, customer);
+//            displayCustomerTaskPanel(lrjp);
+            return lrjp;
+        }
+        ListRestaurantsJPanel lrjp = new ListRestaurantsJPanel(customerTaskLayer, system, customer);
+//        displayCustomerTaskPanel(lrjp);
+        return lrjp;
+    }
 }

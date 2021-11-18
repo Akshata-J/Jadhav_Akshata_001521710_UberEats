@@ -23,7 +23,7 @@ public class Order extends WorkRequest {
     private String orderStatus;
     private Restaurant restaurant;
     private Customer customer;
-    private String deliveryPartner;
+    private DeliveryPartner deliveryPartner;
     private List<Item> items;
     private double total;
     private String result;
@@ -31,6 +31,7 @@ public class Order extends WorkRequest {
 
     public Order() {
         items = new ArrayList<>();
+        deliveryPartner = new DeliveryPartner();
     }
     
     
@@ -77,11 +78,11 @@ public class Order extends WorkRequest {
         this.customer = customer;
     }
 
-    public String getDeliveryPartner() {
+    public DeliveryPartner getDeliveryPartner() {
         return deliveryPartner;
     }
 
-    public void setDeliveryPartner(String deliveryPartner) {
+    public void setDeliveryPartner(DeliveryPartner deliveryPartner) {
         this.deliveryPartner = deliveryPartner;
     }
     

@@ -23,11 +23,13 @@ public class UserAccountDirectory {
         return new ArrayList<>(userAccountList.values());
     }
     
-    public UserAccount authenticateUser(String username, String password){
-        if (userAccountList.containsKey(username) && userAccountList.get(username).getPassword().equals(password)){
-            return userAccountList.get(username);
+    public boolean authenticateUser(String username, String password, String role){
+        if (userAccountList.containsKey(username) && 
+              userAccountList.get(username).getPassword().equals(password) && 
+                userAccountList.get(username).getRole().toString().equals(role)){
+            return true;
         }
-        return null;
+        return false;
     }
     
     public UserAccount createUserAccount(UserAccount userAccount){

@@ -12,7 +12,6 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -22,14 +21,14 @@ import javax.swing.JPanel;
  */
 public class OrderPreparingJPanel extends javax.swing.JPanel {
 
-    JLayeredPane adminTaskLayer;
+    JLayeredPane customerTaskLayer;
     List<Object> test = new ArrayList<>();
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public OrderPreparingJPanel(JLayeredPane adminTaskLayer) {
+    public OrderPreparingJPanel(JLayeredPane customerTaskLayer) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.customerTaskLayer=customerTaskLayer;
         URL url = this.getClass().getResource("/userinterface/CustomerRole/orderPreparing.gif");
         Icon myImgIcon = new ImageIcon(url);
         //JLabel imageLbl = new JLabel(myImgIcon);
@@ -37,11 +36,11 @@ public class OrderPreparingJPanel extends javax.swing.JPanel {
         //add(jLabel1, BorderLayout.CENTER);
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayCustomerTaskPanel(JPanel panel) {
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.

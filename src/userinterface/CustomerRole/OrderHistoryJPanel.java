@@ -11,7 +11,6 @@ import Business.Order.Order;
 import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
 import java.util.List;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -23,27 +22,26 @@ import javax.swing.table.DefaultTableModel;
  */
 public class OrderHistoryJPanel extends javax.swing.JPanel {
 
-    JLayeredPane adminTaskLayer;
-    List<Object> test = new ArrayList<>();
+    JLayeredPane customerTaskLayer;
     FoodDeliverySystem system;
     Customer customer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public OrderHistoryJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Customer customer) {
+    public OrderHistoryJPanel(JLayeredPane customerTaskLayer, FoodDeliverySystem system, Customer customer) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.customerTaskLayer=customerTaskLayer;
         this.system = system;
         this.customer = customer;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
         populateTable();
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayCustomerTaskPanel(JPanel panel) {
+        customerTaskLayer.removeAll();
+        customerTaskLayer.add(panel);
+        customerTaskLayer.repaint();
+        customerTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.

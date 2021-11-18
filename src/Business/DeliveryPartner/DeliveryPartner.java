@@ -26,6 +26,9 @@ public class DeliveryPartner {
         this.email = email;
     }
 
+    public DeliveryPartner() {
+     }
+
     public String getName() {
         return name;
     }

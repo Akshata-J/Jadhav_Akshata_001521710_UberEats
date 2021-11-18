@@ -45,5 +45,8 @@ public class CustomerDirectory {
     public Customer getCustomer(String username){
         return customerDirectory.get(username);
     }
+    public boolean isUsernameUnique(String username){
+        return !customerDirectory.containsKey(username);
+    }
     
 }

@@ -28,4 +28,8 @@ public class DeliverPartnerRole extends Role {
 //        return new DeliveryManWorkAreaJPanel(userProcessContainer,account,business, deliveryManDirectory, orderDirectory);//To change body of generated methods, choose Tools | Templates.
 //    }
 //    
+    @Override
+    public String toString() {
+        return "RestaurantAdmin";
+    }
 }

@@ -31,6 +31,10 @@ public class RestaurantDirectory {
         return restaurant;
     }
     
+    public boolean isRestaurantNameUnique(String restaurantName){
+        return !restaurantDirectory.containsKey(restaurantName);
+    }
+    
     public void removeRestaurant(Restaurant restaurant){
         restaurantDirectory.remove(restaurant.getRestaurantName());
     }

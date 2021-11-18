@@ -5,12 +5,18 @@
  */
 package userinterface.DeliveryPartnerRole;
 
+import Business.DeliveryPartner.DeliveryPartner;
+import Business.FoodDeliverySystem;
+import Business.Menu.Menu;
+import Business.Order.Order;
 import userinterface.CustomerRole.*;
 import java.util.ArrayList;
 import java.util.List;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,22 +24,30 @@ import javax.swing.JPanel;
  */
 public class ReadyToPickUpJPanel extends javax.swing.JPanel {
 
-    JLayeredPane adminTaskLayer;
+    FoodDeliverySystem system;
+    DeliveryPartner deliveryPartner;
+    JLayeredPane deliveryPartnerTaskLayer;
     List<Object> test = new ArrayList<>();
+
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public ReadyToPickUpJPanel(JLayeredPane adminTaskLayer) {
+    public ReadyToPickUpJPanel(JLayeredPane deliveryPartnerTaskLayer, FoodDeliverySystem system, DeliveryPartner deliveryPartner) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.deliveryPartnerTaskLayer = deliveryPartnerTaskLayer;
+        this.system = system;
+        this.deliveryPartner = deliveryPartner;
+        tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
+        populateTable();
     }
 
-    public void displayAdminTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+    public void displayDeliveryPartnerTaskPanel(JPanel panel) {
+        deliveryPartnerTaskLayer.removeAll();
+        deliveryPartnerTaskLayer.add(panel);
+        deliveryPartnerTaskLayer.repaint();
+        deliveryPartnerTaskLayer.revalidate();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,45 +57,53 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tableRecordsStatus = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        modifyBtn3 = new javax.swing.JButton();
+        readyToPickUpTable = new javax.swing.JTable();
+        asssignMeButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tableRecordsStatus.setText("No orders available to pick up!");
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        readyToPickUpTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Description"
+                "Order Id", "Customer", "Delivery Address ", "Resturant", "PickUp Address", "Items"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(readyToPickUpTable);
+        if (readyToPickUpTable.getColumnModel().getColumnCount() > 0) {
+            readyToPickUpTable.getColumnModel().getColumn(0).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(1).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(2).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(3).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(4).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        modifyBtn3.setBackground(new java.awt.Color(92, 184, 92));
-        modifyBtn3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        modifyBtn3.setForeground(new java.awt.Color(255, 255, 255));
-        modifyBtn3.setText("Select");
-        modifyBtn3.addActionListener(new java.awt.event.ActionListener() {
+        asssignMeButton.setBackground(new java.awt.Color(92, 184, 92));
+        asssignMeButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        asssignMeButton.setForeground(new java.awt.Color(255, 255, 255));
+        asssignMeButton.setText("Assign to me!");
+        asssignMeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyBtn3ActionPerformed(evt);
+                asssignMeButtonActionPerformed(evt);
             }
         });
 
@@ -98,7 +120,7 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(modifyBtn3)))
+                        .addComponent(asssignMeButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
         );
@@ -110,20 +132,60 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(modifyBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(asssignMeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void modifyBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtn3ActionPerformed
-        
-    }//GEN-LAST:event_modifyBtn3ActionPerformed
+    private void asssignMeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asssignMeButtonActionPerformed
+        int row = readyToPickUpTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a order!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String orderId = (String) readyToPickUpTable.getValueAt(row, 0);
+        if(system.getOrderById(orderId).getOrderStatus().equalsIgnoreCase("Order picked up")){
+            JOptionPane.showMessageDialog(this, "Order already ready for delivery!", "Order Status", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        system.getOrderById(orderId).setOrderStatus("Order picked up");
+        system.getOrderById(orderId).setDeliveryPartner(deliveryPartner);
+        populateTable();
+    }//GEN-LAST:event_asssignMeButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton asssignMeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton modifyBtn3;
+    private javax.swing.JTable readyToPickUpTable;
+    private javax.swing.JLabel tableRecordsStatus;
     // End of variables declaration//GEN-END:variables
+    private void populateTable() {
+        JTable table = readyToPickUpTable;
+        int rowCount = table.getRowCount();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        for (Order o : system.getOrderDirectory().getOrderDirectory()) {
+            if (o.getOrderStatus().equalsIgnoreCase("Order ready to deliver")) {
+                Object[] c = new Object[6];
+                c[0] = o.getOrderId();
+                c[1] = o.getCustomer().getName();
+                c[2] = o.getCustomer().getHomeAddress();
+                c[3] = o.getRestaurant().getRestaurantName();
+                c[4] = o.getRestaurant().getAddress();
+                c[5] = o.getItemsAsString();
+                model.addRow(c);
+            }
+        }
+        table.getSelectedRow();
+        table.setModel(model);
+        if (table.getRowCount() == 0) {
+            table.add(tableRecordsStatus);
+            table.setFillsViewportHeight(true);
+            asssignMeButton.setEnabled(false);
+        } else {
+            asssignMeButton.setEnabled(true);
+        }
+    }
 }

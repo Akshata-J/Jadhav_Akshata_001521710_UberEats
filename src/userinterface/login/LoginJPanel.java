@@ -11,6 +11,7 @@ import Business.DeliveryPartner.DeliveryPartner;
 import Business.FoodDeliverySystem;
 import Business.Restaurant.Restaurant;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
@@ -31,7 +32,7 @@ import javax.swing.SwingUtilities;
 import userinterface.CustomerRole.CustomerJPanel;
 import userinterface.DeliveryPartnerRole.DeliveryPartnerJPanel;
 import userinterface.RestaurantAdminRole.RestaurantAdminJPanel;
-import userinterface.SystemAdminWorkArea.SysAdminJPanel;
+import userinterface.SystemAdminRole.SysAdminJPanel;
 
 /**
  *
@@ -188,7 +189,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         SignInPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 368, 10));
         SignInPanel.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 368, 10));
 
-        passwordSignInTextBox.setText("jPasswordField1");
+        passwordSignInTextBox.setText("*************");
         passwordSignInTextBox.setBorder(null);
         passwordSignInTextBox.setOpaque(false);
         passwordSignInTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -390,28 +391,37 @@ public class LoginJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel20MouseClicked
 
     private void jLabelSignInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSignInButtonMouseClicked
+        String username = usernameSignInTextBox.getText();
+        String password = passwordSignInTextBox.getText();
+        if(username.isEmpty() || password.isEmpty() || username.equals("Enter Username") || password.equals("*************")){
+            JOptionPane.showMessageDialog(this, "Please provide username and password!", "Credential Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if(rolesRadioButton.getSelection()==null){
             JOptionPane.showMessageDialog(this, "Please select a role!", "Role Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if(!system.getUserAccountDirectory().authenticateUser(username, password, rolesRadioButton.getSelection().getActionCommand())){
+            
+        }
         System.out.println(rolesRadioButton.getSelection().getActionCommand());
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.Customer.getValue())){
-            Customer customer = system.getCustomerDirectory().getCustomerDirectory().get(0);
+            Customer customer = system.getCustomerByUsername(username);
             CustomerJPanel cjp = new CustomerJPanel(mainLayeredPane,system, customer,dB4OUtil);
             displayMainPanel(cjp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.DeliveryPartner.getValue())){
-            DeliveryPartner deliveryPartner = system.getDeliveryPartnerDirectory().getDeliveryPartnerDirectory().get(0);
-            DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane,system,deliveryPartner);
+            DeliveryPartner deliveryPartner = system.getDeliveryPartnerDirectory().getDeliveryPartner(username);
+            DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane,system,deliveryPartner, dB4OUtil);
             displayMainPanel(dpjp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.RestaurantAdmin.getValue())){
-            Restaurant restaurant = system.getRestaurantDirectory().getRestaurantDirectory().get(0);
+            Restaurant restaurant = system.getRestaurantDirectory().getRestaurant(username);
             RestaurantAdminJPanel rajp = new RestaurantAdminJPanel(mainLayeredPane,system,restaurant,dB4OUtil);
             displayMainPanel(rajp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.SysAdmin.getValue())){
-            SysAdminJPanel sajp = new SysAdminJPanel(mainLayeredPane);
+            SysAdminJPanel sajp = new SysAdminJPanel(mainLayeredPane,system, dB4OUtil);
             displayMainPanel(sajp);
         }
     }//GEN-LAST:event_jLabelSignInButtonMouseClicked

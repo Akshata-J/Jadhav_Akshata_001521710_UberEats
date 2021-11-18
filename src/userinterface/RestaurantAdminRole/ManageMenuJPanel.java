@@ -9,8 +9,8 @@ import Business.FoodDeliverySystem;
 import Business.Menu.Menu;
 import Business.Order.Order;
 import Business.Restaurant.Restaurant;
-import userinterface.SystemAdminWorkArea.*;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -23,13 +23,13 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
 
     FoodDeliverySystem system;
     Restaurant restaurant;
-    JLayeredPane adminTaskLayer;
+    JLayeredPane restaurantTaskLayer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public ManageMenuJPanel(JLayeredPane adminTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
+    public ManageMenuJPanel(JLayeredPane restaurantTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.restaurantTaskLayer=restaurantTaskLayer;
         this.system = system;
         this.restaurant = restaurant;
         tableRecordsStatus.setSize(tableRecordsStatus.getPreferredSize());
@@ -37,10 +37,10 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     }
 
     public void displayRestaurantTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+        restaurantTaskLayer.removeAll();
+        restaurantTaskLayer.add(panel);
+        restaurantTaskLayer.repaint();
+        restaurantTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,23 +129,25 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(208, 208, 208)
-                        .addComponent(modifyBtn4)
-                        .addGap(109, 109, 109)
-                        .addComponent(modifyMenu)
-                        .addGap(132, 132, 132)
-                        .addComponent(deleteMenu)
-                        .addGap(0, 297, Short.MAX_VALUE)))
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jSeparator2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(208, 208, 208)
+                                .addComponent(modifyBtn4)
+                                .addGap(109, 109, 109)
+                                .addComponent(modifyMenu)
+                                .addGap(132, 132, 132)
+                                .addComponent(deleteMenu)
+                                .addGap(0, 297, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,6 +170,10 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
 
     private void deleteMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenuActionPerformed
         int row = menuTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a menu!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String itemName = (String) menuTable.getValueAt(row, 0);
         system.getRestaurantByObj(restaurant).getMenuDirectory().removeMenu(itemName);
         restaurant.removeMenu(itemName);
@@ -175,12 +181,18 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteMenuActionPerformed
 
     private void modifyMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyMenuActionPerformed
-        ModifyItemJPanel mcjp = new ModifyItemJPanel(adminTaskLayer);
+        int row = menuTable.getSelectedRow();
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Select a menu!", "Select", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        String itemName = (String) menuTable.getValueAt(row, 0);
+        ModifyItemJPanel mcjp = new ModifyItemJPanel(restaurantTaskLayer, system, restaurant, itemName);
         displayRestaurantTaskPanel(mcjp);
     }//GEN-LAST:event_modifyMenuActionPerformed
 
     private void modifyBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBtn4ActionPerformed
-        AddItemJPanel acjp = new AddItemJPanel(adminTaskLayer);
+        AddItemJPanel acjp = new AddItemJPanel(restaurantTaskLayer, system, restaurant);
         displayRestaurantTaskPanel(acjp);
     }//GEN-LAST:event_modifyBtn4ActionPerformed
 

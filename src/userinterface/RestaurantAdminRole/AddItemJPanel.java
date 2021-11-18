@@ -5,7 +5,8 @@
  */
 package userinterface.RestaurantAdminRole;
 
-import userinterface.SystemAdminWorkArea.*;
+import Business.FoodDeliverySystem;
+import Business.Restaurant.Restaurant;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -15,20 +16,24 @@ import javax.swing.JPanel;
  */
 public class AddItemJPanel extends javax.swing.JPanel {
 
-    JLayeredPane adminTaskLayer;
+    FoodDeliverySystem system;
+    Restaurant restaurant;
+    JLayeredPane restaurantTaskLayer;
     /**
      * Creates new form SysAdminManageCustomersJPanel
      */
-    public AddItemJPanel(JLayeredPane adminTaskLayer) {
+    public AddItemJPanel(JLayeredPane restaurantTaskLayer, FoodDeliverySystem system, Restaurant restaurant) {
         initComponents();
-        this.adminTaskLayer=adminTaskLayer;
+        this.restaurantTaskLayer=restaurantTaskLayer;
+        this.system = system;
+        this.restaurant = restaurant;
     }
 
     public void displayRestaurantTaskPanel(JPanel panel) {
-        adminTaskLayer.removeAll();
-        adminTaskLayer.add(panel);
-        adminTaskLayer.repaint();
-        adminTaskLayer.revalidate();
+        restaurantTaskLayer.removeAll();
+        restaurantTaskLayer.add(panel);
+        restaurantTaskLayer.repaint();
+        restaurantTaskLayer.revalidate();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +95,7 @@ public class AddItemJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(adminTaskLayer);
+        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(restaurantTaskLayer, system, restaurant);
         displayRestaurantTaskPanel(mrjp);
     }//GEN-LAST:event_submitButtonActionPerformed
 
