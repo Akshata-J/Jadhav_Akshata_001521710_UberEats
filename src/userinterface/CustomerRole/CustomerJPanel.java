@@ -241,6 +241,7 @@ public class CustomerJPanel extends javax.swing.JPanel {
         if(order!=null && order.getOrderStatus().equalsIgnoreCase("Order cancelled by restaurant")){
             JOptionPane.showMessageDialog(this, "Order Cancelled by the restaurant. \nPlease place a new order!", "Order Cancelled", JOptionPane.INFORMATION_MESSAGE);
             system.getOrderById(order.getOrderId()).setOrderStatus("Order cancelled");
+            system.getOrderById(order.getOrderId()).setFeedback("Order got Cancelled!");
         }
         if (order != null && order.getOrderStatus().equalsIgnoreCase("Order Placed")) {
             OrderPlacedJPanel lrjp = new OrderPlacedJPanel(customerTaskLayer, system, order);

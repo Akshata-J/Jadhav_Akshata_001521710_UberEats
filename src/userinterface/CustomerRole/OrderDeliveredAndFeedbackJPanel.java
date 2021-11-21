@@ -219,11 +219,11 @@ public class OrderDeliveredAndFeedbackJPanel extends javax.swing.JPanel {
         String invoiceDate="Created: "+order.getRequestDate()+"\n";
         String retaurantDetails=order.getRestaurant().getRestaurantName()+"\n"+order.getRestaurant().getAddress()+"\n";
         String personDetails=order.getCustomer().getName()+"\n"+order.getCustomer().getEmail()+"\n"+order.getCustomer().getHomeAddress()+"\n";
-        String items="Item                            Price\n"+line;
+        String items="Item                            Price                   Quantity\n"+line;
         for(Item item : order.getItems()){
-            items+=item.getItemName()+"                            "+"$"+item.getPrice()+"\n";
+            items+=item.getItemName()+"                            "+"$"+item.getPrice()+"                   "+item.getQuantity()+"\n";
         }
-        String endTags="                                   $"+order.getTotal()+"\n";
+        String endTags="Total:                                   $"+order.getTotal()+"\n";
         String invoice="";                
         invoice+=invoiceHeading+line+invoiceDate+line+
                 retaurantDetails+line+personDetails+line+items+line+endTags+line;

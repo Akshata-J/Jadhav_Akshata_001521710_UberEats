@@ -175,10 +175,24 @@ public class LoginJPanel extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usernameSignInTextBoxMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                usernameSignInTextBoxMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                usernameSignInTextBoxMousePressed(evt);
+            }
         });
         usernameSignInTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameSignInTextBoxActionPerformed(evt);
+            }
+        });
+        usernameSignInTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameSignInTextBoxKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameSignInTextBoxKeyTyped(evt);
             }
         });
         SignInPanel.add(usernameSignInTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 368, 40));
@@ -190,6 +204,11 @@ public class LoginJPanel extends javax.swing.JPanel {
         passwordSignInTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordSignInTextBoxMouseClicked(evt);
+            }
+        });
+        passwordSignInTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordSignInTextBoxKeyPressed(evt);
             }
         });
         SignInPanel.add(passwordSignInTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 368, 35));
@@ -474,6 +493,28 @@ public class LoginJPanel extends javax.swing.JPanel {
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
 
     }//GEN-LAST:event_jLabel28MouseClicked
+
+    private void usernameSignInTextBoxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignInTextBoxMouseEntered
+     
+    }//GEN-LAST:event_usernameSignInTextBoxMouseEntered
+
+    private void usernameSignInTextBoxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignInTextBoxMousePressed
+        
+    }//GEN-LAST:event_usernameSignInTextBoxMousePressed
+
+    private void usernameSignInTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameSignInTextBoxKeyPressed
+        if(usernameSignInTextBox.getText().startsWith("Enter Username"))
+        usernameSignInTextBox.setText(usernameSignInTextBox.getText().replace("Enter Username", ""));
+    }//GEN-LAST:event_usernameSignInTextBoxKeyPressed
+
+    private void usernameSignInTextBoxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameSignInTextBoxKeyTyped
+       
+    }//GEN-LAST:event_usernameSignInTextBoxKeyTyped
+
+    private void passwordSignInTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordSignInTextBoxKeyPressed
+        if(passwordSignInTextBox.getText().equals("*************"))
+        passwordSignInTextBox.setText(passwordSignInTextBox.getText().replace("*************", ""));
+    }//GEN-LAST:event_passwordSignInTextBoxKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

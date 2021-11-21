@@ -92,9 +92,13 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(orderHistory);
         if (orderHistory.getColumnModel().getColumnCount() > 0) {
             orderHistory.getColumnModel().getColumn(0).setResizable(false);
+            orderHistory.getColumnModel().getColumn(0).setPreferredWidth(3);
             orderHistory.getColumnModel().getColumn(1).setResizable(false);
+            orderHistory.getColumnModel().getColumn(1).setPreferredWidth(200);
             orderHistory.getColumnModel().getColumn(2).setResizable(false);
+            orderHistory.getColumnModel().getColumn(2).setPreferredWidth(15);
             orderHistory.getColumnModel().getColumn(3).setResizable(false);
+            orderHistory.getColumnModel().getColumn(3).setPreferredWidth(100);
             orderHistory.getColumnModel().getColumn(4).setResizable(false);
         }
 
@@ -102,7 +106,7 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
         jLabel1.setText("Order History!");
 
         totalSales.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        totalSales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        totalSales.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

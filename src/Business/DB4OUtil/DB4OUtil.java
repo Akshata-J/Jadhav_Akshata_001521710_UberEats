@@ -75,7 +75,7 @@ public class DB4OUtil {
         }
         else{
             system =systems.get(systems.size() - 1);
-                   //ConfigureASystem.configure();
+//            system =ConfigureASystem.configure();
                    //systems.get(systems.size() - 1);
         }
         

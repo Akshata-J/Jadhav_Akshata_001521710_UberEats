@@ -89,11 +89,11 @@ public class OrderHistoryJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(orderHistoryTable);
         if (orderHistoryTable.getColumnModel().getColumnCount() > 0) {
             orderHistoryTable.getColumnModel().getColumn(0).setResizable(false);
-            orderHistoryTable.getColumnModel().getColumn(0).setPreferredWidth(15);
+            orderHistoryTable.getColumnModel().getColumn(0).setPreferredWidth(4);
             orderHistoryTable.getColumnModel().getColumn(1).setResizable(false);
-            orderHistoryTable.getColumnModel().getColumn(1).setPreferredWidth(15);
+            orderHistoryTable.getColumnModel().getColumn(1).setPreferredWidth(30);
             orderHistoryTable.getColumnModel().getColumn(2).setResizable(false);
-            orderHistoryTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+            orderHistoryTable.getColumnModel().getColumn(2).setPreferredWidth(200);
             orderHistoryTable.getColumnModel().getColumn(3).setResizable(false);
             orderHistoryTable.getColumnModel().getColumn(3).setPreferredWidth(15);
             orderHistoryTable.getColumnModel().getColumn(4).setResizable(false);

@@ -91,11 +91,13 @@ public class ReadyToPickUpJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(readyToPickUpTable);
         if (readyToPickUpTable.getColumnModel().getColumnCount() > 0) {
             readyToPickUpTable.getColumnModel().getColumn(0).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(0).setPreferredWidth(5);
             readyToPickUpTable.getColumnModel().getColumn(1).setResizable(false);
             readyToPickUpTable.getColumnModel().getColumn(2).setResizable(false);
             readyToPickUpTable.getColumnModel().getColumn(3).setResizable(false);
             readyToPickUpTable.getColumnModel().getColumn(4).setResizable(false);
             readyToPickUpTable.getColumnModel().getColumn(5).setResizable(false);
+            readyToPickUpTable.getColumnModel().getColumn(5).setPreferredWidth(200);
         }
 
         asssignMeButton.setBackground(new java.awt.Color(92, 184, 92));

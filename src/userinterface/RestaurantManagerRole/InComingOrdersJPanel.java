@@ -86,8 +86,10 @@ public class InComingOrdersJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(incomingOrdersTable);
         if (incomingOrdersTable.getColumnModel().getColumnCount() > 0) {
             incomingOrdersTable.getColumnModel().getColumn(0).setResizable(false);
+            incomingOrdersTable.getColumnModel().getColumn(0).setPreferredWidth(15);
             incomingOrdersTable.getColumnModel().getColumn(1).setResizable(false);
             incomingOrdersTable.getColumnModel().getColumn(2).setResizable(false);
+            incomingOrdersTable.getColumnModel().getColumn(2).setPreferredWidth(250);
             incomingOrdersTable.getColumnModel().getColumn(3).setResizable(false);
         }
 

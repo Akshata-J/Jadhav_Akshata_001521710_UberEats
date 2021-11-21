@@ -65,17 +65,17 @@ public class DeliveryHistoryJPanel extends javax.swing.JPanel {
 
         deliveryHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Description"
+                "ID", "Customer Name", "Restaurant Name", "Restaurant Address", "Items"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -85,7 +85,12 @@ public class DeliveryHistoryJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(deliveryHistory);
         if (deliveryHistory.getColumnModel().getColumnCount() > 0) {
             deliveryHistory.getColumnModel().getColumn(0).setResizable(false);
+            deliveryHistory.getColumnModel().getColumn(0).setPreferredWidth(5);
             deliveryHistory.getColumnModel().getColumn(1).setResizable(false);
+            deliveryHistory.getColumnModel().getColumn(2).setResizable(false);
+            deliveryHistory.getColumnModel().getColumn(3).setResizable(false);
+            deliveryHistory.getColumnModel().getColumn(4).setResizable(false);
+            deliveryHistory.getColumnModel().getColumn(4).setPreferredWidth(200);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

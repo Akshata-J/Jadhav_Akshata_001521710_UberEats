@@ -99,6 +99,10 @@ public class CurrentDeliveryJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(currentDeliveryTable);
+        if (currentDeliveryTable.getColumnModel().getColumnCount() > 0) {
+            currentDeliveryTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+            currentDeliveryTable.getColumnModel().getColumn(5).setPreferredWidth(200);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -141,6 +145,7 @@ public class CurrentDeliveryJPanel extends javax.swing.JPanel {
         system.getOrderById(orderId).setOrderStatus("Order Delivered");
         system.getOrderById(orderId).setResolveDate(new Date());
         populateTable();
+        JOptionPane.showMessageDialog(this, "Order Delivered Successfully!", "Order Status", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_deliverOrderBtnActionPerformed
 
 

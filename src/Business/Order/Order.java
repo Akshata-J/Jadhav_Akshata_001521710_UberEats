@@ -25,7 +25,7 @@ public class Order extends WorkRequest {
     private Customer customer;
     private DeliveryPartner deliveryPartner;
     private List<Item> items;
-    private double total;
+    private double total=0;
     private int rating;
     private String feedback;
 
@@ -86,7 +86,8 @@ public class Order extends WorkRequest {
         i.setPrice(menu.getPrice());
         i.setQuantity(quantity);
         items.add(i);
-        total = menu.getPrice() * quantity;
+        total += menu.getPrice() * quantity;
+   
     }
 
     public double getTotal() {
@@ -121,5 +122,7 @@ public class Order extends WorkRequest {
     public String toString() {
         return orderId;
     }
+
+   
     
 }

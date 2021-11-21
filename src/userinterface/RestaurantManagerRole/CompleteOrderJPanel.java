@@ -84,8 +84,10 @@ public class CompleteOrderJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(orderCompleteTable);
         if (orderCompleteTable.getColumnModel().getColumnCount() > 0) {
             orderCompleteTable.getColumnModel().getColumn(0).setResizable(false);
+            orderCompleteTable.getColumnModel().getColumn(0).setPreferredWidth(15);
             orderCompleteTable.getColumnModel().getColumn(1).setResizable(false);
             orderCompleteTable.getColumnModel().getColumn(2).setResizable(false);
+            orderCompleteTable.getColumnModel().getColumn(2).setPreferredWidth(250);
         }
 
         orderPreparedBtn.setBackground(new java.awt.Color(92, 184, 92));
