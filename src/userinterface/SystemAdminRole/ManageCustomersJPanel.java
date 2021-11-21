@@ -111,8 +111,8 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel6.setText("MANAGE CUSTOMERS");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Manage Customers");
 
         modifyBtn4.setBackground(new java.awt.Color(92, 184, 92));
         modifyBtn4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -165,7 +165,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                     .addComponent(modifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modifyBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, modifyBtn, modifyBtn4});

@@ -71,8 +71,6 @@ public class DeliveryPartner {
         this.phoneNumber = phoneNumber;
     }
 
-
-
     public String getUsername() {
         return username;
     }
@@ -80,8 +78,6 @@ public class DeliveryPartner {
     public void setUsername(String username) {
         this.username = username;
     }
-    
-    
     
     @Override
     public String toString() {

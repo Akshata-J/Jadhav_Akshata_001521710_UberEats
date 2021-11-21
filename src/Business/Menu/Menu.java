@@ -38,7 +38,6 @@ public class Menu {
         this.price = price;
     }
 
-    
     @Override
     public String toString() {
         return itemName;

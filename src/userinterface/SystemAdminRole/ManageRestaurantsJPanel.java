@@ -76,30 +76,31 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
 
         manageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Username", "Restaurant Name", "Website", "Contact No", "City"
+                "Username", "Restaurant Name", "Cuisine", "Website", "Contact No", "City"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        manageTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(manageTable);
         if (manageTable.getColumnModel().getColumnCount() > 0) {
             manageTable.getColumnModel().getColumn(0).setResizable(false);
             manageTable.getColumnModel().getColumn(1).setResizable(false);
-            manageTable.getColumnModel().getColumn(2).setResizable(false);
             manageTable.getColumnModel().getColumn(3).setResizable(false);
             manageTable.getColumnModel().getColumn(4).setResizable(false);
+            manageTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
         deleteBtn.setBackground(new java.awt.Color(209, 26, 42));
@@ -122,8 +123,8 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel6.setText("MANAGE RESTAURANTS");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Manage Restaurants");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -166,7 +167,7 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
                     .addComponent(modifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBtn, deleteBtn, modifyBtn});
@@ -218,13 +219,14 @@ public class ManageRestaurantsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
         for (Restaurant cu : system.getRestaurantDirectory().getRestaurantDirectory()) {
-            Object[] c = new Object[6];
+            Object[] c = new Object[8];
             c[0] = cu.getUsername();
             c[1] = cu.getRestaurantName();
+            c[2] = cu.getCuisine();
             //c[2] = cu.getAddress();
-            c[2] = cu.getWebsite();
-            c[3] = cu.getPhoneNumber();
-            c[4] = cu.getAddress();
+            c[3] = cu.getWebsite();
+            c[4] = cu.getPhoneNumber();
+            c[5] = cu.getAddress();
             model.addRow(c);
         }
         table.getSelectedRow();

@@ -64,23 +64,24 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
 
         restaurantListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Description"
+                "Name", "Cusine", "Website", "Contact Number"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        restaurantListTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(restaurantListTable);
         if (restaurantListTable.getColumnModel().getColumnCount() > 0) {
             restaurantListTable.getColumnModel().getColumn(0).setResizable(false);
@@ -156,7 +157,10 @@ public class ListRestaurantsJPanel extends javax.swing.JPanel {
         for (Restaurant r : system.getRestaurantDirectory().getRestaurantDirectory()) {
             Object[] c = new Object[8];
             c[0] = r;
-            c[1] = r.getWebsite();
+            c[1] = r.getCuisine();
+            c[2] = r.getWebsite();
+            c[3] = r.getPhoneNumber();
+            
             model.addRow(c);
         }
         table.setModel(model);

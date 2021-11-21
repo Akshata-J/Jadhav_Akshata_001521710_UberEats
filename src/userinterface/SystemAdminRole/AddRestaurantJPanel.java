@@ -73,17 +73,27 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         usernameSignUpTextBox = new javax.swing.JTextField();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel23 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        cuisineSignUpTextBox = new javax.swing.JTextField();
+        jSeparator18 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel6.setText("ADD RESTAURANT");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Add Restaurant");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 0, -1, -1));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 10, 398, 12));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 9, 453, 13));
+        add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 368, 10));
 
         jLabel25.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel25.setText("Website:");
+        add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 92, 34));
 
         jLabel31.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel31.setText("Address:");
+        add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 92, 34));
 
         addressSignUpTextBox.setText("Enter Address");
         addressSignUpTextBox.setBorder(null);
@@ -92,6 +102,8 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 addressSignUpTextBoxMouseClicked(evt);
             }
         });
+        add(addressSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 368, 30));
+        add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 368, -1));
 
         passwordSignUpTextBox.setText("************");
         passwordSignUpTextBox.setBorder(null);
@@ -100,9 +112,12 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 passwordSignUpTextBoxMouseClicked(evt);
             }
         });
+        add(passwordSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 63, 368, 40));
+        add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 103, 368, 10));
 
         jLabel29.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel29.setText("Restaurant Name:");
+        add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 155, 34));
 
         restaurantNameSignUpTextBox.setText("Enter Name");
         restaurantNameSignUpTextBox.setBorder(null);
@@ -111,9 +126,12 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 restaurantNameSignUpTextBoxMouseClicked(evt);
             }
         });
+        add(restaurantNameSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 368, 40));
+        add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 368, 10));
 
         jLabel30.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel30.setText("Manager Name:");
+        add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 139, 34));
 
         managerNameSignUpTextBox.setText("Enter Name");
         managerNameSignUpTextBox.setBorder(null);
@@ -122,6 +140,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 managerNameSignUpTextBoxMouseClicked(evt);
             }
         });
+        add(managerNameSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 140, 368, 40));
 
         websiteSignUpTextBox.setText("Enter Web Address");
         websiteSignUpTextBox.setBorder(null);
@@ -135,9 +154,13 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 websiteSignUpTextBoxActionPerformed(evt);
             }
         });
+        add(websiteSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 368, 40));
+        add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 368, 10));
+        add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 368, 10));
 
         jLabel26.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel26.setText("Contact Number:");
+        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 140, 34));
 
         mobileNumberSignUpTextBox.setText("Enter Mobile Number");
         mobileNumberSignUpTextBox.setBorder(null);
@@ -146,6 +169,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 mobileNumberSignUpTextBoxMouseClicked(evt);
             }
         });
+        add(mobileNumberSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 368, 40));
 
         submitButton.setBackground(new java.awt.Color(92, 184, 92));
         submitButton.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -157,9 +181,11 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 submitButtonActionPerformed(evt);
             }
         });
+        add(submitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 117, 50));
 
         jLabel24.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel24.setText("Username:");
+        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 33, 92, 34));
 
         usernameSignUpTextBox.setText("Enter Username");
         usernameSignUpTextBox.setBorder(null);
@@ -168,119 +194,31 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 usernameSignUpTextBoxMouseClicked(evt);
             }
         });
+        add(usernameSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 63, 368, 40));
+        add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 103, 368, 10));
 
         jLabel23.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
         jLabel23.setText("Password:");
+        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 33, 92, 34));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(103, 103, 103)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(usernameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(restaurantNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(addressSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(managerNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(websiteSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(125, 125, 125)))
-                    .addGap(104, 104, 104)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(432, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(33, 33, 33)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(30, 30, 30)
-                                            .addComponent(usernameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(30, 30, 30)
-                                            .addComponent(restaurantNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSeparator15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(mobileNumberSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(30, 30, 30)
-                                            .addComponent(passwordSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(30, 30, 30)
-                                            .addComponent(managerNameSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jSeparator16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(websiteSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(6, 6, 6)
-                            .addComponent(addressSignUpTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(21, 21, 21)))
-                    .addGap(0, 0, 0)
-                    .addComponent(jSeparator17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(34, Short.MAX_VALUE)))
-        );
+        jLabel32.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
+        jLabel32.setText("Cuisine:");
+        add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 92, 34));
+
+        cuisineSignUpTextBox.setText("Enter Cuisine");
+        cuisineSignUpTextBox.setBorder(null);
+        cuisineSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cuisineSignUpTextBoxMouseClicked(evt);
+            }
+        });
+        cuisineSignUpTextBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuisineSignUpTextBoxActionPerformed(evt);
+            }
+        });
+        add(cuisineSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 368, 40));
+        add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 368, 10));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
@@ -331,6 +269,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         String mobileNumber = mobileNumberSignUpTextBox.getText();
         String website = websiteSignUpTextBox.getText();
         String address = addressSignUpTextBox.getText();
+        String cuisine = cuisineSignUpTextBox.getText();
         if(username.equals("Enter Username") || username.isEmpty() ){
             JOptionPane.showMessageDialog(this, "Please provide username", "Empty Text Feilds", JOptionPane.ERROR_MESSAGE);
             return;
@@ -377,7 +316,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         }
         long mobileNumberAsLong = Utils.phoneNoFromString(mobileNumber);
         
-        Restaurant restaurant = new Restaurant(username, restaurantName, website, address, managerName, mobileNumberAsLong);
+        Restaurant restaurant = new Restaurant(username, restaurantName, address, cuisine, website, managerName, mobileNumberAsLong);
         
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
@@ -396,9 +335,20 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_usernameSignUpTextBoxMouseClicked
 
+    private void cuisineSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuisineSignUpTextBoxMouseClicked
+        if(cuisineSignUpTextBox.getText().equals("Enter Cuisine")){
+            cuisineSignUpTextBox.setText("");
+        }
+    }//GEN-LAST:event_cuisineSignUpTextBoxMouseClicked
+
+    private void cuisineSignUpTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuisineSignUpTextBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuisineSignUpTextBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressSignUpTextBox;
+    private javax.swing.JTextField cuisineSignUpTextBox;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -406,6 +356,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -415,6 +366,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField managerNameSignUpTextBox;
     private javax.swing.JTextField mobileNumberSignUpTextBox;

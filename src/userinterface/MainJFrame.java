@@ -55,17 +55,19 @@ public class MainJFrame extends javax.swing.JFrame {
         setUndecorated(true);
 
         mainLayeredPane.setFocusable(false);
+        mainLayeredPane.setMinimumSize(new java.awt.Dimension(1215, 740));
+        mainLayeredPane.setPreferredSize(new java.awt.Dimension(1215, 740));
         mainLayeredPane.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1215, Short.MAX_VALUE)
+            .addComponent(mainLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(mainLayeredPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

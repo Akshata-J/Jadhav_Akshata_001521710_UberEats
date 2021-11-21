@@ -19,7 +19,6 @@ public class UserAccountDirectory {
         userAccountList = new HashMap<>();
     }
 
-    
     public ArrayList<UserAccount> getUserAccountList() {
         return new ArrayList<>(userAccountList.values());
     }

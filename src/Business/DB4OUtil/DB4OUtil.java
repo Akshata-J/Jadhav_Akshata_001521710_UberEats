@@ -12,7 +12,6 @@ import java.nio.file.Paths;
 /**
  *
  * @author akshatajadhav
- * @author akshatajadhav
  */
 public class DB4OUtil {
 
@@ -68,12 +67,16 @@ public class DB4OUtil {
 //            conn.delete(s);
 //            conn.commit();
 //        }
+//        conn.close();
+//        System.exit(1);
         ObjectSet<FoodDeliverySystem> systems = conn.query(FoodDeliverySystem.class);
         if (systems.size() == 0){
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
-            system = systems.get(systems.size() - 1);
+            system =systems.get(systems.size() - 1);
+                   //ConfigureASystem.configure();
+                   //systems.get(systems.size() - 1);
         }
         
         conn.close();

@@ -12,7 +12,7 @@ package Business.Role;
 public abstract class Role {
     
     public enum RoleType{
-        RestaurantAdmin("RestaurantAdmin"),
+        RestaurantManager("RestaurantManager"),
         Customer("Customer"),
         DeliveryPartner("DeliveryPartner"),
         SysAdmin("SysAdmin");

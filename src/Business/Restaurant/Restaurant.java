@@ -17,20 +17,35 @@ public class Restaurant {
     private String username;
     private String restaurantName;
     private String address;
+    private String cuisine;
     private String website;
     private String managerName;
     private long phoneNumber;
     private MenuDirectory menuDirectory;
     
-    public Restaurant(String username, String restaurantName,String website, String address, String managerName, long phoneNumber) {
+//    public Restaurant(String username, String restaurantName,String website, String address, String managerName, long phoneNumber) {
+//        this.restaurantName = restaurantName;
+//        this.address = address;
+//        this.managerName = managerName;
+//        this.phoneNumber = phoneNumber;
+//        this.website = website;
+//        this.username = username;
+//        menuDirectory = new MenuDirectory();
+//    }
+
+    public Restaurant(String username, String restaurantName, String address, String cuisine, String website, String managerName, long phoneNumber) {
+        this.username = username;
         this.restaurantName = restaurantName;
         this.address = address;
+        this.cuisine = cuisine;
+        this.website = website;
         this.managerName = managerName;
         this.phoneNumber = phoneNumber;
-        this.website = website;
-        this.username = username;
+        
         menuDirectory = new MenuDirectory();
     }
+    
+    
 
     public ArrayList<Menu> getMenu() {
         return menuDirectory.getMenuDirectory();
@@ -76,6 +91,14 @@ public class Restaurant {
         this.address = address;
     }
 
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public void setCuisine(String cuisine) {
+        this.cuisine = cuisine;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -108,11 +131,6 @@ public class Restaurant {
         this.website = website;
     }
     
-//    @Override
-//    public String toString() {
-//        return restaurantName;
-//    }
-
     @Override
     public String toString() {
         return restaurantName;

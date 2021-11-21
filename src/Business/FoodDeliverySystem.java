@@ -16,9 +16,7 @@ import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.CustomerRole;
 import Business.Role.DeliverPartnerRole;
-import Business.Role.ResturantAdminRole;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
+import Business.Role.RestaurantManagerRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
@@ -41,11 +39,9 @@ public class FoodDeliverySystem {
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryPartnerDirectory = deliveryPartnerDirectory;
-        this.userAccountDirectory = this.userAccountDirectory;
+        this.userAccountDirectory = userAccountDirectory;
         
     }
-    
-    
     
     public FoodDeliverySystem(){
         customerDirectory = new CustomerDirectory();
@@ -135,9 +131,7 @@ public class FoodDeliverySystem {
     public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
         this.userAccountDirectory = userAccountDirectory;
     }
-    
-    
-
+  
     public RestaurantDirectory getRestaurantDirectory() {
         return restaurantDirectory;
     }
@@ -169,7 +163,7 @@ public class FoodDeliverySystem {
     }
     
     public void newRestaurant(Restaurant restaurant, UserAccount userAccount){
-        userAccount.setRole(new ResturantAdminRole());
+        userAccount.setRole(new RestaurantManagerRole());
         restaurantDirectory.newRestaurant(restaurant);
         userAccountDirectory.createUserAccount(userAccount);
     }

@@ -28,7 +28,6 @@ public class UserAccount {
         this.role=role;
     }
     
-    
     public String getUsername() {
         return username;
     }
@@ -49,7 +48,6 @@ public class UserAccount {
         return role;
     }
 
-
     public void setRole(Role role) {
         this.role = role;
     }
@@ -59,8 +57,6 @@ public class UserAccount {
         return workQueue;
     }
 
-    
-    
     @Override
     public String toString() {
         return username+":"+password+":"+role;

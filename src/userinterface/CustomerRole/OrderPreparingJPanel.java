@@ -55,7 +55,7 @@ public class OrderPreparingJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Restaurant Preparing your order!");
+        jLabel2.setText("Restaurant Preparing Your Order!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

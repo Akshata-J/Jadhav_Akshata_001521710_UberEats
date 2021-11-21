@@ -13,6 +13,7 @@ import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -62,6 +63,7 @@ public class MenuJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         tableRecordsStatus = new javax.swing.JLabel();
+        orderQuantityComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         menuCardTable = new javax.swing.JTable();
         placeOrderBtn = new javax.swing.JButton();
@@ -69,6 +71,8 @@ public class MenuJPanel extends javax.swing.JPanel {
 
         tableRecordsStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tableRecordsStatus.setText("No items available to order");
+
+        orderQuantityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select the quantity!", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,16 +87,9 @@ public class MenuJPanel extends javax.swing.JPanel {
                 "Item", "Price", "Provide Order Quantity"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, true
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -150,11 +147,15 @@ public class MenuJPanel extends javax.swing.JPanel {
         Menu m = new Menu();
         Order order = new Order();
         for (int row = 0; row < model.getRowCount(); row++) {
-            int quantity = (int) model.getValueAt(row, 2);
-            if (quantity > 0) {
-                m.setItemName((String) model.getValueAt(row, 0));
-                m.setPrice((double) model.getValueAt(row, 1));
-                order.addItem(m, quantity);
+            try{
+                int quantity = Integer.parseInt((String) model.getValueAt(row, 2));
+                if (quantity > 0) {
+                    m.setItemName((String) model.getValueAt(row, 0));
+                    m.setPrice((double) model.getValueAt(row, 1));
+                    order.addItem(m, quantity);
+                }
+            }catch(Exception e){
+                continue;
             }
         }
         if(order.getItems().isEmpty()){
@@ -179,12 +180,14 @@ public class MenuJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable menuCardTable;
+    private javax.swing.JComboBox<String> orderQuantityComboBox;
     private javax.swing.JButton placeOrderBtn;
     private javax.swing.JLabel tableRecordsStatus;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         JTable table = menuCardTable;
+        table.setRowHeight(25);
         int rowCount = table.getRowCount();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
@@ -192,13 +195,16 @@ public class MenuJPanel extends javax.swing.JPanel {
             Object[] c = new Object[3];
             c[0] = m.getItemName();
             c[1] = m.getPrice();
-            c[2] = 0;
+            c[2] = "Select the quantity!";
             model.addRow(c);
         }
         table.setModel(model);
+        
         if (table.getRowCount() == 0) {
             table.add(tableRecordsStatus);
             table.setFillsViewportHeight(true);
+            placeOrderBtn.setEnabled(false);
         }
+        table.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(orderQuantityComboBox));
     }
 }

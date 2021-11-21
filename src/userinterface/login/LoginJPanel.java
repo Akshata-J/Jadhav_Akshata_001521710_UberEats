@@ -29,7 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import userinterface.CustomerRole.CustomerJPanel;
 import userinterface.DeliveryPartnerRole.DeliveryPartnerJPanel;
-import userinterface.RestaurantAdminRole.RestaurantAdminJPanel;
+import userinterface.RestaurantManagerRole.RestaurantManagerJPanel;
 import userinterface.SystemAdminRole.SysAdminJPanel;
 
 /**
@@ -55,7 +55,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         
         customerRadioButton.setActionCommand(Role.RoleType.Customer.getValue());
         deliveryPartnerRadioButton.setActionCommand(Role.RoleType.DeliveryPartner.getValue());
-        restaurantRadioButton.setActionCommand(Role.RoleType.RestaurantAdmin.getValue());
+        restaurantRadioButton.setActionCommand(Role.RoleType.RestaurantManager.getValue());
         adminRadioButton.setActionCommand(Role.RoleType.SysAdmin.getValue());
         this.mainLayeredPane = mainLayeredPane;
         this.system = system;
@@ -171,7 +171,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         usernameSignInTextBox.setText("Enter Username");
         usernameSignInTextBox.setBorder(null);
-        usernameSignInTextBox.setOpaque(false);
         usernameSignInTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usernameSignInTextBoxMouseClicked(evt);
@@ -188,7 +187,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         passwordSignInTextBox.setText("*************");
         passwordSignInTextBox.setBorder(null);
-        passwordSignInTextBox.setOpaque(false);
         passwordSignInTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordSignInTextBoxMouseClicked(evt);
@@ -248,7 +246,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         usernameSignUpTextBox.setText("Enter Username");
         usernameSignUpTextBox.setBorder(null);
-        usernameSignUpTextBox.setOpaque(false);
         usernameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usernameSignUpTextBoxMouseClicked(evt);
@@ -261,7 +258,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         emailSignUpTextBox.setText("Enter Email");
         emailSignUpTextBox.setBorder(null);
-        emailSignUpTextBox.setOpaque(false);
         emailSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 emailSignUpTextBoxMouseClicked(evt);
@@ -271,7 +267,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         passwordSignUpTextBox.setText("jPasswordField1");
         passwordSignUpTextBox.setBorder(null);
-        passwordSignUpTextBox.setOpaque(false);
         passwordSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordSignUpTextBoxMouseClicked(evt);
@@ -289,7 +284,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         mobileNumberSignUpTextBox.setText("Enter Mobile Number");
         mobileNumberSignUpTextBox.setBorder(null);
-        mobileNumberSignUpTextBox.setOpaque(false);
         mobileNumberSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mobileNumberSignUpTextBoxMouseClicked(evt);
@@ -304,7 +298,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         nameSignUpTextBox.setText("Enter Name");
         nameSignUpTextBox.setBorder(null);
-        nameSignUpTextBox.setOpaque(false);
         nameSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nameSignUpTextBoxMouseClicked(evt);
@@ -335,7 +328,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         addressSignUpTextBox.setText("Enter Address");
         addressSignUpTextBox.setBorder(null);
-        addressSignUpTextBox.setOpaque(false);
         addressSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addressSignUpTextBoxMouseClicked(evt);
@@ -365,16 +357,6 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1210, 740));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
-        
-    }//GEN-LAST:event_jLabel28MouseClicked
-
-    private void jLabel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseClicked
-        if(evt.getX()<120){
-            displayPanel(SignInPanel);
-        }
-    }//GEN-LAST:event_jLabel27MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         JFrame parentFrame = (JFrame) SwingUtilities.getRoot(this);//(JFrame)this.getParent().getParent().getParent();
@@ -413,9 +395,9 @@ public class LoginJPanel extends javax.swing.JPanel {
             DeliveryPartnerJPanel dpjp = new DeliveryPartnerJPanel(mainLayeredPane,system,deliveryPartner);
             displayMainPanel(dpjp);
         }
-        if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.RestaurantAdmin.getValue())){
+        if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.RestaurantManager.getValue())){
             Restaurant restaurant = system.getRestaurantDirectory().getRestaurant(username);
-            RestaurantAdminJPanel rajp = new RestaurantAdminJPanel(mainLayeredPane,system,restaurant);
+            RestaurantManagerJPanel rajp = new RestaurantManagerJPanel(mainLayeredPane,system,restaurant);
             displayMainPanel(rajp);
         }
         if(rolesRadioButton.getSelection().getActionCommand().equals(Role.RoleType.SysAdmin.getValue())){
@@ -439,29 +421,9 @@ public class LoginJPanel extends javax.swing.JPanel {
             passwordSignInTextBox.setText("");
     }//GEN-LAST:event_passwordSignInTextBoxMouseClicked
 
-    private void usernameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignUpTextBoxMouseClicked
-        usernameSignUpTextBox.setText("");
-    }//GEN-LAST:event_usernameSignUpTextBoxMouseClicked
-
-    private void passwordSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordSignUpTextBoxMouseClicked
-        passwordSignUpTextBox.setText("");
-    }//GEN-LAST:event_passwordSignUpTextBoxMouseClicked
-
-    private void nameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBoxMouseClicked
-        nameSignUpTextBox.setText("");
-    }//GEN-LAST:event_nameSignUpTextBoxMouseClicked
-
-    private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
-        mobileNumberSignUpTextBox.setText("");
-    }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
-
-    private void emailSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxMouseClicked
-        emailSignUpTextBox.setText("");
-    }//GEN-LAST:event_emailSignUpTextBoxMouseClicked
-
-    private void jLabelSignInButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSignInButton1MouseClicked
-        
-    }//GEN-LAST:event_jLabelSignInButton1MouseClicked
+    private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
+        addressSignUpTextBox.setText("");
+    }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
 
     private void tncLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tncLabelMouseClicked
         JEditorPane editorPane = new JEditorPane();
@@ -476,12 +438,42 @@ public class LoginJPanel extends javax.swing.JPanel {
             Logger.getLogger(LoginJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(null, scrollPane, "Terms & Condition",
-                JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/resources/tnc.png")));
+            JOptionPane.OK_OPTION, new ImageIcon(getClass().getResource("/resources/tnc.png")));
     }//GEN-LAST:event_tncLabelMouseClicked
 
-    private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
-    }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
+    private void nameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameSignUpTextBoxMouseClicked
+        nameSignUpTextBox.setText("");
+    }//GEN-LAST:event_nameSignUpTextBoxMouseClicked
+
+    private void mobileNumberSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileNumberSignUpTextBoxMouseClicked
+        mobileNumberSignUpTextBox.setText("");
+    }//GEN-LAST:event_mobileNumberSignUpTextBoxMouseClicked
+
+    private void jLabelSignInButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSignInButton1MouseClicked
+
+    }//GEN-LAST:event_jLabelSignInButton1MouseClicked
+
+    private void passwordSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordSignUpTextBoxMouseClicked
+        passwordSignUpTextBox.setText("");
+    }//GEN-LAST:event_passwordSignUpTextBoxMouseClicked
+
+    private void emailSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailSignUpTextBoxMouseClicked
+        emailSignUpTextBox.setText("");
+    }//GEN-LAST:event_emailSignUpTextBoxMouseClicked
+
+    private void usernameSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameSignUpTextBoxMouseClicked
+        usernameSignUpTextBox.setText("");
+    }//GEN-LAST:event_usernameSignUpTextBoxMouseClicked
+
+    private void jLabel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseClicked
+        if(evt.getX()<120){
+            displayPanel(SignInPanel);
+        }
+    }//GEN-LAST:event_jLabel27MouseClicked
+
+    private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
+
+    }//GEN-LAST:event_jLabel28MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
