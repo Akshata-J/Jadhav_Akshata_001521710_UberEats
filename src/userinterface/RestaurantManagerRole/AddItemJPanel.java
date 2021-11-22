@@ -84,7 +84,7 @@ public class AddItemJPanel extends javax.swing.JPanel {
         });
 
         jLabel26.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
-        jLabel26.setText("Price:");
+        jLabel26.setText("Price ($):");
 
         priceText.setBorder(null);
         priceText.addMouseListener(new java.awt.event.MouseAdapter() {
