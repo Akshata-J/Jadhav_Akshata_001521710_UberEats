@@ -78,7 +78,7 @@ public class CompletedOrderHistoryJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Items", "Total Price", "Feedback", "Rating"
+                "ID", "Items", "Total Price ($)", "Feedback", "Rating"
             }
         ) {
             boolean[] canEdit = new boolean [] {

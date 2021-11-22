@@ -72,7 +72,7 @@ public class InComingOrdersJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Status", "Items", "Total"
+                "ID", "Status", "Items", "Total ($)"
             }
         ) {
             boolean[] canEdit = new boolean [] {

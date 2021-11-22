@@ -84,7 +84,7 @@ public class MenuJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Item", "Price", "Provide Order Quantity"
+                "Item", "Price ($)", "Provide Order Quantity"
             }
         ) {
             boolean[] canEdit = new boolean [] {
