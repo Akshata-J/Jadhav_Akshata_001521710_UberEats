@@ -124,9 +124,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         jLabel29 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         tncLabel = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jSeparator16 = new javax.swing.JSeparator();
-        addressSignUpTextBox = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -340,20 +337,6 @@ public class LoginJPanel extends javax.swing.JPanel {
         });
         SignUpPanel.add(tncLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, 150, 20));
 
-        jLabel30.setFont(new java.awt.Font("Berlin Sans FB", 1, 16)); // NOI18N
-        jLabel30.setText("Address:");
-        SignUpPanel.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 92, 34));
-        SignUpPanel.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 570, 368, 10));
-
-        addressSignUpTextBox.setText("Enter Address");
-        addressSignUpTextBox.setBorder(null);
-        addressSignUpTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addressSignUpTextBoxMouseClicked(evt);
-            }
-        });
-        SignUpPanel.add(addressSignUpTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, 368, 40));
-
         SignPanel.add(SignUpPanel, "card2");
 
         jPanel1.add(SignPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 510, 680));
@@ -440,10 +423,6 @@ public class LoginJPanel extends javax.swing.JPanel {
             passwordSignInTextBox.setText("");
     }//GEN-LAST:event_passwordSignInTextBoxMouseClicked
 
-    private void addressSignUpTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressSignUpTextBoxMouseClicked
-        addressSignUpTextBox.setText("");
-    }//GEN-LAST:event_addressSignUpTextBoxMouseClicked
-
     private void tncLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tncLabelMouseClicked
         JEditorPane editorPane = new JEditorPane();
         JScrollPane scrollPane = new JScrollPane(editorPane);
@@ -521,7 +500,6 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel SignInPanel;
     private javax.swing.JLayeredPane SignPanel;
     private javax.swing.JPanel SignUpPanel;
-    private javax.swing.JTextField addressSignUpTextBox;
     private javax.swing.JRadioButton adminRadioButton;
     private javax.swing.JRadioButton customerRadioButton;
     private javax.swing.JRadioButton deliveryPartnerRadioButton;
@@ -542,7 +520,6 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabelSignInButton;
     private javax.swing.JLabel jLabelSignInButton1;
     private javax.swing.JPanel jPanel1;
@@ -552,7 +529,6 @@ public class LoginJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
     private javax.swing.JSeparator jSeparator15;
-    private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField mobileNumberSignUpTextBox;
