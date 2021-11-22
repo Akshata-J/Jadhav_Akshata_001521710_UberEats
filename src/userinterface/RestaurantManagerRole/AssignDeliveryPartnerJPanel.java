@@ -96,7 +96,28 @@ public class AssignDeliveryPartnerJPanel extends javax.swing.JPanel {
             }
         });
 
+        deliveryPartnerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Phone Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        deliveryPartnerTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(deliveryPartnerTable);
+        if (deliveryPartnerTable.getColumnModel().getColumnCount() > 0) {
+            deliveryPartnerTable.getColumnModel().getColumn(0).setResizable(false);
+            deliveryPartnerTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
